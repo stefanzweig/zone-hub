@@ -1,12 +1,12 @@
-include "Common.thrift"
+include "CommonNode.thrift"
 
 
 service processNode {
-	returnInfo getProcessInfo (1: Common.empty req)
-	returnInfo getVersionInfo (1: Common.empty req)
+	returnInfo getProcessInfo ()
+	returnInfo getVersionInfo ()
 	returnInfo stopProcess (1: requestInfo req)
 	returnInfo startProcess (1: requestInfo req)
-	returnInfo killMainProcess (1: Common.empty req)
+	returnInfo killMainProcess ()
 	returnInfo processLogConfig (1: requestInfo req)
 }
 struct returnInfo {
