@@ -25,7 +25,23 @@ except Exception as e:
     print(f"路径添加失败: {e}")
     raise
 
-from IDL.thrift.CanStackNode.canStackNode import canMessage
+from IDL.thrift.CanStackNode import canStackNode
+from IDL.thrift.CanStackNode.ttypes import *
+from IDL.thrift.CanStackNode.constants import *
+from IDL.thrift.CommonNode.ttypes import *
+import BaseNodeData
+
+class CanStackClient(object):
+    def __init__(self) -> None:
+        transport = TSocket.TSocket(
+            BaseNodeData.CAN_STACK_NODE_IP, BaseNodeData.CAN_STACK_NODE_PORT
+        )
+        transport = TTransport.TBufferedTransport(transport)
+        protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        self.client = canStackNode.Client(protocol)
+        transport.open()
+
 
 if __name__ == "__main__":
-    pass
+    canStack_Client = CanStackClient()
+    print(f'Client {canStack_Client} is made.')
