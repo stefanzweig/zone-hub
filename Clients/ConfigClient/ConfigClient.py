@@ -31,7 +31,9 @@ from IDL.thrift.ConfigNode import configNode
 
 
 class ConfigClient(object):
+    """class ConfigClient docstring """
     def __init__(self) -> None:
+        """constructor ConfigClient docstring """
         transport = TSocket.TSocket(
             BaseNodeData.CONFIG_NODE_IP, BaseNodeData.CONFIG_NODE_PORT
         )

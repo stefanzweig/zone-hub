@@ -30,7 +30,9 @@ import BaseNodeData
 
 
 class CanParserClient(object):
+    """class CanParserClient docstring """
     def __init__(self) -> None:
+        """constructor docstring """
         transport = TSocket.TSocket(
             BaseNodeData.CAN_PARSER_NODE_IP, BaseNodeData.CAN_PARSER_NODE_PORT
         )
