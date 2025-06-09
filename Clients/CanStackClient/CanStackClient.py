@@ -32,8 +32,11 @@ from IDL.thrift.CommonNode.ttypes import *
 import BaseNodeData
 
 
-class CanStackClient(object):
+class CANStackClient(object):
+    """定义一个CAN Stack的客户端实例"""
+
     def __init__(self) -> None:
+        """初始化CAN Stack的客户端"""
         transport = TSocket.TSocket(
             BaseNodeData.CAN_STACK_NODE_IP, BaseNodeData.CAN_STACK_NODE_PORT
         )
@@ -42,7 +45,19 @@ class CanStackClient(object):
         self.client = canStackNode.Client(protocol)
         transport.open()
 
+    def show_all_methods(self) -> None:
+        """显示所有的方法"""
+        return None
+
+    def show_all_methods_with_args(self, **args) -> None:
+        """
+        带参数显示所有的方法
+
+        :param args: 参数， 字典类型
+        """
+        return None
+
 
 if __name__ == "__main__":
-    canStack_Client = CanStackClient()
+    canStack_Client = CANStackClient()
     print(f"Client {canStack_Client} is made.")
