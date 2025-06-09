@@ -31,6 +31,7 @@ from IDL.thrift.CanStackNode.constants import *
 from IDL.thrift.CommonNode.ttypes import *
 import BaseNodeData
 
+
 class CanStackClient(object):
     def __init__(self) -> None:
         transport = TSocket.TSocket(
@@ -44,4 +45,4 @@ class CanStackClient(object):
 
 if __name__ == "__main__":
     canStack_Client = CanStackClient()
-    print(f'Client {canStack_Client} is made.')
+    print(f"Client {canStack_Client} is made.")
