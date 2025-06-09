@@ -4,6 +4,9 @@
  API reference
 ===============
 
+.. contents:: :local:
+   :class: this-will-duplicate-information-and-it-is-still-useful-here
+
 .. currentmodule:: Clients.CanStackClient.CanStackClient
 
 CANStackClient
