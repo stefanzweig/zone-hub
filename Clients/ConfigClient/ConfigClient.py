@@ -11,6 +11,8 @@ import functools
 
 from pathlib import Path
 
+import BaseNodeData
+
 try:
     project_root = Path(__file__).resolve().parent.parent.parent
     thrift_dir = project_root / "IDL" / "thrift"
@@ -25,7 +27,20 @@ except Exception as e:
     print(f"路径添加失败: {e}")
     raise
 
-from IDL.thrift.ConfigNode.configNode import canConfigInfo
+from IDL.thrift.ConfigNode import configNode
+
+
+class ConfigClient(object):
+    def __init__(self) -> None:
+        transport = TSocket.TSocket(
+            BaseNodeData.CONFIG_NODE_IP, BaseNodeData.CONFIG_NODE_PORT
+        )
+        transport = TTransport.TBufferedTransport(transport)
+        protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        self.client = configNode.Client(protocol)
+        transport.open()
+
 
 if __name__ == "__main__":
-    pass
+    config_Client = ConfigClient()
+    print(f"Client {config_Client} is made.")

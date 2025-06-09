@@ -26,6 +26,20 @@ except Exception as e:
     raise
 
 from IDL.thrift.CanParserNode import canParserNode
+import BaseNodeData
+
+
+class CanParserClient(object):
+    def __init__(self) -> None:
+        transport = TSocket.TSocket(
+            BaseNodeData.CAN_PARSER_NODE_IP, BaseNodeData.CAN_PARSER_NODE_PORT
+        )
+        transport = TTransport.TBufferedTransport(transport)
+        protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        self.client = canParserNode.Client(protocol)
+        transport.open()
+
 
 if __name__ == "__main__":
-    pass
+    canParser_Client = CanParserClient()
+    print(f"Client {canParser_Client} is made.")
