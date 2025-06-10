@@ -14,6 +14,7 @@ CANStackClient
 
 .. autoclass:: CANStackClient
    :members:
+   :member-order: bysource
 
 .. currentmodule:: Clients.CanParserClient.CanParserClient
 
@@ -22,6 +23,7 @@ CanParserClient
 
 .. autoclass:: CanParserClient
    :members:
+   :member-order: bysource
 
 .. currentmodule:: Clients.ConfigClient.ConfigClient
 
@@ -30,3 +32,4 @@ ConfigClient
 
 .. autoclass:: ConfigClient
    :members:
+   :member-order: bysource

@@ -1,14 +1,9 @@
-import sys, os, logging
+import sys
 import time, json, traceback
 from thrift import Thrift
 from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
-
-from typing import Union
-import functools
-
-
 from pathlib import Path
 
 try:
@@ -32,7 +27,7 @@ from IDL.thrift.CommonNode.ttypes import *
 import BaseNodeData
 
 
-class CANStackClient(object):
+class CANStackClient(canStackNode.Iface):
     """定义一个CAN Stack的客户端实例"""
 
     def __init__(self) -> None:
@@ -46,7 +41,11 @@ class CANStackClient(object):
         transport.open()
 
     def show_all_methods(self) -> None:
-        """显示所有的方法"""
+        """
+        显示所有的方法
+
+        给文档生成留用
+        """
         return None
 
     def show_all_methods_with_args(self, **args) -> None:
@@ -54,186 +53,222 @@ class CANStackClient(object):
         带参数显示所有的方法
 
         :param args: 参数， 字典类型
+
+        给文档生成留用
         """
         return None
 
-    def checkAlive(self):
+    def checkAlive(self) -> result:
         """
+        检查活跃度
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
+        return self.client.checkAlive()
 
-    def getVersion(self):
+    def getVersion(self) -> version:
         """
+        获取版本
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: version
         """
-        pass
+        return self.client.getVersion()
 
-    def setConfigs(self, req):
+    def setConfigs(self, configs: canChannelConfigs) -> result:
         """
+        配置can通道信息
+
+        :param configs: can通道配置信息（多个）
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.setConfigs(configs)
+
+    def startCanStack(self) -> result:
+        """
+        启动CAN协议栈
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.startCanStack()
+
+    def stopCanStack(self) -> result:
+        """
+        停止CAN协议栈
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.stopCanStack()
+
+    def clearSend(self) -> result:
+        """
+        清除所有发送任务
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.clearSend()
+
+    def setCrcRcConfig(self, config: frameCrcRcConfig) -> result:
+        """
+        设置特定Crc/Rc信息
+
+        :param config: 参数， 字典类型
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.setCrcRcConfig(config)
+
+    def clearCrcRcConfig(self, config: frameCrcRcConfig):
+        """
+        清除特定Crc/Rc信息
+
+        :param config: 参数， 字典类型
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.clearCrcRcConfig(config)
+
+    def clearAllCrcRcConfig(self) -> result:
+        """
+        清除所有Crc/Rc信息
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.clearAllCrcRcConfig()
+
+    def sendCanMessageCyc(self, req: canMessage) -> result:
+        """
+        发送周期CAN报文
 
         :param req: 参数， 字典类型
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
+        return self.client.sendCanMessageCyc(req)
 
-    def startCanStack(self):
+    def sendCanMessage(self, req: canMessage):
         """
-
-        Returns:
-
-        """
-        pass
-
-    def stopCanStack(self):
-        """
-
-        Returns:
-
-        """
-        pass
-
-    def clearSend(self):
-        """
-
-        Returns:
-
-        """
-        pass
-
-    def setCrcRcConfig(self, req):
-        """
+        发送单帧CAN报文
 
         :param req: 参数， 字典类型
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
+        return self.client.sendCanMessage(req)
 
-    def clearCrcRcConfig(self, req):
+    def sendCanMessages(self, req: canMessages, stmin: int):
         """
-
-        :param req: 参数， 字典类型
-
-        Returns:
-
-        """
-        pass
-
-    def clearAllCrcRcConfig(self):
-        """
-
-        Returns:
-
-        """
-        pass
-
-    def sendCanMessageCyc(self, req):
-        """
-
-        :param req: 参数， 字典类型
-
-        Returns:
-
-        """
-        pass
-
-    def sendCanMessage(self, req):
-        """
-
-        :param req: 参数， 字典类型
-
-        Returns:
-
-        """
-        pass
-
-    def sendCanMessages(self, req, stmin):
-        """
+        诊断发送连续帧使用，stmin单位毫秒
 
         :param req: 参数， 字典类型
 
         :param stmin: 参数， 字典类型
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
+        return self.client.sendCanMessages(req, stmin)
 
-    def getStackStatus(self):
+    def getStackStatus(self) -> result:
         """
+        获取CAN协议栈状态，result中result为1时表示正在运行
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
+        return self.client.getStackStatus()
 
-    def stopChannelSendCyc(self, req):
+    def stopChannelSendCyc(self, req: channel) -> result:
+        """
+        停止某条软件通道上所有发送任务
+
+        :param req: 参数， 字典类型
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.stopChannelSendCyc(req)
+
+    def sendCan(self, req: canMessage):
+        """
+        发送CAN消息
+
+        :param req: 参数， 字典类型
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.sendCan(req)
+
+    def getChannelBusloadCurrent(self, req: channel):
+        """
+        获取
+        :param req: 参数， 字典类型
+
+        :return: 返回值说明.
+        
+        :rtype: result
+        """
+        return self.client.getChannelBusloadCurrent(req)
+
+    def getChannelBusloadMax(self, req: channel):
         """
 
         :param req: 参数， 字典类型
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
+        return self.client.getChannelBusloadMax(req)
 
-    def sendCan(self, req):
-        """
-
-        :param req: 参数， 字典类型
-
-        Returns:
-
-        """
-        pass
-
-    def getChannelBusloadCurrent(self, req):
+    def getChannelBusloadAvg(self, req: channel):
         """
 
         :param req: 参数， 字典类型
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
+        return self.client.getChannelBusloadAvg(req)
 
-    def getChannelBusloadMax(self, req):
-        """
-
-        :param req: 参数， 字典类型
-
-        Returns:
-
-        """
-        pass
-
-    def getChannelBusloadAvg(self, req):
+    def getChannelErrorFrameTotal(self, req: channel):
         """
 
         :param req: 参数， 字典类型
 
-        Returns:
-
+        :return: 返回值说明.
+        
+        :rtype: result
         """
-        pass
-
-    def getChannelErrorFrameTotal(self, req):
-        """
-
-        :param req: 参数， 字典类型
-
-        Returns:
-
-        """
-        pass
+        return self.client.getChannelErrorFrameTotal(req)
 
 
 if __name__ == "__main__":
