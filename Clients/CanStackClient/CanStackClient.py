@@ -57,6 +57,184 @@ class CANStackClient(object):
         """
         return None
 
+    def checkAlive(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def getVersion(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def setConfigs(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def startCanStack(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def stopCanStack(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def clearSend(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def setCrcRcConfig(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def clearCrcRcConfig(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def clearAllCrcRcConfig(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def sendCanMessageCyc(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def sendCanMessage(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def sendCanMessages(self, req, stmin):
+        """
+
+        :param req: 参数， 字典类型
+
+        :param stmin: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def getStackStatus(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def stopChannelSendCyc(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def sendCan(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def getChannelBusloadCurrent(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def getChannelBusloadMax(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def getChannelBusloadAvg(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
+    def getChannelErrorFrameTotal(self, req):
+        """
+
+        :param req: 参数， 字典类型
+
+        Returns:
+
+        """
+        pass
+
 
 if __name__ == "__main__":
     canStack_Client = CANStackClient()

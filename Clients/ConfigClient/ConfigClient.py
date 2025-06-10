@@ -31,9 +31,10 @@ from IDL.thrift.ConfigNode import configNode
 
 
 class ConfigClient(object):
-    """class ConfigClient docstring """
+    """class ConfigClient docstring"""
+
     def __init__(self) -> None:
-        """constructor ConfigClient docstring """
+        """constructor ConfigClient docstring"""
         transport = TSocket.TSocket(
             BaseNodeData.CONFIG_NODE_IP, BaseNodeData.CONFIG_NODE_PORT
         )
@@ -41,6 +42,47 @@ class ConfigClient(object):
         protocol = TBinaryProtocol.TBinaryProtocol(transport)
         self.client = configNode.Client(protocol)
         transport.open()
+
+    def getHardwareInfo(self, req):
+        """
+        docstring
+
+        :param req: 参数， 字典类型
+        """
+        pass
+
+    def sendCanArxml(self, req):
+        """
+        docstring
+
+        :param req: 参数， 字典类型
+        """
+        pass
+
+    def sendCanConfig(self, req):
+        """
+        docstring
+
+        :param req: 参数， 字典类型
+        """
+        pass
+
+    def sendLinConfig(self, req):
+        """
+        docstring
+
+        :param req: 参数， 字典类型
+        """
+        pass
+
+    def sendEthConfig(self, req):
+        """
+        docstring
+
+        :param req: 参数， 字典类型
+        """
+
+    pass
 
 
 if __name__ == "__main__":

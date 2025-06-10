@@ -30,9 +30,10 @@ import BaseNodeData
 
 
 class CanParserClient(object):
-    """class CanParserClient docstring """
+    """class CanParserClient docstring"""
+
     def __init__(self) -> None:
-        """constructor docstring """
+        """constructor docstring"""
         transport = TSocket.TSocket(
             BaseNodeData.CAN_PARSER_NODE_IP, BaseNodeData.CAN_PARSER_NODE_PORT
         )
@@ -40,6 +41,174 @@ class CanParserClient(object):
         protocol = TBinaryProtocol.TBinaryProtocol(transport)
         self.client = canParserNode.Client(protocol)
         transport.open()
+
+    def checkAlive(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def setCrcRcConfig(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def clearAllCrcRcConfig(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def clearCrcRcConfig(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def sendCanFrameCyc(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def sendCanPduCyc(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def sendCanPduCycList(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def sendCanPdu(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def addDbFile(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def setConfig(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def getCanDbConfigs(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def getCanDbPath(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def subscribeMsg(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def unSubscribeMsg(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def getCanDbInfo(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def clear(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def clearSubscribe(self):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def encodePdu(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def convertCanDbToPy(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def convertCanDbToJson(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
+
+    def updateCanPdu(self, req):
+        """
+
+        Returns:
+
+        """
+        pass
 
 
 if __name__ == "__main__":
