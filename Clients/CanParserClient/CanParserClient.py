@@ -44,171 +44,213 @@ class CanParserClient(object):
 
     def checkAlive(self):
         """
+        检查存活度
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.checkAlive()
 
     def setCrcRcConfig(self, req):
         """
+        设置CRC配置
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.setCrcRcConfig(req)
 
     def clearAllCrcRcConfig(self):
         """
+        清除所有CRC配置
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.clearAllCrcRcConfig()
 
     def clearCrcRcConfig(self, req):
         """
+        清除CRC配置
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.clearCrcRcConfig(req)
 
     def sendCanFrameCyc(self, req):
         """
+        发送CAN帧循环
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.sendCanFrameCyc(req)
 
     def sendCanPduCyc(self, req):
         """
+        发送CAN PDU循环
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.send_sendCanPduCyc(req)
 
     def sendCanPduCycList(self, req):
         """
+        发送CAN PDU 循环列表
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.sendCanPduCycList(req)
 
     def sendCanPdu(self, req):
         """
+        发送CAN PDU
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.sendCanPdu(req)
 
     def addDbFile(self, req):
         """
+        添加数据库文件
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.addDbFile(req)
 
     def setConfig(self, req):
         """
+        设置配置
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.setConfig(req)
 
     def getCanDbConfigs(self):
         """
+        获取CAN数据库配置
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.getCanDbConfigs()
 
     def getCanDbPath(self):
         """
+        获取CAN数据库路径
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.getCanDbPath()
 
     def subscribeMsg(self, req):
         """
+        订阅消息
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.subscribeMsg(req)
 
     def unSubscribeMsg(self, req):
         """
+        取消消息订阅
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.unSubscribeMsg(req)
 
     def getCanDbInfo(self):
         """
+        获取CAN数据库信息
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.getCanDbInfo()
 
     def clear(self):
         """
+        清理
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.clear()
 
     def clearSubscribe(self):
         """
+        清理订阅
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.clearSubscribe()
 
     def encodePdu(self, req):
         """
+        编码PDU
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.encodePdu()
 
     def convertCanDbToPy(self, req):
         """
+        将CAN数据库转换成python文件
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.convertCanDbToPy()
 
     def convertCanDbToJson(self, req):
         """
+        将CAN数据库转换成JSON
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.convertCanDbToJson(req)
 
     def updateCanPdu(self, req):
         """
+        更新CAN PDU
 
-        Returns:
+        :return: 返回值说明.
 
+        :rtype: result
         """
-        pass
+        return self.client.updateCanPdu(req)
 
 
 if __name__ == "__main__":
