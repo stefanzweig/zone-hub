@@ -12,6 +12,8 @@ import functools
 from pathlib import Path
 
 import BaseNodeData
+from IDL.thrift.ConfigNode.constants import *
+from IDL.thrift.CommonNode.ttypes import *
 
 try:
     project_root = Path(__file__).resolve().parent.parent.parent
@@ -43,46 +45,55 @@ class ConfigClient(object):
         self.client = configNode.Client(protocol)
         transport.open()
 
-    def getHardwareInfo(self, req):
+    def getHardwareInfo(self, req) -> hardwareInfos:
         """
-        docstring
+        订阅消息
 
-        :param req: 参数， 字典类型
+        :return: 返回值说明.
+
+        :rtype: result
         """
-        pass
+        return self.client.getHardwareInfo(req)
 
-    def sendCanArxml(self, req):
+    def sendCanArxml(self, req) -> canCluster:
         """
-        docstring
+        订阅消息
 
-        :param req: 参数， 字典类型
+        :return: 返回值说明.
+
+        :rtype: result
         """
-        pass
+        return self.client.sendCanArxml(req)
 
-    def sendCanConfig(self, req):
+    def sendCanConfig(self, req) -> result:
         """
-        docstring
+        订阅消息
 
-        :param req: 参数， 字典类型
+        :return: 返回值说明.
+
+        :rtype: result
         """
-        pass
+        return self.client.sendCanConfig(req)
 
-    def sendLinConfig(self, req):
+    def sendLinConfig(self, req) -> result:
         """
-        docstring
+        订阅消息
 
-        :param req: 参数， 字典类型
+        :return: 返回值说明.
+
+        :rtype: result
         """
-        pass
+        return self.client.sendLinConfig(req)
 
-    def sendEthConfig(self, req):
+    def sendEthConfig(self, req) -> result:
         """
-        docstring
+        订阅消息
 
-        :param req: 参数， 字典类型
+        :return: 返回值说明.
+
+        :rtype: result
         """
-
-    pass
+        return self.client.sendEthConfig(req)
 
 
 if __name__ == "__main__":
