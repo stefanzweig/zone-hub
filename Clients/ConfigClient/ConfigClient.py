@@ -13,6 +13,7 @@ from pathlib import Path
 
 import BaseNodeData
 from IDL.thrift.ConfigNode.constants import *
+from IDL.thrift.SomeIpNode.ttypes import *
 from IDL.thrift.CommonNode.ttypes import *
 
 try:
