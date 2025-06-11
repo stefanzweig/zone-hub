@@ -28,7 +28,6 @@ except Exception as e:
     raise
 
 from IDL.thrift.CanParserNode import canParserNode
-from IDL.thrift.CanParserNode.ttypes import *
 from IDL.thrift.CanParserNode.constants import *
 from IDL.thrift.CommonNode.ttypes import *
 import BaseNodeData
@@ -51,7 +50,7 @@ class CanParserClient(object):
         """
         检查存活度
 
-        :return: 返回值说明.
+        :return: 执行结果
 
         :rtype: result
         """
@@ -61,7 +60,9 @@ class CanParserClient(object):
         """
         设置CRC配置
 
-        :return: 返回值说明.
+        :param config: 需要设置的pdu的软件通道信息
+
+        :return: 执行结果
 
         :rtype: result
         """
@@ -71,7 +72,7 @@ class CanParserClient(object):
         """
         清除所有CRC配置
 
-        :return: 返回值说明.
+        :return: 执行结果
 
         :rtype: result
         """
@@ -81,57 +82,69 @@ class CanParserClient(object):
         """
         清除CRC配置
 
-        :return: 返回值说明.
+        :param config: 需要设置的pdu的软件通道信息
+
+        :return: 执行结果
 
         :rtype: result
         """
         return self.client.clearCrcRcConfig(config)
 
-    def sendCanFrameCyc(self, req: canMessage) -> result:
+    def sendCanFrameCyc(self, msg: canMessage) -> result:
         """
         发送CAN帧循环
 
-        :return: 返回值说明.
+        :param msg: can报文通道信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.sendCanFrameCyc(req)
+        return self.client.sendCanFrameCyc(msg)
 
-    def sendCanPduCyc(self, req: pduMessage) -> result:
+    def sendCanPduCyc(self, msg: pduMessage) -> result:
         """
         发送CAN PDU循环
 
-        :return: 返回值说明.
+        :param msg: PDU报文通道信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.send_sendCanPduCyc(req)
+        return self.client.send_sendCanPduCyc(msg)
 
-    def sendCanPduCycList(self, req: pduMessages) -> result:
+    def sendCanPduCycList(self, msgs: pduMessages) -> result:
         """
         发送CAN PDU 循环列表
 
-        :return: 返回值说明.
+        :param msgs: 全部PDU报文通道信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.sendCanPduCycList(req)
+        return self.client.sendCanPduCycList(msgs)
 
-    def sendCanPdu(self, req: pduMessage) -> result:
+    def sendCanPdu(self, msg: pduMessage) -> result:
         """
         发送CAN PDU
 
-        :return: 返回值说明.
+        :param msg: PDU报文通道信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.sendCanPdu(req)
+        return self.client.sendCanPdu(msg)
 
     def addDbFile(self, dbpath: dbPath) -> result:
         """
         添加数据库文件
 
-        :return: 返回值说明.
+        :param dbpath: 数据库路径
+
+        :return: 执行结果
 
         :rtype: result
         """
@@ -141,7 +154,9 @@ class CanParserClient(object):
         """
         设置配置
 
-        :return: 返回值说明.
+        :param configs: 多个数据库配置
+
+        :return: 执行结果
 
         :rtype: result
         """
@@ -151,7 +166,7 @@ class CanParserClient(object):
         """
         获取CAN数据库配置
 
-        :return: 返回值说明.
+        :return: 数据库配置
 
         :rtype: dbConfigs
         """
@@ -161,37 +176,41 @@ class CanParserClient(object):
         """
         获取CAN数据库路径
 
-        :return: 返回值说明.
+        :return: 数据库路径
 
         :rtype: dbPath
         """
         return self.client.getCanDbPath()
 
-    def subscribeMsg(self, req: subscribeInfo) -> result:
+    def subscribeMsg(self, info: subscribeInfo) -> result:
         """
         订阅消息
 
-        :return: 返回值说明.
+        :param info: 订阅信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.subscribeMsg(req)
+        return self.client.subscribeMsg(info)
 
-    def unSubscribeMsg(self, req: subscribeInfo) -> result:
+    def unSubscribeMsg(self, info: subscribeInfo) -> result:
         """
         取消消息订阅
 
-        :return: 返回值说明.
+        :param info: 订阅信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.unSubscribeMsg(req)
+        return self.client.unSubscribeMsg(info)
 
     def getCanDbInfo(self) -> canDbInfo:
         """
         获取CAN数据库信息
 
-        :return: 返回值说明.
+        :return: CAN数据库信息
 
         :rtype: canDbInfo
         """
@@ -201,7 +220,7 @@ class CanParserClient(object):
         """
         清理
 
-        :return: 返回值说明.
+        :return: 执行结果
 
         :rtype: result
         """
@@ -211,7 +230,7 @@ class CanParserClient(object):
         """
         清理订阅
 
-        :return: 返回值说明.
+        :return: 执行结果
 
         :rtype: result
         """
@@ -221,41 +240,49 @@ class CanParserClient(object):
         """
         编码PDU
 
-        :return: 返回值说明.
+        :param req: iSignalIPduObj
+
+        :return: iSignalIPduEncode结构：{result, length, data数组}
 
         :rtype: iSignalIPduEncode
         """
         return self.client.encodePdu(req)
 
-    def convertCanDbToPy(self, req: convertInput) -> result:
+    def convertCanDbToPy(self, dbpath: convertInput) -> result:
         """
         将CAN数据库转换成python文件
 
-        :return: 返回值说明.
+        :param dbpath: CAN数据库源文件地址，绝对路径，字符串
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.convertCanDbToPy(req)
+        return self.client.convertCanDbToPy(dbpath)
 
-    def convertCanDbToJson(self, req: convertInput) -> result:
+    def convertCanDbToJson(self, dbpath: convertInput) -> result:
         """
         将CAN数据库转换成JSON
 
-        :return: 返回值说明.
+        :param dbpath: CAN数据库源文件地址，绝对路径，字符串
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.convertCanDbToJson(req)
+        return self.client.convertCanDbToJson(dbpath)
 
-    def updateCanPdu(self, req: pduUpdate) -> result:
+    def updateCanPdu(self, info: pduUpdate) -> result:
         """
         更新CAN PDU
 
-        :return: 返回值说明.
+        :param info: 更新pdu对象所在的软件通道信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.updateCanPdu(req)
+        return self.client.updateCanPdu(info)
 
 
 if __name__ == "__main__":
