@@ -45,55 +45,63 @@ class ConfigClient(object):
         self.client = configNode.Client(protocol)
         transport.open()
 
-    def getHardwareInfo(self, req) -> hardwareInfos:
+    def getHardwareInfo(self, type_: hardwareType) -> hardwareInfos:
         """
-        订阅消息
+        获取硬件信息
 
-        :return: 返回值说明.
+        :return: 硬件信息列表
+
+        :rtype: hardwareInfos，列表
+        """
+        return self.client.getHardwareInfo(type_)
+
+    def sendCanArxml(self, dbpath: dbPath) -> canCluster:
+        """
+        发送CAN Arxml
+
+        :param dbpath: 数据库文件路径
+
+        :return: 解析完arxml后返回所有通道名字信息
+
+        :rtype: canCluster，列表
+        """
+        return self.client.sendCanArxml(dbpath)
+
+    def sendCanConfig(self, config: canConfigInfo) -> result:
+        """
+        发送CAN配置
+
+        :param config: CAN配置信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.getHardwareInfo(req)
+        return self.client.sendCanConfig(config)
 
-    def sendCanArxml(self, req) -> canCluster:
+    def sendLinConfig(self, configs: linChannelConfigs) -> result:
         """
-        订阅消息
+        发送LIN配置
 
-        :return: 返回值说明.
+        :param configs: 多条LIN配置信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.sendCanArxml(req)
+        return self.client.sendLinConfig(configs)
 
-    def sendCanConfig(self, req) -> result:
+    def sendEthConfig(self, config: someipStackConfig) -> result:
         """
-        订阅消息
+        发送ETH配置
 
-        :return: 返回值说明.
+        :param config: SomeIP配置信息
+
+        :return: 执行结果
 
         :rtype: result
         """
-        return self.client.sendCanConfig(req)
-
-    def sendLinConfig(self, req) -> result:
-        """
-        订阅消息
-
-        :return: 返回值说明.
-
-        :rtype: result
-        """
-        return self.client.sendLinConfig(req)
-
-    def sendEthConfig(self, req) -> result:
-        """
-        订阅消息
-
-        :return: 返回值说明.
-
-        :rtype: result
-        """
-        return self.client.sendEthConfig(req)
+        return self.client.sendEthConfig(config)
 
 
 if __name__ == "__main__":
