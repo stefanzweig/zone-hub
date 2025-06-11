@@ -72,7 +72,7 @@ class ConfigClient(object):
         """
         发送CAN配置
 
-        :param config: CAN配置信息
+        :param config: 多条CAN通道列表
 
         :return: 执行结果
 
