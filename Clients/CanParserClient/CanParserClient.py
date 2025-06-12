@@ -33,7 +33,7 @@ from IDL.thrift.CommonNode.ttypes import *
 import BaseNodeData
 
 
-class CanParserClient(object):
+class CanParserClient(canParserNode.Iface):
     """class CanParserClient docstring"""
 
     def __init__(self) -> None:

@@ -7,14 +7,13 @@ from thrift.protocol import TBinaryProtocol
 
 from typing import Union
 import functools
-
-
 from pathlib import Path
-
 import BaseNodeData
 from IDL.thrift.ConfigNode.constants import *
 from IDL.thrift.SomeIpNode.ttypes import *
 from IDL.thrift.CommonNode.ttypes import *
+from IDL.thrift.ConfigNode import configNode
+
 
 try:
     project_root = Path(__file__).resolve().parent.parent.parent
@@ -30,14 +29,16 @@ except Exception as e:
     print(f"路径添加失败: {e}")
     raise
 
-from IDL.thrift.ConfigNode import configNode
 
-
-class ConfigClient(object):
-    """class ConfigClient docstring"""
+class ConfigClient(configNode.Iface):
+    """
+    Config 的客户端
+    """
 
     def __init__(self) -> None:
-        """constructor ConfigClient docstring"""
+        """
+        ConfigClient 的构造函数
+        """
         transport = TSocket.TSocket(
             BaseNodeData.CONFIG_NODE_IP, BaseNodeData.CONFIG_NODE_PORT
         )
