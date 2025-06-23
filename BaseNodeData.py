@@ -1,4 +1,5 @@
-import yaml, os, sys
+import yaml
+import os
 import importlib.util
 from enum import Enum
 from collections import defaultdict
@@ -18,6 +19,7 @@ except AttributeError as e_:
         data = yaml.safe_load(f)
 except Exception as e_:
     data = defaultdict(lambda: 9000)
+    raise
 
 
 class Dir(Enum):
@@ -97,7 +99,7 @@ PRE_NODES = {
     NAME_CONFIG_NODE: (CONFIG_NODE_IP, CONFIG_NODE_PORT),
 }
 
-###用户使能NODE信息
+# 用户使能NODE信息
 USER_NODES = {
     NAME_CAN_STACK_NODE: (CAN_STACK_NODE_IP, CAN_STACK_NODE_PORT),
     NAME_CAN_PARSER_NODE: (CAN_PARSER_NODE_IP, CAN_PARSER_NODE_PORT),
