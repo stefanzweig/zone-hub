@@ -3,6 +3,8 @@ import sys
 import time
 from pathlib import Path
 from .utils import *
+from typing import Union, Callable
+
 sys.path.append(".")
 
 
@@ -23,6 +25,8 @@ class Foundation(object):
     """
     一个有 49 个操作
     """
+
+    clients = []
 
     def __init__(self) -> None:
         pass
@@ -234,7 +238,6 @@ class Foundation(object):
         crc,
         rc,
     ):
-
         pass
 
     def SendCan(self, obj, **kwargs) -> None:
@@ -314,7 +317,7 @@ class Foundation(object):
         pass
 
     @staticmethod
-    def formatPhyVlaue(input_str: str):
+    def formatPhyValue(input_str: str):
         pass
 
     @staticmethod
@@ -333,7 +336,6 @@ class Foundation(object):
         pass
 
     # 下面是从framework类拷贝出来，不用继承。
-
     def Reset(self) -> None:
         pass
 
@@ -343,7 +345,7 @@ class Foundation(object):
     def Reset_CAN(self) -> None:
         pass
 
-    def Reset_SomeIp(self) -> None:
+    def Reset_SomeIP(self) -> None:
         pass
 
     def Reset_DoIP(self) -> None:
