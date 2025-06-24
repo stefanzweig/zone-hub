@@ -3,14 +3,7 @@ import sys
 import time
 from pathlib import Path
 from .utils import *
-from .decorator import singleton
-
 sys.path.append(".")
-
-
-@singleton
-class MyClass:
-    pass
 
 
 # APIs for the test suites' development.
@@ -27,7 +20,9 @@ def create_configs():
 
 
 class Foundation(object):
-    pass
+    """
+    一个有 49 个操作
+    """
 
     def __init__(self) -> None:
         pass
@@ -42,48 +37,181 @@ class Foundation(object):
         pass
 
     def OnCanFrame(self, timestamp, can_frame) -> None:
+        """
+
+        Args:
+            timestamp:
+            can_frame:
+
+        Returns:
+
+        """
         pass
 
     def OnCanPdu(self, timestamp, can_pdu) -> None:
+        """
+
+        Args:
+            timestamp:
+            can_pdu:
+
+        Returns:
+
+        """
         pass
 
     def OnCanSignal(self, timestamp, can_signal) -> None:
+        """
+
+        Args:
+            timestamp:
+            can_signal:
+
+        Returns:
+
+        """
         pass
 
     def OnDiagRequest_DoIP(self, diagnostic_request):
+        """
+
+        Args:
+            diagnostic_request:
+
+        Returns:
+
+        """
         pass
 
     def OnDiagResponse_DoIP(self, diagnostic_response):
+        """
+
+        Args:
+            diagnostic_response:
+
+        Returns:
+
+        """
         pass
 
     def OnDiagRequest(self, diagnostic_request):
+        """
+
+        Args:
+            diagnostic_request:
+
+        Returns:
+
+        """
         pass
 
     def OnDiagResponse(self, diagnostic_response):
+        """
+
+        Args:
+            diagnostic_response:
+
+        Returns:
+
+        """
         pass
 
     def OnCanMessage(self, timestamp, can_message) -> None:
+        """
+
+        Args:
+            timestamp:
+            can_message:
+
+        Returns:
+
+        """
         pass
 
     def OnSomeipPackage(self, timestamp, someip_package) -> None:
+        """
+
+        Args:
+            timestamp:
+            someip_package:
+
+        Returns:
+
+        """
         pass
 
     def OnSomeipCalling(self, timestamp, someip_in, someip_out) -> None:
+        """
+
+        Args:
+            timestamp:
+            someip_in:
+            someip_out:
+
+        Returns:
+
+        """
         pass
 
     def OnSomeipBypass(self, timestamp, someip_package) -> None:
+        """
+
+        Args:
+            timestamp:
+            someip_package:
+
+        Returns:
+
+        """
         pass
 
     def OnSomeipStateChange(self, timestamp, service, state) -> None:
+        """
+
+        Args:
+            timestamp:
+            service:
+            state:
+
+        Returns:
+
+        """
         pass
 
     def OnLinMessage(self, timestamp, lin_message) -> None:
+        """
+
+        Args:
+            timestamp:
+            lin_message:
+
+        Returns:
+
+        """
         pass
 
     def OnLinFrame(self, timestamp, lin_frame) -> None:
+        """
+
+        Args:
+            timestamp:
+            lin_frame:
+
+        Returns:
+
+        """
         pass
 
     def OnLinSignal(self, timestamp, lin_signal) -> None:
+        """
+
+        Args:
+            timestamp:
+            lin_signal:
+
+        Returns:
+
+        """
         pass
 
     def SetCrcRcConfig(
@@ -92,9 +220,11 @@ class Foundation(object):
         pdu,
         crc,
         rc,
-        crc_table=[],
+        crc_table=None,
         rc_config=(0, 15, 1),
     ):
+        if crc_table is None:
+            crc_table = []
         pass
 
     def ClearCrcRcConfig(
@@ -104,6 +234,7 @@ class Foundation(object):
         crc,
         rc,
     ):
+
         pass
 
     def SendCan(self, obj, **kwargs) -> None:
@@ -199,6 +330,26 @@ class Foundation(object):
         pass
 
     def _DealWithRecvDoIpUdsFromDDS(self, doip_message):
+        pass
+
+    # 下面是从framework类拷贝出来，不用继承。
+
+    def Reset(self) -> None:
+        pass
+
+    def Reset_LIN(self) -> None:
+        pass
+
+    def Reset_CAN(self) -> None:
+        pass
+
+    def Reset_SomeIp(self) -> None:
+        pass
+
+    def Reset_DoIP(self) -> None:
+        pass
+
+    def Reset_XcpOnCan(self) -> None:
         pass
 
 
