@@ -2,10 +2,50 @@ import os
 import sys
 import time
 from pathlib import Path
-from .utils import *
 from typing import Union, Callable
 
 sys.path.append(".")
+try:
+    project_root = Path(__file__).resolve().parent.parent
+    thrift_dir = project_root / "IDL" / "thrift"
+    if not thrift_dir.exists():
+        raise FileNotFoundError(f"Thrift目录不存在: {thrift_dir}")
+
+    for path in [project_root, thrift_dir]:
+        path_str = str(path)
+        if path_str not in sys.path:
+            sys.path.append(path_str)
+except Exception as e:
+    print(f"路径添加失败: {e}")
+    raise
+
+from IDL.thrift.CanStackNode.ttypes import (
+    canMessage,
+    canMessages,
+    canChannelConfigs,
+    canChannelConfig,
+)
+from IDL.thrift.CanParserNode.ttypes import (
+    canDbInfo,
+    pduMessage,
+    pduMessages,
+    pduUpdate,
+    pduCrcRcConfig,
+    iSignalIPduEncode,
+    iSignalIPduObj,
+)
+from IDL.thrift.ConfigNode.ttypes import dbPath, canConfigInfo
+from IDL.thrift.SomeIpNode.ttypes import (
+    someipInfo,
+    someipPackage,
+    someipServiceInfo,
+    someipServiceInfos,
+    someipStackConfig,
+    someipChannelConfig,
+)
+
+print(dir())
+from utils import *
 
 
 # APIs for the test suites' development.
