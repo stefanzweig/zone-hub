@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import typing
 from pathlib import Path
 from typing import Union, Callable
 
@@ -75,12 +76,35 @@ class Foundation(object):
         pass
 
     def Subscribe(self, obj) -> None:
+        """
+        订阅对象事件，只有订阅了相关对象，才能在后续的 OnXXX 回调函数中收到对应的对象接收事件
+
+        :param obj: 需要订阅的对象，可以是如下类型\n
+            - CanMessage
+            - CanFrame
+            - CanSignal
+            - CanISignalIPdu
+            - SomeipPackage
+            - LinMessage
+            - LinFrame
+            - LinSignal
+        """
         pass
 
     def UnSubscribe(self, obj) -> None:
+        """
+        取消订阅事件，调用该函数后，将不会再 OnXXX 的回调函数中收到相关消息
+
+        :param obj: 需要取消订阅的对象，可以为如下类型\n
+            - CanMessage\n
+            - CanFrame\n
+            - CanSignal\n
+            - CanISignalIPdu\n
+            - SomeipPackage\n
+        """
         pass
 
-    def OnCanFrame(self, timestamp, can_frame) -> None:
+    def OnCanFrame(self, timestamp, can_frame: canMessage) -> None:
         """
 
         Args:
@@ -261,11 +285,11 @@ class Foundation(object):
     def SetCrcRcConfig(
         self,
         channel: int,
-        pdu,
-        crc,
-        rc,
-        crc_table=None,
-        rc_config=(0, 15, 1),
+        pdu: typing.Union[iSignalIPduEncode, str],
+        crc: typing.Union[iSignalIPduEncode, str, int],
+        rc: typing.Union[iSignalIPduEncode, str, int],
+        crc_table: list = None,
+        rc_config: tuple = (0, 15, 1),
     ):
         if crc_table is None:
             crc_table = []
@@ -273,99 +297,325 @@ class Foundation(object):
 
     def ClearCrcRcConfig(
         self,
-        channel,
-        pdu,
-        crc,
-        rc,
+        channel: int,
+        pdu: typing.Union[iSignalIPduEncode, str],
+        crc: typing.Union[iSignalIPduEncode, str, int],
+        rc: typing.Union[iSignalIPduEncode, str, int],
     ):
         pass
 
-    def SendCan(self, obj, **kwargs) -> None:
+    def SendCan(self, obj: canMessage, **kwargs) -> None:
+        """
+        发送一条CAN报文, 数据将立刻发送
+        Args:
+            obj:
+            **kwargs:
+
+        Returns:
+
+        """
         pass
 
-    def SetPduListCycleSendTask(self, period_ms_list, obj_list, **kwargs):
+    def SendCanPDU(self, obj: pduMessage, **kwargs) -> None:
+        """
+        发送一条CANPDU报文, 数据将立刻发送
+        """
         pass
 
-    def SetCycleSendTask(self, period_ms, obj, times, **kwargs) -> None:
+    def SetPduListCycleSendTask(
+        self, period_ms_list: typing.List[int], obj_list: list, **kwargs
+    ):
+        """ """
+        pass
+
+    def SetCycleSendTask(
+        self, period_ms: int, obj, times: int, **kwargs
+    ) -> None:
+        """ """
         pass
 
     def SomeipCallAsync(self, someip_package, *args, **kwargs) -> None:
+        """
+
+        Args:
+            someip_package:
+            *args:
+            **kwargs:
+
+        Returns:
+
+        """
         pass
 
     def SomeipSetDefaultAnswer(self, someip_package) -> None:
+        """
+
+        Args:
+            someip_package:
+
+        Returns:
+
+        """
         pass
 
     def SomeipPublish(self, someip_package, *args, **kwargs) -> None:
+        """
+
+        Args:
+            someip_package:
+            *args:
+            **kwargs:
+
+        Returns:
+
+        """
         pass
 
     def SetLinData(self, obj):
+        """
+
+        Args:
+            obj:
+
+        Returns:
+
+        """
         pass
 
     def diag_request_doip(self, obj):
+        """
+
+        Args:
+            obj:
+
+        Returns:
+
+        """
         pass
 
     def diag_response_doip(self, obj):
+        """
+
+        Args:
+            obj:
+
+        Returns:
+
+        """
         pass
 
     def diag_request(self, obj):
+        """
+
+        Args:
+            obj:
+
+        Returns:
+
+        """
         pass
 
     def diag_response(self, obj):
+        """
+
+        Args:
+            obj:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithDoIPUdsMessageRequest(self, recv_d):
+        """
+
+        Args:
+            recv_d:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithDoIPUdsMessageResponse(self, recv_d):
+        """
+
+        Args:
+            recv_d:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithCanUdsMessageRequest(self, recv_d: dict):
+        """
+
+        Args:
+            recv_d:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithCanUdsMessageResponse(self, recv_d: dict):
+        """
+
+        Args:
+            recv_d:
+
+        Returns:
+
+        """
         pass
 
     ####dds回调处理函数
     def _DealWithRecvLinFromDDS(self, frames):
+        """
+
+        Args:
+            frames:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithRecvSomeipStateFromDDS(self, state):
+        """
+
+        Args:
+            state:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithRecvSomeipPackageFromDDS(self, frame):
+        """
+
+        Args:
+            frame:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithRecvSomeipCallingFromDDS(self, frame):
+        """
+
+        Args:
+            frame:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithRecvSomeipBypassFromDDS(self, frame):
+        """
+
+        Args:
+            frame:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithSomeipCalling_(self, recv_d) -> None:
+        """
+
+        Args:
+            recv_d:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithRecvCanUdsFromDDS(self, message):
+        """
+
+        Args:
+            message:
+
+        Returns:
+
+        """
         pass
 
     def _ddsSomeIpFrameToSomeipPackage(self, SomeIpDatadds):
+        """
+
+        Args:
+            SomeIpDatadds:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithRecvCanParserFromDDS(self, frame):
+        """
+
+        Args:
+            frame:
+
+        Returns:
+
+        """
         pass
 
     def _DealWithPduFromDDS(self, pdu, frame):
+        """
+
+        Args:
+            pdu:
+            frame:
+
+        Returns:
+
+        """
         pass
 
     @staticmethod
     def formatPhyValue(input_str: str):
+        """
+
+        Args:
+            input_str:
+
+        Returns:
+
+        """
         pass
 
     @staticmethod
     def IsFloatNum(str_in: str):
+        """
+
+        Args:
+            str_in:
+
+        Returns:
+
+        """
         pass
 
     @staticmethod
     def IsNegativeIntNum(str_in: str):
+        """
+
+        Args:
+            str_in:
+
+        Returns:
+
+        """
         pass
 
     @staticmethod
