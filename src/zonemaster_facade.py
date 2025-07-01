@@ -44,6 +44,13 @@ from IDL.thrift.SomeIpNode.ttypes import (
     someipStackConfig,
     someipChannelConfig,
 )
+from IDL.thrift.LinStackNode.ttypes import (
+    linStackStatus,
+    linMessageConfig,
+    linCrcConfig,
+    linHeaderConfig,
+    linMessageDataT,
+)
 
 print(dir())
 from utils import *
@@ -128,7 +135,7 @@ class Foundation(object):
         """
         pass
 
-    def OnCanSignal(self, timestamp, can_signal) -> None:
+    def OnCanSignal(self, timestamp, can_signal: iSignalIPduObj) -> None:
         """
 
         Args:
@@ -151,7 +158,7 @@ class Foundation(object):
         """
         pass
 
-    def OnDiagResponse_DoIP(self, diagnostic_response):
+    def OnDiagResponse_DoIP(self, diagnostic_response: canMessage):
         """
 
         Args:
@@ -162,7 +169,7 @@ class Foundation(object):
         """
         pass
 
-    def OnDiagRequest(self, diagnostic_request):
+    def OnDiagRequest(self, diagnostic_request: canMessage):
         """
 
         Args:
@@ -196,7 +203,7 @@ class Foundation(object):
         """
         pass
 
-    def OnSomeipPackage(self, timestamp, someip_package) -> None:
+    def OnSomeipPackage(self, timestamp, someip_package: someipPackage) -> None:
         """
 
         Args:
@@ -208,7 +215,9 @@ class Foundation(object):
         """
         pass
 
-    def OnSomeipCalling(self, timestamp, someip_in, someip_out) -> None:
+    def OnSomeipCalling(
+        self, timestamp, someip_in: someipPackage, someip_out: someipPackage
+    ) -> None:
         """
 
         Args:
@@ -221,7 +230,7 @@ class Foundation(object):
         """
         pass
 
-    def OnSomeipBypass(self, timestamp, someip_package) -> None:
+    def OnSomeipBypass(self, timestamp, someip_package: someipPackage) -> None:
         """
 
         Args:
@@ -233,7 +242,9 @@ class Foundation(object):
         """
         pass
 
-    def OnSomeipStateChange(self, timestamp, service, state) -> None:
+    def OnSomeipStateChange(
+        self, timestamp, service: tuple, state: int
+    ) -> None:
         """
 
         Args:
@@ -246,7 +257,7 @@ class Foundation(object):
         """
         pass
 
-    def OnLinMessage(self, timestamp, lin_message) -> None:
+    def OnLinMessage(self, timestamp, lin_message: linMessageDataT) -> None:
         """
 
         Args:
@@ -334,7 +345,9 @@ class Foundation(object):
         """ """
         pass
 
-    def SomeipCallAsync(self, someip_package, *args, **kwargs) -> None:
+    def SomeipCallAsync(
+        self, someip_package: someipPackage, *args, **kwargs
+    ) -> None:
         """
 
         Args:
