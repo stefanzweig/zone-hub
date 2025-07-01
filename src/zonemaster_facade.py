@@ -123,7 +123,7 @@ class Foundation(object):
         """
         pass
 
-    def OnCanPdu(self, timestamp, can_pdu) -> None:
+    def OnCanPdu(self, timestamp, can_pdu: pduMessage) -> None:
         """
 
         Args:
@@ -147,7 +147,7 @@ class Foundation(object):
         """
         pass
 
-    def OnDiagRequest_DoIP(self, diagnostic_request):
+    def OnDiagRequest_DoIP(self, diagnostic_request: canMessage):
         """
 
         Args:
@@ -180,7 +180,7 @@ class Foundation(object):
         """
         pass
 
-    def OnDiagResponse(self, diagnostic_response):
+    def OnDiagResponse(self, diagnostic_response: canMessage):
         """
 
         Args:
@@ -191,7 +191,7 @@ class Foundation(object):
         """
         pass
 
-    def OnCanMessage(self, timestamp, can_message) -> None:
+    def OnCanMessage(self, timestamp, can_message: canMessage) -> None:
         """
 
         Args:
@@ -269,7 +269,7 @@ class Foundation(object):
         """
         pass
 
-    def OnLinFrame(self, timestamp, lin_frame) -> None:
+    def OnLinFrame(self, timestamp, lin_frame: linMessageDataT) -> None:
         """
 
         Args:
@@ -281,7 +281,7 @@ class Foundation(object):
         """
         pass
 
-    def OnLinSignal(self, timestamp, lin_signal) -> None:
+    def OnLinSignal(self, timestamp, lin_signal: iSignalIPduObj) -> None:
         """
 
         Args:
@@ -360,7 +360,7 @@ class Foundation(object):
         """
         pass
 
-    def SomeipSetDefaultAnswer(self, someip_package) -> None:
+    def SomeipSetDefaultAnswer(self, someip_package: someipPackage) -> None:
         """
 
         Args:
@@ -371,7 +371,9 @@ class Foundation(object):
         """
         pass
 
-    def SomeipPublish(self, someip_package, *args, **kwargs) -> None:
+    def SomeipPublish(
+        self, someip_package: someipPackage, *args, **kwargs
+    ) -> None:
         """
 
         Args:
@@ -441,6 +443,7 @@ class Foundation(object):
 
     def _DealWithDoIPUdsMessageRequest(self, recv_d):
         """
+        DDS one
 
         Args:
             recv_d:
@@ -452,6 +455,7 @@ class Foundation(object):
 
     def _DealWithDoIPUdsMessageResponse(self, recv_d):
         """
+        DDS one
 
         Args:
             recv_d:
@@ -463,6 +467,7 @@ class Foundation(object):
 
     def _DealWithCanUdsMessageRequest(self, recv_d: dict):
         """
+        DDS one
 
         Args:
             recv_d:
@@ -474,6 +479,7 @@ class Foundation(object):
 
     def _DealWithCanUdsMessageResponse(self, recv_d: dict):
         """
+        DDS one
 
         Args:
             recv_d:
@@ -486,6 +492,7 @@ class Foundation(object):
     ####dds回调处理函数
     def _DealWithRecvLinFromDDS(self, frames):
         """
+        DDS one
 
         Args:
             frames:
@@ -497,6 +504,7 @@ class Foundation(object):
 
     def _DealWithRecvSomeipStateFromDDS(self, state):
         """
+        DDS one
 
         Args:
             state:
