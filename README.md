@@ -7,6 +7,10 @@
 
 ## 构思
 
+## INSTALL
+
+## CONTRIBUTING
+
 
 
 
