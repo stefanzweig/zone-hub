@@ -11,7 +11,8 @@ from thrift.protocol.TProtocol import TProtocolException
 from thrift.TRecursive import fix_spec
 
 import sys
-import CommonNode.ttypes
+sys.path.append("..")
+from IDL.thrift.CommonNode import ttypes as CommonNode_ttypes
 
 from thrift.transport import TTransport
 all_structs = []
@@ -419,7 +420,7 @@ class linParserStatus(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -820,7 +821,7 @@ linSignalData.thrift_spec = (
 all_structs.append(linParserStatus)
 linParserStatus.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.I32, 'status', None, None, ),  # 2
     (3, TType.STRING, 'strStatus', 'UTF8', None, ),  # 3
 )

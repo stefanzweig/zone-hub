@@ -11,8 +11,9 @@ from thrift.protocol.TProtocol import TProtocolException
 from thrift.TRecursive import fix_spec
 
 import sys
-import CommonNode.ttypes
-import SomeIpNode.ttypes
+sys.path.append("..")
+from IDL.thrift.CommonNode import ttypes as CommonNode_ttypes
+from IDL.thrift.SomeIpNode import ttypes as SomeIpNode_ttypes
 
 from thrift.transport import TTransport
 all_structs = []

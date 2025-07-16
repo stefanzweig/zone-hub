@@ -11,7 +11,8 @@ from thrift.protocol.TProtocol import TProtocolException
 from thrift.TRecursive import fix_spec
 
 import sys
-import CommonNode.ttypes
+sys.path.append("..")
+from IDL.thrift.CommonNode import ttypes as CommonNode_ttypes 
 
 from thrift.transport import TTransport
 all_structs = []
@@ -302,7 +303,7 @@ class someipInfo(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -581,7 +582,7 @@ class someipResponseContext(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -747,7 +748,7 @@ class someipServiceInfos(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1087,7 +1088,7 @@ class serviceStates(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1167,7 +1168,7 @@ class someipChannelConfig(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.netInfo = CommonNode.ttypes.netInfo()
+                    self.netInfo = CommonNode_ttypes.netInfo()
                     self.netInfo.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1255,7 +1256,7 @@ class someipStackConfig(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1275,7 +1276,7 @@ class someipStackConfig(object):
                     self.arpPairs = []
                     (_etype30, _size27) = iprot.readListBegin()
                     for _i31 in range(_size27):
-                        _elem32 = CommonNode.ttypes.arpPair()
+                        _elem32 = CommonNode_ttypes.arpPair()
                         _elem32.read(iprot)
                         self.arpPairs.append(_elem32)
                     iprot.readListEnd()
@@ -1351,13 +1352,13 @@ class logRequest(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.netInfo = CommonNode.ttypes.netInfo()
+                    self.netInfo = CommonNode_ttypes.netInfo()
                     self.netInfo.read(iprot)
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
                 if ftype == TType.STRUCT:
-                    self.path = CommonNode.ttypes.folderFilePath()
+                    self.path = CommonNode_ttypes.folderFilePath()
                     self.path.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1421,7 +1422,7 @@ class addSomeipArxmlRequest(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.filePath = CommonNode.ttypes.filePath()
+                    self.filePath = CommonNode_ttypes.filePath()
                     self.filePath.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1490,7 +1491,7 @@ someipPackage.thrift_spec = (
 all_structs.append(someipInfo)
 someipInfo.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.STRING, 'jsonStrInfo', 'UTF8', None, ),  # 2
 )
 all_structs.append(serviceTag)
@@ -1514,7 +1515,7 @@ someipCallContext.thrift_spec = (
 all_structs.append(someipResponseContext)
 someipResponseContext.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.STRUCT, 'strContext', [someipPackage, None], None, ),  # 2
 )
 all_structs.append(someipServiceInfo)
@@ -1528,7 +1529,7 @@ someipServiceInfo.thrift_spec = (
 all_structs.append(someipServiceInfos)
 someipServiceInfos.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.LIST, 'infos', (TType.STRUCT, [someipServiceInfo, None], False), None, ),  # 2
 )
 all_structs.append(someipArxmlJson)
@@ -1557,33 +1558,33 @@ serviceState.thrift_spec = (
 all_structs.append(serviceStates)
 serviceStates.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.LIST, 'serviceStates', (TType.STRUCT, [serviceState, None], False), None, ),  # 2
 )
 all_structs.append(someipChannelConfig)
 someipChannelConfig.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'netInfo', [CommonNode.ttypes.netInfo, None], None, ),  # 1
+    (1, TType.STRUCT, 'netInfo', [CommonNode_ttypes.netInfo, None], None, ),  # 1
     (2, TType.LIST, 'arxmlPaths', (TType.STRING, 'UTF8', False), None, ),  # 2
     (3, TType.I32, 'ethDevice', None, None, ),  # 3
 )
 all_structs.append(someipStackConfig)
 someipStackConfig.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.LIST, 'configs', (TType.STRUCT, [someipChannelConfig, None], False), None, ),  # 2
-    (3, TType.LIST, 'arpPairs', (TType.STRUCT, [CommonNode.ttypes.arpPair, None], False), None, ),  # 3
+    (3, TType.LIST, 'arpPairs', (TType.STRUCT, [CommonNode_ttypes.arpPair, None], False), None, ),  # 3
 )
 all_structs.append(logRequest)
 logRequest.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'netInfo', [CommonNode.ttypes.netInfo, None], None, ),  # 1
-    (2, TType.STRUCT, 'path', [CommonNode.ttypes.folderFilePath, None], None, ),  # 2
+    (1, TType.STRUCT, 'netInfo', [CommonNode_ttypes.netInfo, None], None, ),  # 1
+    (2, TType.STRUCT, 'path', [CommonNode_ttypes.folderFilePath, None], None, ),  # 2
 )
 all_structs.append(addSomeipArxmlRequest)
 addSomeipArxmlRequest.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'filePath', [CommonNode.ttypes.filePath, None], None, ),  # 1
+    (1, TType.STRUCT, 'filePath', [CommonNode_ttypes.filePath, None], None, ),  # 1
     (2, TType.I32, 'channel', None, None, ),  # 2
 )
 fix_spec(all_structs)

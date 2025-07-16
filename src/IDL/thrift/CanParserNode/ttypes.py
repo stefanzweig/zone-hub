@@ -11,8 +11,9 @@ from thrift.protocol.TProtocol import TProtocolException
 from thrift.TRecursive import fix_spec
 
 import sys
-import CommonNode.ttypes
-import CanStackNode.ttypes
+sys.path.append("..")
+from IDL.thrift.CommonNode import ttypes as CommonNode_ttypes
+from IDL.thrift.CanStackNode import ttypes as CanStackNode_ttypes
 
 from thrift.transport import TTransport
 all_structs = []
@@ -718,7 +719,7 @@ class dbPath(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -793,7 +794,7 @@ class dbConfigs(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -951,7 +952,7 @@ class canDbInfo(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1101,7 +1102,7 @@ class iSignalIPduEncode(object):
                 break
             if fid == 1:
                 if ftype == TType.STRUCT:
-                    self.result = CommonNode.ttypes.result()
+                    self.result = CommonNode_ttypes.result()
                     self.result.read(iprot)
                 else:
                     iprot.skip(ftype)
@@ -1292,13 +1293,13 @@ subscribeInfo.thrift_spec = (
 all_structs.append(dbPath)
 dbPath.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.STRING, 'dbPath', 'UTF8', None, ),  # 2
 )
 all_structs.append(dbConfigs)
 dbConfigs.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.LIST, 'configs', (TType.STRUCT, [dbConfigPair, None], False), None, ),  # 2
 )
 all_structs.append(dbConfigPair)
@@ -1310,7 +1311,7 @@ dbConfigPair.thrift_spec = (
 all_structs.append(canDbInfo)
 canDbInfo.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.STRING, 'strJson', 'UTF8', None, ),  # 2
 )
 all_structs.append(iSignalIPduObj)
@@ -1323,7 +1324,7 @@ iSignalIPduObj.thrift_spec = (
 all_structs.append(iSignalIPduEncode)
 iSignalIPduEncode.thrift_spec = (
     None,  # 0
-    (1, TType.STRUCT, 'result', [CommonNode.ttypes.result, None], None, ),  # 1
+    (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.I32, 'length', None, None, ),  # 2
     (3, TType.LIST, 'data', (TType.I32, None, False), None, ),  # 3
 )
