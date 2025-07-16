@@ -69,7 +69,7 @@ def create_configs():
     pass
 
 
-class Foundation(object):
+class Application(object):
     """
     一个有 49 个操作
     """
