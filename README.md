@@ -7,9 +7,9 @@
 
 ## 构思
 
-## INSTALL
+## `<INSTALL.rst>`__.
 
-## CONTRIBUTING
+## `<CONTRIBUTING.rst>`__.
 
 
 

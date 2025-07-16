@@ -53,7 +53,6 @@ from IDL.thrift.LinStackNode.ttypes import (
 )
 
 print(dir())
-from utils import *
 
 
 # APIs for the test suites' development.

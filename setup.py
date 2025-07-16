@@ -3,10 +3,8 @@
 from os.path import abspath, dirname, join
 from setuptools import find_packages, setup
 
-# Version number typically updated by running `invoke set-version <version>`.
-# Run `invoke --help set-version` or see tasks.py for details.
 VERSION = "0.1.0.dev1"
-with open(join(dirname(abspath(__file__)), "README.md")) as f:
+with open(join(dirname(abspath(__file__)), "README.md"), encoding="utf-8") as f:
     LONG_DESCRIPTION = f.read()
     base_url = "http://10.133.122.70/liuhaijiang/zmclient/-/blob/main/"
     for text in ("INSTALL", "CONTRIBUTING"):
@@ -40,13 +38,13 @@ PACKAGE_DATA = [
 
 
 setup(
-    name="robotframework",
+    name="zmclient",
     version=VERSION,
-    author="Pekka Klärck",
-    author_email="peke@eliga.fi",
-    url="https://robotframework.org",
+    author="Liu Haijiang",
+    author_email="liuhaijiang@saicmotor.com",
+    url="http://10.133.122.70/liuhaijiang/zmclient",
     project_urls={
-        "Source": "https://github.com/robotframework/robotframework",
+        "Source": "http://10.133.122.70/liuhaijiang/zmclient",
     },
     download_url="https://pypi.org/project/zoneclient",
     license="Apache License 2.0",
@@ -61,4 +59,7 @@ setup(
     package_data={"zoneclient": PACKAGE_DATA},
     packages=find_packages("src"),
     entry_points={"console_scripts": []},
+    extras_require={
+        "dev": ["pytest", "black"],
+    }
 )
