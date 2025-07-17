@@ -15,6 +15,7 @@ import logging
 from .ttypes import *
 from thrift.Thrift import TProcessor
 from thrift.transport import TTransport
+from .. import CommonNode
 all_structs = []
 
 
