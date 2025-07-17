@@ -15,6 +15,10 @@ import logging
 from .ttypes import *
 from thrift.Thrift import TProcessor
 from thrift.transport import TTransport
+
+from .. import CommonNode
+from .. import CanStackNode
+
 all_structs = []
 
 
