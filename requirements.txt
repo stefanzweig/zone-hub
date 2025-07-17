@@ -4,3 +4,4 @@ codespell
 sphinx-copybutton
 beanbag-docutils>=2.0
 PyYAML==6.0.2
+thrift
