@@ -39,11 +39,11 @@ class CanMessages(canMessages):
     pass
 
 
-class CanChannelconfigs(canChannelConfigs):
+class CanChannelConfigs(canChannelConfigs):
     pass
 
 
-class CanChannelconfig(canChannelConfig):
+class CanChannelConfig(canChannelConfig):
     pass
 
 

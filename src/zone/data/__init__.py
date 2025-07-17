@@ -1,8 +1,8 @@
 from .base import (
     CanMessage,
     CanMessages,
-    CanChannelconfigs,
-    CanChannelconfig,
+    CanChannelConfigs,
+    CanChannelConfig,
     CanDbinfo,
     PduMessage,
     PduMessages,
@@ -28,8 +28,8 @@ from .base import (
 __all__ = [
     "CanMessage",
     "CanMessages",
-    "CanChannelconfigs",
-    "CanChannelconfig",
+    "CanChannelConfigs",
+    "CanChannelConfig",
     "CanDbinfo",
     "PduMessage",
     "PduMessages",
