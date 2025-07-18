@@ -7,10 +7,12 @@ from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
 
+from zone import BaseNodeData
+
 
 class CanParserNode:
     def checkAlive(self):
-        return result(result=0, reason="")
+        return result(result=0, reason="Aliveness checked.")
 
     def setCrcRcConfig(self, req: pduCrcRcConfig):
         return result(result=0, reason="")
@@ -74,7 +76,10 @@ if __name__ == "__main__":
     handler = CanParserNode()
     processor = canParserNode.Processor(handler)
 
-    transport = TSocket.TServerSocket(host="127.0.0.1", port=9090)
+    transport = TSocket.TServerSocket(
+        host=BaseNodeData.CAN_PARSER_NODE_IP,
+        port=BaseNodeData.CAN_PARSER_NODE_PORT,
+    )
     tfactory = TTransport.TBufferedTransportFactory()
     pfactory = TBinaryProtocol.TBinaryProtocolFactory()
 

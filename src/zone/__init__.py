@@ -9,6 +9,7 @@ from zone.utils.config import (
     ETH_Config_PC,
     ETH_Config_Vector,
 )
+from zone.clients import CanStackClient, CanParserClient
 
 
 __all__ = ["App"]
