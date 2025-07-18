@@ -283,7 +283,7 @@ class pduUpdate(object):
     	更新pdu对象所在的软件通道信息
      - pduName: int32
     	更新pdu对象名字
-     - data: list[int32]
+     - dsc: list[int32]
     	可选参数，可以选择直接更新原始值
     	更新pdu对象原始值,如[1,2,3,4,5,6,7,8]
      - context: string
@@ -383,7 +383,7 @@ class pduUpdate(object):
             oprot.writeString(self.pduName.encode('utf-8') if sys.version_info[0] == 2 else self.pduName)
             oprot.writeFieldEnd()
         if self.data is not None:
-            oprot.writeFieldBegin('data', TType.LIST, 3)
+            oprot.writeFieldBegin('dsc', TType.LIST, 3)
             oprot.writeListBegin(TType.I32, len(self.data))
             for iter26 in self.data:
                 oprot.writeI32(iter26)
@@ -1081,7 +1081,7 @@ class iSignalIPduEncode(object):
     Attributes:
      - result
      - length
-     - data
+     - dsc
 
     """
 
@@ -1140,7 +1140,7 @@ class iSignalIPduEncode(object):
             oprot.writeI32(self.length)
             oprot.writeFieldEnd()
         if self.data is not None:
-            oprot.writeFieldBegin('data', TType.LIST, 3)
+            oprot.writeFieldBegin('dsc', TType.LIST, 3)
             oprot.writeListBegin(TType.I32, len(self.data))
             for iter48 in self.data:
                 oprot.writeI32(iter48)
@@ -1262,7 +1262,7 @@ pduUpdate.thrift_spec = (
     None,  # 0
     (1, TType.I32, 'channel', None, None, ),  # 1
     (2, TType.STRING, 'pduName', 'UTF8', None, ),  # 2
-    (3, TType.LIST, 'data', (TType.I32, None, False), [
+    (3, TType.LIST, 'dsc', (TType.I32, None, False), [
     ], ),  # 3
     (4, TType.STRING, 'context', 'UTF8', "", ),  # 4
     (5, TType.STRING, 'context_raw', 'UTF8', "", ),  # 5
@@ -1326,7 +1326,7 @@ iSignalIPduEncode.thrift_spec = (
     None,  # 0
     (1, TType.STRUCT, 'result', [CommonNode_ttypes.result, None], None, ),  # 1
     (2, TType.I32, 'length', None, None, ),  # 2
-    (3, TType.LIST, 'data', (TType.I32, None, False), None, ),  # 3
+    (3, TType.LIST, 'dsc', (TType.I32, None, False), None, ),  # 3
 )
 all_structs.append(convertInput)
 convertInput.thrift_spec = (

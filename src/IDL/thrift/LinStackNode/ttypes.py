@@ -177,7 +177,7 @@ class linMessageDataT(object):
     	LIN报文所在的软件通道
      - id: int32
     	LIN报文ID
-     - data: list[int32]
+     - dsc: list[int32]
     	LIN报文源数据
 
     """
@@ -236,7 +236,7 @@ class linMessageDataT(object):
             oprot.writeI32(self.id)
             oprot.writeFieldEnd()
         if self.data is not None:
-            oprot.writeFieldBegin('data', TType.LIST, 3)
+            oprot.writeFieldBegin('dsc', TType.LIST, 3)
             oprot.writeListBegin(TType.I32, len(self.data))
             for iter6 in self.data:
                 oprot.writeI32(iter6)
@@ -533,7 +533,7 @@ linMessageDataT.thrift_spec = (
     None,  # 0
     (1, TType.I32, 'channel', None, None, ),  # 1
     (2, TType.I32, 'id', None, None, ),  # 2
-    (3, TType.LIST, 'data', (TType.I32, None, False), None, ),  # 3
+    (3, TType.LIST, 'dsc', (TType.I32, None, False), None, ),  # 3
 )
 all_structs.append(linStackStatus)
 linStackStatus.thrift_spec = (

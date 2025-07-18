@@ -818,7 +818,7 @@ class canMessage(object):
     	can报文是否为扩展帧
      - isRemote: int32
     	can报文是否为远程帧
-     - data: list[int32]
+     - dsc: list[int32]
     	can报文数据信息
      - period: int32
     	can报文周期信息
@@ -949,7 +949,7 @@ class canMessage(object):
             oprot.writeI32(self.isRemote)
             oprot.writeFieldEnd()
         if self.data is not None:
-            oprot.writeFieldBegin('data', TType.LIST, 7)
+            oprot.writeFieldBegin('dsc', TType.LIST, 7)
             oprot.writeListBegin(TType.I32, len(self.data))
             for iter34 in self.data:
                 oprot.writeI32(iter34)
@@ -1127,7 +1127,7 @@ canMessage.thrift_spec = (
     (4, TType.I32, 'dlc', None, None, ),  # 4
     (5, TType.I32, 'isExtended', None, None, ),  # 5
     (6, TType.I32, 'isRemote', None, None, ),  # 6
-    (7, TType.LIST, 'data', (TType.I32, None, False), None, ),  # 7
+    (7, TType.LIST, 'dsc', (TType.I32, None, False), None, ),  # 7
     (8, TType.I32, 'period', None, None, ),  # 8
     (9, TType.STRING, 'frameName', 'UTF8', None, ),  # 9
     (10, TType.I32, 'times', None, None, ),  # 10
