@@ -12,10 +12,10 @@ class LinStackNode:
     def reset(self):
         return result(result=0, reason="")
 
-    def setConfig(self, req:genericString):
+    def setConfig(self, req: genericString):
         return result(result=0, reason="")
 
-    def setChannelConig(self, req:linChannelConfigs):
+    def setChannelConig(self, req: linChannelConfigs):
         return result(result=0, reason="")
 
     def startLinStack(self):
@@ -24,13 +24,13 @@ class LinStackNode:
     def stopLinStack(self):
         return result(result=0, reason="")
 
-    def setMessageSimulation(self, req:linMessageConfig):
+    def setMessageSimulation(self, req: linMessageConfig):
         return result(result=0, reason="")
 
-    def setHeaderSimulation(self, req:linHeaderConfig):
+    def setHeaderSimulation(self, req: linHeaderConfig):
         return result(result=0, reason="")
 
-    def setMessageData(self, req:linMessageDataT):
+    def setMessageData(self, req: linMessageDataT):
         return result(result=0, reason="")
 
     def getStatus(self):
@@ -39,23 +39,24 @@ class LinStackNode:
     def clearSubscribe(self):
         return result(result=0, reason="")
 
-    def clearSend(self, req:genericInt):
+    def clearSend(self, req: genericInt):
         return result(result=0, reason="")
 
-    def setLinCrcConfig(self, req:linCrcConfig):
+    def setLinCrcConfig(self, req: linCrcConfig):
         return result(result=0, reason="")
 
-    def clearLinCrcConfig(self, req:linCrcConfig):
+    def clearLinCrcConfig(self, req: linCrcConfig):
         return result(result=0, reason="")
 
     def getDeltaTime(self):
         return genericInt64()
 
+
 if __name__ == "__main__":
     handler = LinStackNode()
     processor = linStackNode.Processor(handler)
 
-    transport = TSocket.TServerSocket(host='127.0.0.1', port=9092)
+    transport = TSocket.TServerSocket(host="127.0.0.1", port=9092)
     tfactory = TTransport.TBufferedTransportFactory()
     pfactory = TBinaryProtocol.TBinaryProtocolFactory()
 
