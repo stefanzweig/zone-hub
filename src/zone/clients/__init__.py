@@ -1,2 +1,4 @@
 from .CanParserClient.CanParserClient import CanParserClient as CanParserClient
 from .CanStackClient.CanStackClient import CANStackClient as CanStackClient
+from .LinStackClient.LinStackClient import LinStackClient as LinStackClient
+from .LinParserClient.LinParserClient import LinParserClient as LinParserClient
