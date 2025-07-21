@@ -12,43 +12,43 @@ from zone import BaseNodeData
 
 class LinStackNode:
     def reset(self):
-        return result(result=0, reason="")
+        return result(result=0, reason="reset")
 
     def setConfig(self, req: genericString):
-        return result(result=0, reason="")
+        return result(result=0, reason="setConfig")
 
     def setChannelConig(self, req: linChannelConfigs):
-        return result(result=0, reason="")
+        return result(result=0, reason="setChannelConig")
 
     def startLinStack(self):
-        return result(result=0, reason="")
+        return result(result=0, reason="startLinStack")
 
     def stopLinStack(self):
-        return result(result=0, reason="")
+        return result(result=0, reason="stopLinStack")
 
     def setMessageSimulation(self, req: linMessageConfig):
-        return result(result=0, reason="")
+        return result(result=0, reason="setMessageSimulation")
 
     def setHeaderSimulation(self, req: linHeaderConfig):
-        return result(result=0, reason="")
+        return result(result=0, reason="setHeaderSimulation")
 
     def setMessageData(self, req: linMessageDataT):
-        return result(result=0, reason="")
+        return result(result=0, reason="setMessageData")
 
     def getStatus(self):
         return linStackStatus()
 
     def clearSubscribe(self):
-        return result(result=0, reason="")
+        return result(result=0, reason="clearSubscribe")
 
     def clearSend(self, req: genericInt):
-        return result(result=0, reason="")
+        return result(result=0, reason="clearSend")
 
     def setLinCrcConfig(self, req: linCrcConfig):
-        return result(result=0, reason="")
+        return result(result=0, reason="setLinCrcConfig")
 
     def clearLinCrcConfig(self, req: linCrcConfig):
-        return result(result=0, reason="")
+        return result(result=0, reason="clearLinCrcConfig")
 
     def getDeltaTime(self):
         return genericInt64()
