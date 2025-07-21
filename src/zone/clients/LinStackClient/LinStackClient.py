@@ -19,10 +19,10 @@ class LinStackClient(linStackNode.Iface):
         self.client = linStackNode.Client(protocol)
         transport.open()
 
-    def reset(self):
+    def reset(self) -> result:
         return self.client.reset()
 
-    def setConfig(self, req: genericString):
+    def setConfig(self, req: genericString) -> result:
         """
         配置lin通道信息
 
@@ -34,7 +34,7 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.setConfig(req)
 
-    def setChannelConig(self, req: linChannelConfigs):
+    def setChannelConig(self, req: linChannelConfigs) -> result:
         """
         配置lin通道信息
 
@@ -46,7 +46,7 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.setChannelConig(req)
 
-    def startLinStack(self):
+    def startLinStack(self) -> result:
         """
         启动LIN协议栈
 
@@ -56,7 +56,7 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.startLinStack()
 
-    def stopLinStack(self):
+    def stopLinStack(self) -> result:
         """
         停止LIN协议栈
 
@@ -66,26 +66,19 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.stopLinStack()
 
-    def setMessageSimulation(self, req: linMessageConfig):
+    def setMessageSimulation(self, req: linMessageConfig) -> result:
         return self.client.setMessageSimulation(req)
 
-    def setHeaderSimulation(self, req: linHeaderConfig):
+    def setHeaderSimulation(self, req: linHeaderConfig) -> result:
         return self.client.setHeaderSimulation(req)
 
-    def setMessageData(self, req: linMessageDataT):
+    def setMessageData(self, req: linMessageDataT) -> result:
         return self.client.setMessageData(req)
 
-    def getStatus(self):
-        """
-        获取LIN协议栈状态，result中result为1时表示正在运行
-
-        :return: 执行结果
-
-        :rtype: result
-        """
+    def getStatus(self) -> linStackStatus:
         return self.client.getStatus()
 
-    def clearSubscribe(self):
+    def clearSubscribe(self) -> result:
         """
         取消订阅
 
@@ -95,10 +88,10 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.clearSubscribe()
 
-    def clearSend(self, req: genericInt):
+    def clearSend(self, req: genericInt) -> result:
         return self.client.clearSend(req)
 
-    def setLinCrcConfig(self, req: linCrcConfig):
+    def setLinCrcConfig(self, req: linCrcConfig) -> result:
         """
         设置CRC配置
 
@@ -110,7 +103,7 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.setLinCrcConfig(req)
 
-    def clearLinCrcConfig(self, req: linCrcConfig):
+    def clearLinCrcConfig(self, req: linCrcConfig) -> result:
         """
         清除所有CRC配置
 
@@ -120,7 +113,7 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.clearLinCrcConfig(req)
 
-    def getDeltaTime(self):
+    def getDeltaTime(self) -> genericInt64:
         return self.client.getDeltaTime()
 
 if __name__ == "__main__":
