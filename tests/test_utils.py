@@ -5,3 +5,5 @@ sys.path.append("..")
 
 def test_dumb():
     assert 1 == 1
+
+test_dumb()
