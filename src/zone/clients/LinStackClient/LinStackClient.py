@@ -4,6 +4,7 @@ from IDL.thrift.LinStackNode.ttypes import *
 from IDL.thrift.LinStackNode import linStackNode
 from IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
+from zone.utils import singleton
 
 
 class LinStackClient(linStackNode.Iface):
@@ -14,10 +15,10 @@ class LinStackClient(linStackNode.Iface):
         transport = TSocket.TSocket(
             BaseNodeData.LIN_STACK_NODE_IP, BaseNodeData.LIN_STACK_NODE_PORT
         )
-        transport = TTransport.TBufferedTransport(transport)
-        protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        self.transport = TTransport.TBufferedTransport(transport)
+        protocol = TBinaryProtocol.TBinaryProtocol(self.transport)
         self.client = linStackNode.Client(protocol)
-        transport.open()
+        # self.transport.open()
 
     def reset(self) -> result:
         return self.client.reset()
@@ -115,6 +116,10 @@ class LinStackClient(linStackNode.Iface):
 
     def getDeltaTime(self) -> genericInt64:
         return self.client.getDeltaTime()
+
+
+linstackclient = singleton(LinStackClient)()
+
 
 if __name__ == "__main__":
     linStack_Client = LinStackClient()

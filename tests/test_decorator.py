@@ -1,7 +1,7 @@
 import sys
 
 sys.path.append("..")
-from src import singleton
+from zone.utils.decorator import singleton
 
 
 def test_singleton():

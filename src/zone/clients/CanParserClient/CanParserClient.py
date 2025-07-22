@@ -5,6 +5,7 @@ from IDL.thrift.CanParserNode import canParserNode
 from IDL.thrift.CanParserNode.constants import *
 from IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
+from zone.utils.decorator import singleton
 
 
 class CanParserClient(canParserNode.Iface):
@@ -15,10 +16,12 @@ class CanParserClient(canParserNode.Iface):
         transport = TSocket.TSocket(
             BaseNodeData.CAN_PARSER_NODE_IP, BaseNodeData.CAN_PARSER_NODE_PORT
         )
-        transport = TTransport.TBufferedTransport(transport)
-        protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        self.transport = TTransport.TBufferedTransport(transport)
+        protocol = TBinaryProtocol.TBinaryProtocol(self.transport)
         self.client = canParserNode.Client(protocol)
-        transport.open()
+        # self.transport.open()
+
+
 
     def checkAlive(self) -> result:
         """
@@ -258,6 +261,8 @@ class CanParserClient(canParserNode.Iface):
         """
         return self.client.updateCanPdu(info)
 
+
+canparserclient = singleton(CanParserClient)()
 
 if __name__ == "__main__":
     canParser_Client = CanParserClient()

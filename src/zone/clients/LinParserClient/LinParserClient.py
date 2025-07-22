@@ -6,6 +6,7 @@ from IDL.thrift.LinParserNode import linParserNode
 from IDL.thrift.LinParserNode.constants import *
 from IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
+from zone.utils import singleton
 
 
 class LinParserClient(linParserNode.Iface):
@@ -16,10 +17,10 @@ class LinParserClient(linParserNode.Iface):
         transport = TSocket.TSocket(
             BaseNodeData.LIN_PARSER_NODE_IP, BaseNodeData.LIN_PARSER_NODE_PORT
         )
-        transport = TTransport.TBufferedTransport(transport)
-        protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        self.transport = TTransport.TBufferedTransport(transport)
+        protocol = TBinaryProtocol.TBinaryProtocol(self.transport)
         self.client = linParserNode.Client(protocol)
-        transport.open()
+        # self.transport.open()
 
     def addDbfile(self, dbpath: dbPath) -> result:
         """
@@ -174,6 +175,9 @@ class LinParserClient(linParserNode.Iface):
         :rtype: result
         """
         return self.client.clearCrcConfig(req)
+
+
+linparserclient = singleton(LinParserClient)()
 
 if __name__ == "__main__":
     linParser_Client = LinParserClient()

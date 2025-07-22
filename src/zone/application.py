@@ -12,6 +12,12 @@ from .utils.config import (
     ETH_Config_Vector,
 )
 
+from zone.clients import (
+    canstackclient,
+    canparserclient,
+    linstackclient,
+    linparserclient,
+)
 
 # APIs for the test suites' development.
 def create_can_client():
@@ -43,10 +49,10 @@ class App(object):
         self._configs = as_list(configs)
         self._connections = as_list(connections)
         self._clients = []
-        self._canstack = canstack
-        self._canparser = canparser
-        self._linstack = linstack
-        self._linparser = linparser
+        self._canstack = canstack or canstackclient
+        self._canparser = canparser or canparserclient
+        self._linstack = linstack or linstackclient
+        self._linparser = linparser or linparserclient
         self._data = data
         self._clients = {
             "CanStack": self._canstack,

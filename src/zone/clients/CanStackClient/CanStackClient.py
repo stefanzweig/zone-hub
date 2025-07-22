@@ -4,6 +4,7 @@ from IDL.thrift.CanStackNode import canStackNode
 from IDL.thrift.CanStackNode.constants import *
 from IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
+from zone.utils.decorator import singleton
 
 
 class CANStackClient(canStackNode.Iface):
@@ -14,10 +15,10 @@ class CANStackClient(canStackNode.Iface):
         transport = TSocket.TSocket(
             BaseNodeData.CAN_STACK_NODE_IP, BaseNodeData.CAN_STACK_NODE_PORT
         )
-        transport = TTransport.TBufferedTransport(transport)
-        protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        self.transport = TTransport.TBufferedTransport(transport)
+        protocol = TBinaryProtocol.TBinaryProtocol(self.transport)
         self.client = canStackNode.Client(protocol)
-        transport.open()
+        # self.transport.open()
 
     def checkAlive(self) -> result:
         """
@@ -231,6 +232,7 @@ class CANStackClient(canStackNode.Iface):
         """
         return self.client.getChannelErrorFrameTotal(req)
 
+canstackclient = singleton(CANStackClient)()
 
 if __name__ == "__main__":
     canStack_Client = CANStackClient()
