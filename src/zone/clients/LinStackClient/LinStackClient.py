@@ -20,6 +20,18 @@ class LinStackClient(linStackNode.Iface):
         self.client = linStackNode.Client(protocol)
         # self.transport.open()
 
+    def connect(self):
+        try:
+            self.transport.open()
+        finally:
+            self.transport.close()
+
+    def disconnect(self):
+        try:
+            self.transport.close()
+        finally:
+            pass
+
     def reset(self) -> result:
         return self.client.reset()
 

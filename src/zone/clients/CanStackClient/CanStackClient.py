@@ -20,6 +20,18 @@ class CANStackClient(canStackNode.Iface):
         self.client = canStackNode.Client(protocol)
         # self.transport.open()
 
+    def connect(self):
+        try:
+            self.transport.open()
+        finally:
+            self.transport.close()
+
+    def disconnect(self):
+        try:
+            self.transport.close()
+        finally:
+            pass
+
     def checkAlive(self) -> result:
         """
         检查活跃度
@@ -231,6 +243,7 @@ class CANStackClient(canStackNode.Iface):
         :rtype: errorFrameTotal
         """
         return self.client.getChannelErrorFrameTotal(req)
+
 
 canstackclient = singleton(CANStackClient)()
 

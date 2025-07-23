@@ -19,6 +19,7 @@ from zone.clients import (
     linparserclient,
 )
 
+
 # APIs for the test suites' development.
 def create_can_client():
     pass
@@ -87,6 +88,7 @@ class App(object):
 
     @property
     def CanParser(self):
+
         return self._canparser
 
     @CanParser.setter
@@ -117,22 +119,241 @@ class App(object):
     def DataModel(self):
         return self._data
 
-    def set_CAN_config(self, config):
+    # api
+    def connect(self, components=[]):
         pass
 
-    def set_LIN_config(self, config):
+    def connect_all(self):
         pass
 
-    def send_CAN(self, message):
+    def disconnect(self, components=[]):
         pass
 
-    def connect(self):
+    def disconnect_all(self):
         pass
 
-    def disconnect(self):
+    def getStatus(self):
         pass
+
+    def setCrcRcConfig(self, req):
+        pass
+
+    def clearCrcRcConfig(self, req):
+        pass
+
+    def clearAllCrcRcConfig(self):
+        pass
+
+    def checkAllAlive(self):
+        pass
+
+    # # can stack
+
+    def checkAlive(self):
+        pass
+
+    def getVersion(self):
+        pass
+
+    def setConfigs(self, req):
+        pass
+
+    def startCanStack(self):
+        pass
+
+    def stopCanStack(self):
+        pass
+
+    def clearCanSend(self):
+        pass
+
+    def setCanCrcRcConfig(self, req):
+        pass
+
+    def clearCanCrcRcConfig(self, req):
+        pass
+
+    def clearCanAllCrcRcConfig(self):
+        pass
+
+    def sendCanMessageCyc(self, req):
+        pass
+
+    def sendCanMessage(self, req):
+        pass
+
+    def sendCanMessages(self, req, stmin):
+        pass
+
+    def getStackStatus(self):
+        pass
+
+    def stopChannelSendCyc(self, req):
+        pass
+
+    def sendCan(self, req):
+        pass
+
+    def getChannelBusloadCurrent(self, req):
+        pass
+
+    def getChannelBusloadMax(self, req):
+        pass
+
+    def getChannelBusloadAvg(self, req):
+        pass
+
+    def getChannelErrorFrameTotal(self, req):
+        pass
+
+    # # can parser
+
+    def setCanParserCrcRcConfig(self, req):
+        pass
+
+    def clearAllCanParserCrcRcConfig(self):
+        pass
+
+    def clearCanParserCrcRcConfig(self, req):
+        pass
+
+    def sendCanFrameCyc(self, req):
+        pass
+
+    def sendCanPduCyc(self, req):
+        pass
+
+    def sendCanPduCycList(self, req):
+        pass
+
+    def sendCanPdu(self, req):
+        pass
+
+    def addDbFile(self, req):
+        pass
+
+    def setCanConfig(self, req):
+        pass
+
+    def getCanDbConfigs(self):
+        pass
+
+    def getCanDbPath(self):
+        pass
+
+    def subscribeMsg(self, req):
+        pass
+
+    def unSubscribeMsg(self, req):
+        pass
+
+    def getCanDbInfo(self):
+        pass
+
+    def clear(self):
+        pass
+
+    def clearCanStackSubscribe(self):
+        pass
+
+    def encodePdu(self, req):
+        pass
+
+    def convertCanDbToPy(self, req):
+        pass
+
+    def convertCanDbToJson(self, req):
+        pass
+
+    def updateCanPdu(self, req):
+        pass
+
+    # # lin stack
 
     def reset(self):
+        pass
+
+    def setLinConfig(self, req):
+        pass
+
+    def setChannelConig(self, req):
+        pass
+
+    def startLinStack(self):
+        pass
+
+    def stopLinStack(self):
+        pass
+
+    def setMessageSimulation(self, req):
+        pass
+
+    def setHeaderSimulation(self, req):
+        pass
+
+    def setMessageData(self, req):
+        pass
+
+    def getLinStatus(self):
+        pass
+
+    def clearLinSubscribe(self):
+        pass
+
+    def clearLinSend(self, req):
+        pass
+
+    def setLinCrcConfig(self, req):
+        pass
+
+    def clearLinCrcConfig(self, req):
+        pass
+
+    def getDeltaTime(self):
+        pass
+
+    # # lin parser
+
+    def addDbfile(self, req):
+        pass
+
+    def setChannelConfig(self, req):
+        pass
+
+    def setNodeSimulation(self, req):
+        pass
+
+    def setFrameSimulation(self, req):
+        pass
+
+    def setFrameData(self, req):
+        pass
+
+    def SetSignalData(self, req):
+        pass
+
+    def clearCanParserSubscribe(self):
+        pass
+
+    def clearDbfile(self):
+        pass
+
+    def getLinParserStatus(self):
+        pass
+
+    def getLdfJsonTree(self):
+        pass
+
+    def convertLinDbToPy(self, req):
+        pass
+
+    def convertLinDbToJson(self, req):
+        pass
+
+    def setCrcConfig(self, req):
+        pass
+
+    def clearCrcConfig(self, req):
         pass
 
 

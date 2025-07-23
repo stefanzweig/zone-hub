@@ -22,6 +22,18 @@ class LinParserClient(linParserNode.Iface):
         self.client = linParserNode.Client(protocol)
         # self.transport.open()
 
+    def connect(self):
+        try:
+            self.transport.open()
+        finally:
+            self.transport.close()
+
+    def disconnect(self):
+        try:
+            self.transport.close()
+        finally:
+            pass
+
     def addDbfile(self, dbpath: dbPath) -> result:
         """
         添加数据库文件
