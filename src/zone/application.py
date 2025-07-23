@@ -147,21 +147,25 @@ class App(object):
                 print(result)
 
     def disconnect_all(self):
-        pass
+        self.disconnect()
 
     def getStatus(self):
         pass
 
     def setCrcRcConfig(self, req):
+        # canstack and canparser
         pass
 
     def clearCrcRcConfig(self, req):
+        # canstack and canparser
         pass
 
     def clearAllCrcRcConfig(self):
+        # canstack and canparser
         pass
 
     def checkAllAlive(self):
+        # canstack and canparser
         pass
 
     # # can stack
@@ -226,152 +230,152 @@ class App(object):
     # # can parser
 
     def setCanParserCrcRcConfig(self, req):
-        pass
+        return self._canparser.setCanParserCrcRcConfig(req)
 
     def clearAllCanParserCrcRcConfig(self):
-        pass
+        return self._canparser.clearAllCanParserCrcRcConfig()
 
     def clearCanParserCrcRcConfig(self, req):
-        pass
+        return self._canparser.clearCanParserCrcRcConfig(req)
 
     def sendCanFrameCyc(self, req):
-        pass
+        return self._canparser.sendCanFrameCyc(req)
 
     def sendCanPduCyc(self, req):
-        pass
+        return self._canparser.sendCanPduCyc(req)
 
     def sendCanPduCycList(self, req):
-        pass
+        return self._canparser.sendCanPduCycList(req)
 
     def sendCanPdu(self, req):
-        pass
+        return self._canparser.sendCanPdu(req)
 
     def addDbFile(self, req):
-        pass
+        return self._canparser.addDbFile(req)
 
     def setCanConfig(self, req):
-        pass
+        return self._canparser.setCanConfig(req)
 
     def getCanDbConfigs(self):
-        pass
+        return self._canparser.getCanDbConfigs()
 
     def getCanDbPath(self):
-        pass
+        return self._canparser.getCanDbPath()
 
     def subscribeMsg(self, req):
-        pass
+        return self._canparser.subscribeMsg(req)
 
     def unSubscribeMsg(self, req):
-        pass
+        return self._canparser.unSubscribeMsg(req)
 
     def getCanDbInfo(self):
-        pass
+        return self._canparser.getCanDbInfo()
 
     def clear(self):
-        pass
+        return self._canparser.clear()
 
     def clearCanStackSubscribe(self):
-        pass
+        return self._canparser.clearCanStackSubscribe()
 
     def encodePdu(self, req):
-        pass
+        return self._canparser.encodePdu(req)
 
     def convertCanDbToPy(self, req):
-        pass
+        return self._canparser.convertCanDbToPy(req)
 
     def convertCanDbToJson(self, req):
-        pass
+        return self._canparser.convertCanDbToJson(req)
 
     def updateCanPdu(self, req):
-        pass
+        return self._canparser.updateCanPdu(req)
 
     # # lin stack
 
     def reset(self):
-        pass
+        return self._linstack.reset()
 
     def setLinConfig(self, req):
-        pass
+        return self._linstack.setLinConfig(req)
 
     def setChannelConig(self, req):
-        pass
+        return self._linstack.setChannelConig(req)
 
     def startLinStack(self):
-        pass
+        return self._linstack.startLinStack()
 
     def stopLinStack(self):
-        pass
+        return self._linstack.stopLinStack()
 
     def setMessageSimulation(self, req):
-        pass
+        return self._linstack.setMessageSimulation(req)
 
     def setHeaderSimulation(self, req):
-        pass
+        return self._linstack.setHeaderSimulation(req)
 
     def setMessageData(self, req):
-        pass
+        return self._linstack.setMessageData(req)
 
     def getLinStatus(self):
-        pass
+        return self._linstack.getLinStatus()
 
     def clearLinSubscribe(self):
-        pass
+        return self._linstack.clearLinSubscribe()
 
     def clearLinSend(self, req):
-        pass
+        return self._linstack.clearLinSend()
 
     def setLinCrcConfig(self, req):
-        pass
+        return self._linstack.clearLinSend(req)
 
     def clearLinCrcConfig(self, req):
-        pass
+        return self._linstack.clearLinCrcConfig(req)
 
     def getDeltaTime(self):
-        pass
+        return self._linstack.getDeltaTime()
 
     # # lin parser
 
     def addDbfile(self, req):
-        pass
+        return self._linparser.addDbfile(req)
 
     def setChannelConfig(self, req):
-        pass
+        return self._linparser.setChannelConfig(req)
 
     def setNodeSimulation(self, req):
-        pass
+        return self._linparser.setNodeSimulation(req)
 
     def setFrameSimulation(self, req):
-        pass
+        return self._linparser.setFrameSimulation(req)
 
     def setFrameData(self, req):
-        pass
+        return self._linparser.setFrameData(req)
 
     def SetSignalData(self, req):
-        pass
+        return self._linparser.SetSignalData(req)
 
     def clearCanParserSubscribe(self):
-        pass
+        return self._linparser.clearCanParserSubscribe()
 
     def clearDbfile(self):
-        pass
+        return self._linparser.clearDbfile()
 
     def getLinParserStatus(self):
-        pass
+        return self._linparser.getLinParserStatus()
 
     def getLdfJsonTree(self):
-        pass
+        return self._linparser.getLdfJsonTree()
 
     def convertLinDbToPy(self, req):
-        pass
+        return self._linparser.convertLinDbToPy(req)
 
     def convertLinDbToJson(self, req):
-        pass
+        return self._linparser.convertLinDbToJson(req)
 
     def setCrcConfig(self, req):
-        pass
+        return self._linparser.setCrcConfig(req)
 
     def clearCrcConfig(self, req):
-        pass
+        return self._linparser.clearCrcConfig(req)
 
 
 def main():
