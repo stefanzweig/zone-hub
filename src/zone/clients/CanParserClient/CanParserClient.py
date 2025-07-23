@@ -7,6 +7,7 @@ from IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
 from zone.utils.decorator import singleton
 
+
 # @singleton
 class CanParserClient(canParserNode.Iface):
     """class CanParserClient docstring"""
@@ -23,15 +24,20 @@ class CanParserClient(canParserNode.Iface):
 
     def connect(self):
         try:
+            print("canparser connecting...")
             self.transport.open()
-        finally:
+            return result(result=0, reason="connected")
+        except:
             self.transport.close()
+            return result(result=1, reason="not connected")
 
     def disconnect(self):
         try:
+            print("canparser disconnecting...")
             self.transport.close()
-        finally:
-            pass
+            return result(result=0, reason="disconnected")
+        except:
+            return result(result=1, reason="still connected")
 
     def checkAlive(self) -> result:
         """

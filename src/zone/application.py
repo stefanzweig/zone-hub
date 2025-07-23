@@ -11,6 +11,7 @@ from .utils.config import (
     ETH_Config_PC,
     ETH_Config_Vector,
 )
+from .utils.snippets import normalize_components
 
 from zone.clients import (
     canstackclient,
@@ -56,10 +57,10 @@ class App(object):
         self._linparser = linparser or linparserclient
         self._data = data
         self._clients = {
-            "CanStack": self._canstack,
-            "CanParser": self._canparser,
-            "LinStack": self._linstack,
-            "LinParser": self._linparser,
+            "canstack": self._canstack,
+            "canparser": self._canparser,
+            "linstack": self._linstack,
+            "linparser": self._linparser,
         }
 
     @property
@@ -120,14 +121,30 @@ class App(object):
         return self._data
 
     # api
-    def connect(self, components=[]):
-        pass
+    def connect(self, components=None):
+        if components is None:
+            components = ["all"]
+        components = as_list(components)
+        norm_comps = normalize_components(components)
+        for i in norm_comps:
+            if self._clients[i] is not None:
+                print(self._clients[i])
+                result = self._clients[i].connect()
+                print(result)
 
     def connect_all(self):
-        pass
+        self.connect()
 
-    def disconnect(self, components=[]):
-        pass
+    def disconnect(self, components=None):
+        if components is None:
+            components = ["all"]
+        components = as_list(components)
+        norm_comps = normalize_components(components)
+        for i in norm_comps:
+            if self._clients[i] is not None:
+                print(self._clients[i])
+                result = self._clients[i].disconnect()
+                print(result)
 
     def disconnect_all(self):
         pass
@@ -150,61 +167,61 @@ class App(object):
     # # can stack
 
     def checkAlive(self):
-        pass
+        return self._canstack.checkAlive()
 
     def getVersion(self):
-        pass
+        return self._canstack.getVersion()
 
     def setConfigs(self, req):
-        pass
+        return self._canstack.setConfigs(req)
 
-    def startCanStack(self):
-        pass
+    def start(self):
+        return self._canstack.startCanStack()
 
-    def stopCanStack(self):
-        pass
+    def stop(self):
+        return self._canstack.stopCanStack()
 
     def clearCanSend(self):
-        pass
+        return self._canstack.clearCanSend()
 
     def setCanCrcRcConfig(self, req):
-        pass
+        return self._canstack.setCrcRcConfig(req)
 
     def clearCanCrcRcConfig(self, req):
-        pass
+        return self._canstack.clearCrcRcConfig(req)
 
     def clearCanAllCrcRcConfig(self):
-        pass
+        return self._canstack.clearAllCrcRcConfig()
 
     def sendCanMessageCyc(self, req):
-        pass
+        return self._canstack.sendCanMessageCyc(req)
 
     def sendCanMessage(self, req):
-        pass
+        return self._canstack.sendCanMessage(req)
 
     def sendCanMessages(self, req, stmin):
-        pass
+        return self._canstack.sendCanMessages(req, stmin)
 
     def getStackStatus(self):
-        pass
+        return self._canstack.getStackStatus()
 
     def stopChannelSendCyc(self, req):
-        pass
+        return self._canstack.stopChannelSendCyc(req)
 
     def sendCan(self, req):
-        pass
+        return self._canstack.sendCan(req)
 
     def getChannelBusloadCurrent(self, req):
-        pass
+        return self._canstack.getChannelBusloadCurrent(req)
 
     def getChannelBusloadMax(self, req):
-        pass
+        return self._canstack.getChannelBusloadMax(req)
 
     def getChannelBusloadAvg(self, req):
-        pass
+        return self._canstack.getChannelBusloadAvg(req)
 
     def getChannelErrorFrameTotal(self, req):
-        pass
+        return self._canstack.getChannelErrorFrameTotal(req)
 
     # # can parser
 

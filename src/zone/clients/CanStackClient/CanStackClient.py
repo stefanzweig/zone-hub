@@ -22,15 +22,20 @@ class CANStackClient(canStackNode.Iface):
 
     def connect(self):
         try:
+            print("canstack connecting...")
             self.transport.open()
-        finally:
+            return result(result=0, reason="connected")
+        except:
             self.transport.close()
+            return result(result=1, reason="not connected")
 
     def disconnect(self):
         try:
+            print("canstack disconnecting...")
             self.transport.close()
-        finally:
-            pass
+            return result(result=0, reason="disconnected")
+        except:
+            return result(result=1, reason="still connected")
 
     def checkAlive(self) -> result:
         """
