@@ -49,6 +49,17 @@ class CanParserClient(canParserNode.Iface):
         """
         return self.client.checkAlive()
 
+    def getStatus(self) -> result:
+        """
+        获取CAN协议栈状态，result中result为1时表示正在运行
+
+        :return: 执行结果
+
+        :rtype: result
+        """
+        return result(result=0, reason="canparser status unknown.")
+
+
     def setCrcRcConfig(self, config: pduCrcRcConfig) -> result:
         """
         设置CRC配置

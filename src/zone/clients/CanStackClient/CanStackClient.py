@@ -171,7 +171,7 @@ class CANStackClient(canStackNode.Iface):
         """
         return self.client.sendCanMessages(msgs, stmin)
 
-    def getStackStatus(self) -> result:
+    def getStatus(self) -> result:
         """
         获取CAN协议栈状态，result中result为1时表示正在运行
 

@@ -155,8 +155,19 @@ class App(object):
     def disconnect_all(self):
         return self.disconnect()
 
-    def getStatus(self):
-        pass
+    def getStatus(self, components=None):
+        if components is None:
+            components = ["all"]
+        components = as_list(components)
+        norm_comps = normalize_components(components)
+        results = {}
+        for i in norm_comps:
+            if self._clients[i] is not None:
+                print(self._clients[i])
+                result = self._clients[i].getStatus()
+                print(result)
+                results[i] = result
+        return results
 
     def setCrcRcConfig(self, req):
         # canstack and canparser
@@ -213,7 +224,7 @@ class App(object):
         return self._canstack.sendCanMessages(req, stmin)
 
     def getStackStatus(self):
-        return self._canstack.getStackStatus()
+        return self._canstack.getStatus()
 
     def stopChannelSendCyc(self, req):
         return self._canstack.stopChannelSendCyc(req)
