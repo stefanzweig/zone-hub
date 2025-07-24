@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 from os.path import abspath, dirname, join
 from setuptools import find_packages, setup
 
@@ -29,7 +28,7 @@ Programming Language :: Python :: 3.14
 Framework :: Zone Framework
 """.strip().splitlines()
 DESCRIPTION = "Zone framework for acceptance testing "
-KEYWORDS = "framework automation testautomation testing atdd bdd"
+KEYWORDS = "framework automation test automation testing atdd bdd"
 PACKAGE_DATA = [
     join("htmldata", directory, pattern)
     for directory in ("rebot", "libdoc", "testdoc", "lib", "common")
@@ -38,7 +37,7 @@ PACKAGE_DATA = [
 
 
 setup(
-    name="zmclient",
+    name="zone-hub",
     version=VERSION,
     author="Liu Haijiang",
     author_email="liuhaijiang@saicmotor.com",
@@ -61,5 +60,5 @@ setup(
     entry_points={"console_scripts": []},
     extras_require={
         "dev": ["pytest", "black"],
-    }
+    },
 )
