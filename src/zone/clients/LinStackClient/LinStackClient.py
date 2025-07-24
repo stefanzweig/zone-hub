@@ -96,6 +96,12 @@ class LinStackClient(linStackNode.Iface):
     def getStatus(self) -> linStackStatus:
         return self.client.getStatus()
 
+    def checkAlive(self) -> result:
+        """
+        """
+        return result(result=0, reason="lin stack alive unknown")
+
+
     def clearSubscribe(self) -> result:
         """
         取消订阅

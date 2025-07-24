@@ -181,14 +181,22 @@ class App(object):
         # canstack and canparser
         pass
 
-    def checkAllAlive(self):
+    def checkAlive(self, components=None):
         # canstack and canparser
-        pass
+        if components is None:
+            components = ["all"]
+        components = as_list(components)
+        norm_comps = normalize_components(components)
+        results = {}
+        for i in norm_comps:
+            if self._clients[i] is not None:
+                print(self._clients[i])
+                result = self._clients[i].checkAlive()
+                print(result)
+                results[i] = result
+        return results
 
     # # can stack
-
-    def checkAlive(self):
-        return self._canstack.checkAlive()
 
     def getVersion(self):
         return self._canstack.getVersion()

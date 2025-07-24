@@ -141,6 +141,12 @@ class LinParserClient(linParserNode.Iface):
         """
         return self.client.getStatus()
 
+    def checkAlive(self) -> result:
+        """
+        """
+        return result(result=0, reason="lin parser alive unknown")
+
+
     def getLdfJsonTree(self) -> linLdfJson:
         """
         获取ldf文件解析数据
