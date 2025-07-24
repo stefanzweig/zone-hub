@@ -69,6 +69,12 @@ class CANStackClient(canStackNode.Iface):
         """
         return self.client.setConfigs(configs)
 
+    def start(self) -> result:
+        return self.startCanStack()
+
+    def stop(self) -> result:
+        return self.stopCanStack()
+
     def startCanStack(self) -> result:
         """
         启动CAN协议栈

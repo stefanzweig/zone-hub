@@ -171,18 +171,20 @@ class App(object):
 
     def setCrcRcConfig(self, req):
         # canstack and canparser
+        # todo
         pass
 
     def clearCrcRcConfig(self, req):
         # canstack and canparser
+        # todo
         pass
 
     def clearAllCrcRcConfig(self):
         # canstack and canparser
+        # todo
         pass
 
     def checkAlive(self, components=None):
-        # canstack and canparser
         if components is None:
             components = ["all"]
         components = as_list(components)
@@ -196,6 +198,32 @@ class App(object):
                 results[i] = result
         return results
 
+    def start(self, components=None):
+        if components is None:
+            components = ["all"]
+        components = as_list(components)
+        norm_comps = normalize_components(components)
+        results = {}
+        for i in norm_comps:
+            if self._clients[i] is not None:
+                if hasattr(self._clients[i], 'start') and callable(getattr(self._clients[i], 'start')):
+                    result = self._clients[i].checkAlive()
+                    results[i] = result
+        return results
+
+    def stop(self, components=None):
+        if components is None:
+            components = ["all"]
+        components = as_list(components)
+        norm_comps = normalize_components(components)
+        results = {}
+        for i in norm_comps:
+            if self._clients[i] is not None:
+                if hasattr(self._clients[i], 'stop') and callable(getattr(self._clients[i], 'stop')):
+                    result = self._clients[i].checkAlive()
+                    results[i] = result
+        return results
+
     # # can stack
 
     def getVersion(self):
@@ -204,10 +232,10 @@ class App(object):
     def setConfigs(self, req):
         return self._canstack.setConfigs(req)
 
-    def start(self):
+    def startCanStack(self):
         return self._canstack.startCanStack()
 
-    def stop(self):
+    def stopCanStack(self):
         return self._canstack.stopCanStack()
 
     def clearCanSend(self):

@@ -64,6 +64,12 @@ class LinStackClient(linStackNode.Iface):
         """
         return self.client.setChannelConig(req)
 
+    def start(self) -> result:
+        return self.startLinStack()
+
+    def stop(self) -> result:
+        return self.stopLinStack()
+
     def startLinStack(self) -> result:
         """
         启动LIN协议栈
@@ -97,10 +103,8 @@ class LinStackClient(linStackNode.Iface):
         return self.client.getStatus()
 
     def checkAlive(self) -> result:
-        """
-        """
+        """ """
         return result(result=0, reason="lin stack alive unknown")
-
 
     def clearSubscribe(self) -> result:
         """
