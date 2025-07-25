@@ -1,8 +1,8 @@
 from thrift.transport import TSocket
 from thrift.protocol import TBinaryProtocol
-from IDL.thrift.LinStackNode.ttypes import *
-from IDL.thrift.LinStackNode import linStackNode
-from IDL.thrift.CommonNode.ttypes import *
+from zone.IDL.thrift.LinStackNode.ttypes import *
+from zone.IDL.thrift.LinStackNode import linStackNode
+from zone.IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
 from zone.utils import singleton
 

@@ -1,10 +1,10 @@
-from IDL.thrift.CanStackNode.ttypes import (
+from zone.IDL.thrift.CanStackNode.ttypes import (
     canMessage,
     canMessages,
     canChannelConfigs,
     canChannelConfig,
 )
-from IDL.thrift.CanParserNode.ttypes import (
+from zone.IDL.thrift.CanParserNode.ttypes import (
     canDbInfo,
     pduMessage,
     pduMessages,
@@ -13,8 +13,8 @@ from IDL.thrift.CanParserNode.ttypes import (
     iSignalIPduEncode,
     iSignalIPduObj,
 )
-from IDL.thrift.ConfigNode.ttypes import dbPath, canConfigInfo
-from IDL.thrift.SomeIpNode.ttypes import (
+from zone.IDL.thrift.ConfigNode.ttypes import dbPath, canConfigInfo
+from zone.IDL.thrift.SomeIpNode.ttypes import (
     someipInfo,
     someipPackage,
     someipServiceInfo,
@@ -22,7 +22,7 @@ from IDL.thrift.SomeIpNode.ttypes import (
     someipStackConfig,
     someipChannelConfig,
 )
-from IDL.thrift.LinStackNode.ttypes import (
+from zone.IDL.thrift.LinStackNode.ttypes import (
     linStackStatus,
     linMessageConfig,
     linCrcConfig,

@@ -1,20 +1,13 @@
 import yaml
 import os
-import importlib.util
 from enum import Enum
 from collections import defaultdict
-from pathlib import Path
 
 try:
-    zonemaster_location = importlib.util.find_spec("zone").origin
-    zonemaster_root = Path(zonemaster_location).resolve().parent.parent.parent
-    config_yaml_file = zonemaster_root / "etc" / "zonemaster_config.yaml"
-    content = config_yaml_file.read_text(encoding="utf-8")
-    with config_yaml_file.open("r", encoding="utf-8") as f:
-        data = yaml.safe_load(f)
-except AttributeError as e_:
     exec_entry_path_ = os.path.dirname(__file__)
-    config_yaml_file = os.path.join(exec_entry_path_, "etc", "zonemaster_config.yaml")
+    config_yaml_file = os.path.join(
+        exec_entry_path_, "etc", "zonemaster_config.yaml"
+    )
     with open(config_yaml_file, encoding="utf-8") as f:
         data = yaml.safe_load(f)
 except Exception as e_:

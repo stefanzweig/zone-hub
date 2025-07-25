@@ -1,10 +1,10 @@
 from thrift.transport import TSocket
 from thrift.protocol import TBinaryProtocol
-from IDL.thrift.LinParserNode.ttypes import *
-from IDL.thrift.CanParserNode.ttypes import *
-from IDL.thrift.LinParserNode import linParserNode
-from IDL.thrift.LinParserNode.constants import *
-from IDL.thrift.CommonNode.ttypes import *
+from zone.IDL.thrift.LinParserNode.ttypes import *
+from zone.IDL.thrift.CanParserNode.ttypes import *
+from zone.IDL.thrift.LinParserNode import linParserNode
+from zone.IDL.thrift.LinParserNode.constants import *
+from zone.IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
 from zone.utils import singleton
 

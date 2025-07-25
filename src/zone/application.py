@@ -4,6 +4,9 @@ import time
 import typing
 from pathlib import Path
 from typing import Union, Callable
+
+from zone.IDL.thrift.CanParserNode.ttypes import *
+from zone.IDL.thrift.CanStackNode.ttypes import *
 from .utils.dsx import as_list
 from .utils.config import (
     CAN_Config,
@@ -32,6 +35,11 @@ def create_canparser_client():
 
 def create_configs():
     pass
+
+
+class canconfig_user(dbConfigs, canChannelConfigs):
+    def __init__(self):
+        super(canconfig_user, self).__init__()
 
 
 class App(object):
@@ -206,8 +214,10 @@ class App(object):
         results = {}
         for i in norm_comps:
             if self._clients[i] is not None:
-                if hasattr(self._clients[i], 'start') and callable(getattr(self._clients[i], 'start')):
-                    result = self._clients[i].checkAlive()
+                if hasattr(self._clients[i], "start") and callable(
+                    getattr(self._clients[i], "start")
+                ):
+                    result = self._clients[i].start()
                     results[i] = result
         return results
 
@@ -219,7 +229,9 @@ class App(object):
         results = {}
         for i in norm_comps:
             if self._clients[i] is not None:
-                if hasattr(self._clients[i], 'stop') and callable(getattr(self._clients[i], 'stop')):
+                if hasattr(self._clients[i], "stop") and callable(
+                    getattr(self._clients[i], "stop")
+                ):
                     result = self._clients[i].checkAlive()
                     results[i] = result
         return results
@@ -229,8 +241,30 @@ class App(object):
     def getVersion(self):
         return self._canstack.getVersion()
 
-    def setConfigs(self, req):
-        return self._canstack.setConfigs(req)
+    def setCanConfig(self, req:canconfig_user):
+        """pass"""
+        self._canparser.setCanConfig()
+        self._canstack.setConfigs()
+
+    class canpdu_user(pduMessage, pduUpdate) :
+        def __init__(self):
+            super().__init__()
+    req =    canpdu_user()
+    req.channel = 1
+    req.pduName = 'test'
+    req.period = 100
+    req.context = {'sig1:1,sig2:2'}
+    req.times = -1
+    def sendCanPdu(self,req:canpdu_user):
+        self._canparser.updateCanPdu(req)
+        self._canparser.sendCanPduCyc(req)
+
+    req.times=0
+    def stopCanPdu(self,req:canpdu_user):
+        self._canparser.sendCanPduCyc(req)
+
+    def setConfigs(self, dbconfig_user):
+        return self._canstack.setConfigs(dbconfig_user)
 
     def startCanStack(self):
         return self._canstack.startCanStack()

@@ -12,7 +12,7 @@ from thrift.TRecursive import fix_spec
 
 import sys
 sys.path.append("..")
-from IDL.thrift.CommonNode import ttypes
+from zone.IDL.thrift.CommonNode import ttypes
 
 from thrift.transport import TTransport
 all_structs = []

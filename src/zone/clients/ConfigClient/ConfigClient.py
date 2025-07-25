@@ -1,9 +1,9 @@
 from thrift.transport import TSocket
 from thrift.protocol import TBinaryProtocol
-from IDL.thrift.ConfigNode.constants import *
-from IDL.thrift.SomeIpNode.ttypes import *
-from IDL.thrift.CommonNode.ttypes import *
-from IDL.thrift.ConfigNode import configNode
+from zone.IDL.thrift.ConfigNode.constants import *
+from zone.IDL.thrift.SomeIpNode.ttypes import *
+from zone.IDL.thrift.CommonNode.ttypes import *
+from zone.IDL.thrift.ConfigNode import configNode
 from zone import BaseNodeData
 
 

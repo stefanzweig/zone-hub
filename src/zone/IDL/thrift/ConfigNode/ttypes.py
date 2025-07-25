@@ -12,8 +12,8 @@ from thrift.TRecursive import fix_spec
 
 import sys
 sys.path.append("..")
-from IDL.thrift.CommonNode import ttypes as CommonNode_ttypes
-from IDL.thrift.SomeIpNode import ttypes as SomeIpNode_ttypes
+from zone.IDL.thrift.CommonNode import ttypes as CommonNode_ttypes
+from zone.IDL.thrift.SomeIpNode import ttypes as SomeIpNode_ttypes
 
 from thrift.transport import TTransport
 all_structs = []

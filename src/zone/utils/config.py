@@ -3,8 +3,8 @@ from pathlib import Path
 import yaml
 import traceback
 
-from IDL.thrift.CommonNode.ttypes import arpPair, netInfo
-from IDL.thrift.SomeIpNode.ttypes import someipStackConfig, someipChannelConfig
+from zone.IDL.thrift.CommonNode.ttypes import arpPair, netInfo
+from zone.IDL.thrift.SomeIpNode.ttypes import someipStackConfig, someipChannelConfig
 
 
 class CAN_Config(object):

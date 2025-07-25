@@ -1,8 +1,8 @@
 from thrift.transport import TSocket
 from thrift.protocol import TBinaryProtocol
-from IDL.thrift.CanStackNode import canStackNode
-from IDL.thrift.CanStackNode.constants import *
-from IDL.thrift.CommonNode.ttypes import *
+from zone.IDL.thrift.CanStackNode import canStackNode
+from zone.IDL.thrift.CanStackNode.constants import *
+from zone.IDL.thrift.CommonNode.ttypes import *
 from zone import BaseNodeData
 from zone.utils.decorator import singleton
 
