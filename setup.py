@@ -59,5 +59,6 @@ setup(
     },
     install_requires=[
         "thrift",
+        "PyYAML==6.0.2",
     ],
 )
