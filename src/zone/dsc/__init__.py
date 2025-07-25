@@ -23,6 +23,8 @@ from .base import (
     LinCrcConfig,
     LinHeaderConfig,
     LinMessageDataT,
+    CanPdu,
+    CanConfig,
 )
 
 __all__ = [
@@ -50,4 +52,6 @@ __all__ = [
     "LinCrcConfig",
     "LinHeaderConfig",
     "LinMessageDataT",
+    "CanPdu",
+    "CanConfig",
 ]

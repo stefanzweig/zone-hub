@@ -12,6 +12,7 @@ from zone.IDL.thrift.CanParserNode.ttypes import (
     pduCrcRcConfig,
     iSignalIPduEncode,
     iSignalIPduObj,
+    dbConfigs,
 )
 from zone.IDL.thrift.ConfigNode.ttypes import dbPath, canConfigInfo
 from zone.IDL.thrift.SomeIpNode.ttypes import (
@@ -125,3 +126,23 @@ class LinHeaderConfig(linHeaderConfig):
 
 class LinMessageDataT(linMessageDataT):
     pass
+
+
+class CanPdu(pduMessage, pduUpdate):
+    """ """
+
+    def __init__(self):
+        super().__init__()
+
+
+req = CanPdu()
+req.channel = 1
+req.pduName = "test"
+req.period = 100
+req.context = {"sig1:1,sig2:2"}
+req.times = -1
+
+
+class CanConfig(dbConfigs, canChannelConfigs):
+    def __init__(self):
+        super(CanConfig, self).__init__()
