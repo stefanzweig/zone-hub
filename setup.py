@@ -12,6 +12,7 @@ with open(join(dirname(abspath(__file__)), "README.md"), encoding="utf-8") as f:
         if search not in LONG_DESCRIPTION:
             raise RuntimeError(f"{search} not found from README.rst")
         LONG_DESCRIPTION = LONG_DESCRIPTION.replace(search, replace)
+
 CLASSIFIERS = """
 Development Status :: 5 - Production/Stable
 License :: OSI Approved :: Apache Software License
@@ -25,15 +26,10 @@ Programming Language :: Python :: 3.11
 Programming Language :: Python :: 3.12
 Programming Language :: Python :: 3.13
 Programming Language :: Python :: 3.14
-Framework :: Zone Framework
+Framework :: Zone Hub
 """.strip().splitlines()
 DESCRIPTION = "Zone framework for acceptance testing "
-KEYWORDS = "framework automation test automation testing atdd bdd"
-PACKAGE_DATA = [
-    join("htmldata", directory, pattern)
-    for directory in ("rebot", "libdoc", "testdoc", "lib", "common")
-    for pattern in ("*.html", "*.css", "*.js")
-] + ["api/py.typed", "logo.png"]
+KEYWORDS = "framework automation-test automation-testing atdd bdd"
 
 
 setup(
@@ -55,10 +51,13 @@ setup(
     python_requires=">=3.8",
     classifiers=CLASSIFIERS,
     package_dir={"": "src"},
-    package_data={"zoneclient": PACKAGE_DATA},
+    package_data={"zone": ["etc/zonemaster_config.yaml"]},
     packages=find_packages("src"),
     entry_points={"console_scripts": []},
     extras_require={
         "dev": ["pytest", "black"],
     },
+    install_requires=[
+        "thrift",
+    ],
 )
