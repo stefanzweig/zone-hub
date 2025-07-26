@@ -10,7 +10,7 @@ with open(join(dirname(abspath(__file__)), "README.md"), encoding="utf-8") as f:
         search = f"`<{text}.rst>`__"
         replace = f"`{text}.rst <{base_url}/{text}.rst>`__"
         if search not in LONG_DESCRIPTION:
-            raise RuntimeError(f"{search} not found from README.rst")
+            raise RuntimeError(f"{search} not found from README.md")
         LONG_DESCRIPTION = LONG_DESCRIPTION.replace(search, replace)
 
 CLASSIFIERS = """

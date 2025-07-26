@@ -25,6 +25,7 @@ from .base import (
     LinMessageDataT,
     CanPdu,
     CanConfig,
+    CrcRcConfig,
 )
 
 __all__ = [
@@ -54,4 +55,5 @@ __all__ = [
     "LinMessageDataT",
     "CanPdu",
     "CanConfig",
+    "CrcRcConfig",
 ]

@@ -3,6 +3,7 @@ from zone.IDL.thrift.CanStackNode.ttypes import (
     canMessages,
     canChannelConfigs,
     canChannelConfig,
+    frameCrcRcConfig,
 )
 from zone.IDL.thrift.CanParserNode.ttypes import (
     canDbInfo,
@@ -138,6 +139,11 @@ class CanPdu(pduMessage, pduUpdate):
 class CanConfig(dbConfigs, canChannelConfigs):
     def __init__(self):
         super(CanConfig, self).__init__()
+
+
+class CrcRcConfig(pduCrcRcConfig, frameCrcRcConfig):
+    def __init__(self):
+        super(CrcRcConfig, self).__init__()
 
 
 req = CanPdu()

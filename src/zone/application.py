@@ -7,7 +7,7 @@ from typing import Union, Callable
 
 from zone.IDL.thrift.CanParserNode.ttypes import *
 from zone.IDL.thrift.CanStackNode.ttypes import *
-from zone.dsc import CanPdu, CanConfig
+from zone.dsc import CanPdu, CanConfig, CrcRcConfig
 from .utils.dsx import as_list
 from .utils.config import (
     CAN_Config,
@@ -87,7 +87,7 @@ class App(object):
     @Configs.setter
     def Configs(self, value):
         """
-        
+
         :param value:
 
         :return: ZoneResult
@@ -293,9 +293,21 @@ class App(object):
                 results[i] = result
         return results
 
-    def setCrcRcConfig(self, req):
+    def setCrcRcConfig(self, req: CrcRcConfig):
         # canstack and canparser
-        # todo
+        """
+
+        :param req: CrcRcConfig实例
+
+        :return: ZoneResult
+
+        """
+        ret = self._canstack.setCrcRcConfig(req)
+        ret = self._canparser.setCanParserCrcRcConfig(req)
+        return ret
+
+    def clearCrcRcConfig(self, req: CrcRcConfig):
+        # canstack and canparser
         """
 
         :param req:
@@ -303,19 +315,9 @@ class App(object):
         :return: ZoneResult
 
         """
-        pass
-
-    def clearCrcRcConfig(self, req):
-        # canstack and canparser
-        # todo
-        """
-
-        :param req:
-
-        :return: ZoneResult
-
-        """
-        pass
+        ret = self._canstack.clearCrcRcConfig(req)
+        ret = self._canparser.clearCrcRcConfig(req)
+        return ret
 
     def clearAllCrcRcConfig(self):
         # canstack and canparser
@@ -434,15 +436,15 @@ class App(object):
         """
         self._canparser.sendCanPduCyc(req)
 
-    def setConfigs(self, dbconfig_user):
+    def setConfigs(self, req: CanConfig):
         """
 
-        :param dbconfig_user:
+        :param req: CanConfig
 
         :return: ZoneResult
 
         """
-        return self._canstack.setConfigs(dbconfig_user)
+        return self._canstack.setConfigs(req)
 
     def startCanStack(self):
         """
@@ -767,7 +769,7 @@ class App(object):
 
     def updateCanPdu(self, req):
         """
-        
+
         :param req:
 
         :return: ZoneResult
