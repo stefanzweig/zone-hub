@@ -24,8 +24,6 @@ Programming Language :: Python :: 3.9
 Programming Language :: Python :: 3.10
 Programming Language :: Python :: 3.11
 Programming Language :: Python :: 3.12
-Programming Language :: Python :: 3.13
-Programming Language :: Python :: 3.14
 Framework :: Zone Hub
 """.strip().splitlines()
 DESCRIPTION = "Zone framework for acceptance testing "
@@ -55,10 +53,16 @@ setup(
     packages=find_packages("src"),
     entry_points={"console_scripts": []},
     extras_require={
-        "dev": ["pytest", "black"],
+        "dev": [
+            "pytest",
+            "black",
+            "furo",
+            "sphinx-autobuild",
+            "codespell",
+            "sphinx-copybutton",
+            "beanbag-docutils>=2.0",
+            "pytest",
+        ],
     },
-    install_requires=[
-        "thrift",
-        "PyYAML==6.0.2",
-    ],
+    install_requires=["thrift", "PyYAML==6.0.2"],
 )
