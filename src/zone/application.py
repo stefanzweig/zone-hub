@@ -14,6 +14,9 @@ from zone.clients import (
 
 
 class App(object):
+    """
+    App docstring.
+    """
     def __init__(
         self,
         *,
@@ -52,140 +55,58 @@ class App(object):
 
     @property
     def Configs(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._configs
 
     @Configs.setter
     def Configs(self, value):
-        """
-
-        :param value:
-
-        :return: ZoneResult
-
-        """
         self._configs = as_list(value)
 
     @property
     def Connections(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._connections
 
     @Connections.setter
     def Connections(self, value):
-        """
-
-        :param value:
-
-        :return: ZoneResult
-
-        """
         self._connections = as_list(value)
 
     @property
     def CanStack(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._canstack
 
     @CanStack.setter
     def CanStack(self, value):
-        """
-
-        :param value:
-
-        :return: ZoneResult
-
-        """
         self._canstack = value
 
     @property
     def CanParser(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._canparser
 
     @CanParser.setter
     def CanParser(self, value):
-        """
-
-        :param value:
-
-        :return: ZoneResult
-
-        """
         self._canparser = value
 
     @property
     def LinStack(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._linstack
 
     @LinStack.setter
     def LinStack(self, value):
-        """
-
-        :param value:
-
-        :return: ZoneResult
-
-        """
         self._linstack = value
 
     @property
     def LinParser(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._linparser
 
     @LinParser.setter
     def LinParser(self, value):
-        """
-
-        :param value:
-
-        :return: ZoneResult
-
-        """
         self._linparser = value
 
     @property
     def Clients(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._clients
 
     @property
     def DataModel(self):
-        """
-
-        :return: ZoneResult
-
-        """
         return self._data
 
     # api

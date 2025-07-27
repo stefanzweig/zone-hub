@@ -5,12 +5,14 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-import sys, os
+import sys
+import os
 from sphinx.ext.autodoc import PropertyDocumenter
+from subprocess import Popen, PIPE
 
 sys.path.insert(0, os.path.abspath("../../"))
 
-project = "ZoneMaster"
+project = "Zone Hub"
 copyright = "2025, Z-One"
 author = "刘海江"
 
@@ -39,9 +41,19 @@ autodoc_default_options = {
     "members": True,
     "special-members": "__init__",
     "undoc-members": True,
-    'property-no-value': True,
-    'hide-property-decorators': True
+    "property-no-value": True,
+    "hide-property-decorators": True,
 }
+
+pipe = Popen("git describe --tags --always", stdout=PIPE, shell=True)
+git_version = pipe.stdout.read().decode("utf8")
+
+if git_version:
+    version = git_version.rsplit("-", 1)[0]
+    release = git_version
+else:
+    version = ""
+    release = ""
 
 
 # 方法1：修改PropertyDocumenter的显示方式
@@ -55,8 +67,11 @@ def setup(app):
     PropertyDocumenter.add_directive_header = skip_property_header
 
     # 方法2：同时添加事件处理（双保险）
-    app.connect('autodoc-process-signature',
-                lambda app, what, name, obj, options, sig, ret: (None, ret) if isinstance(obj, property) else (
-                sig, ret))
+    app.connect(
+        "autodoc-process-signature",
+        lambda app, what, name, obj, options, sig, ret: (
+            (None, ret) if isinstance(obj, property) else (sig, ret)
+        ),
+    )
 
-    return {'version': '1.0'}  # 必须返回字典
+    return {"version": "1.0"}  # 必须返回字典

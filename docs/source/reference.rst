@@ -1,17 +1,25 @@
 .. _reference:
 
-===============
- API reference
-===============
+==========
+ API 参考
+==========
 
 .. contents:: :local:
    :class: this-will-duplicate-information-and-it-is-still-useful-here
 
-.. currentmodule:: clients.CanStackClient.CanStackClient
+App
+====
 
-
-zone.App
-===============
-
-.. autoclass:: zone.application.App
+.. autoclass:: zone.App
    :members:
+   :undoc-members:
+
+
+DSC(Data Structure Collections)
+================================
+
+.. automodule:: zone.dsc
+   :members:
+   :undoc-members:
+
+
