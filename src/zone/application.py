@@ -1,20 +1,8 @@
-import os
-import sys
-import time
-import typing
-from pathlib import Path
-from typing import Union, Callable
-
 from zone.IDL.thrift.CanParserNode.ttypes import *
 from zone.IDL.thrift.CanStackNode.ttypes import *
+from zone.IDL.thrift.CommonNode.ttypes import result as Result
 from zone.dsc import CanPdu, CanConfig, CrcRcConfig
 from .utils.dsx import as_list
-from .utils.config import (
-    CAN_Config,
-    LIN_Config,
-    ETH_Config_PC,
-    ETH_Config_Vector,
-)
 from .utils.snippets import normalize_components
 
 from zone.clients import (
@@ -23,19 +11,6 @@ from zone.clients import (
     linstackclient,
     linparserclient,
 )
-
-
-# APIs for the test suites' development.
-def create_can_client():
-    pass
-
-
-def create_canparser_client():
-    pass
-
-
-def create_configs():
-    pass
 
 
 class App(object):
@@ -214,7 +189,7 @@ class App(object):
         return self._data
 
     # api
-    def connect(self, components=None):
+    def connect(self, components: list = None) -> dict:
         """
 
         :param components:
@@ -235,7 +210,7 @@ class App(object):
                 results[i] = result
         return results
 
-    def connect_all(self):
+    def connect_all(self) -> dict:
         """
 
         :return: ZoneResult
@@ -243,7 +218,7 @@ class App(object):
         """
         return self.connect()
 
-    def disconnect(self, components=None):
+    def disconnect(self, components: list = None) -> dict:
         """
 
         :param components:
@@ -264,7 +239,7 @@ class App(object):
                 results[i] = result
         return results
 
-    def disconnect_all(self):
+    def disconnect_all(self) -> dict:
         """
 
         :return: ZoneResult
@@ -272,7 +247,7 @@ class App(object):
         """
         return self.disconnect()
 
-    def getStatus(self, components=None):
+    def getStatus(self, components: list = None) -> dict:
         """
 
         :param components:
@@ -293,7 +268,7 @@ class App(object):
                 results[i] = result
         return results
 
-    def setCrcRcConfig(self, req: CrcRcConfig):
+    def setCrcRcConfig(self, req: CrcRcConfig) -> Result:
         # canstack and canparser
         """
 
@@ -306,7 +281,7 @@ class App(object):
         ret = self._canparser.setCanParserCrcRcConfig(req)
         return ret
 
-    def clearCrcRcConfig(self, req: CrcRcConfig):
+    def clearCrcRcConfig(self, req: CrcRcConfig) -> Result:
         # canstack and canparser
         """
 
@@ -319,7 +294,7 @@ class App(object):
         ret = self._canparser.clearCrcRcConfig(req)
         return ret
 
-    def clearAllCrcRcConfig(self):
+    def clearAllCrcRcConfig(self) -> Result:
         # canstack and canparser
         # todo
         """
@@ -327,9 +302,11 @@ class App(object):
         :return: ZoneResult
 
         """
-        pass
+        ret = self._canstack.clearAllCrcRcConfig()
+        ret = self._canparser.clearAllCrcRcConfig()
+        return ret
 
-    def checkAlive(self, components=None):
+    def checkAlive(self, components: list = None) -> dict:
         """
 
         :param components:
@@ -350,7 +327,7 @@ class App(object):
                 results[i] = result
         return results
 
-    def start(self, components=None):
+    def start(self, components: list = None):
         """
 
         :param components:
@@ -372,7 +349,7 @@ class App(object):
                     results[i] = result
         return results
 
-    def stop(self, components=None):
+    def stop(self, components: list = None):
         """
 
         :param components:
@@ -412,8 +389,9 @@ class App(object):
         :return: ZoneResult
 
         """
-        self._canparser.setCanConfig()
-        self._canstack.setConfigs()
+        ret = self._canparser.setCanConfig(req)
+        ret = self._canstack.setConfigs(req)
+        return ret
 
     def sendCanPdu(self, req: CanPdu):
         """
@@ -470,7 +448,7 @@ class App(object):
         """
         return self._canstack.clearCanSend()
 
-    def setCanCrcRcConfig(self, req):
+    def setCrcRcConfig(self, req: CrcRcConfig):
         """
 
         :param req:
@@ -478,9 +456,11 @@ class App(object):
         :return: ZoneResult
 
         """
-        return self._canstack.setCrcRcConfig(req)
+        ret = self._canparser.setCanParserCrcRcConfig(req)
+        ret = self._canstack.setCrcRcConfig(req)
+        return ret
 
-    def clearCanCrcRcConfig(self, req):
+    def clearCrcRcConfig(self, req: CrcRcConfig):
         """
 
         :param req:
@@ -488,7 +468,9 @@ class App(object):
         :return: ZoneResult
 
         """
-        return self._canstack.clearCrcRcConfig(req)
+        ret = self._canstack.clearCrcRcConfig(req)
+        ret = self._canparser.clearCrcRcConfig(req)
+        return ret
 
     def clearCanAllCrcRcConfig(self):
         """
@@ -777,6 +759,7 @@ class App(object):
         """
         return self._canparser.updateCanPdu(req)
 
+    # todo in week
     # # lin stack
 
     def reset(self):
@@ -866,9 +849,5 @@ class App(object):
         return self._linparser.clearCrcConfig(req)
 
 
-def main():
-    print("面板模式说明")
-
-
 if __name__ == "__main__":
-    main()
+    pass
