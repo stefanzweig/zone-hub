@@ -287,7 +287,7 @@ class App(object):
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         ret = self._canstack.clearCrcRcConfig(req)
@@ -327,7 +327,7 @@ class App(object):
                 results[i] = result
         return results
 
-    def start(self, components: list = None):
+    def start(self, components: list = None) -> Result:
         """
 
         :param components:
@@ -349,7 +349,7 @@ class App(object):
                     results[i] = result
         return results
 
-    def stop(self, components: list = None):
+    def stop(self, components: list = None) -> Result:
         """
 
         :param components:
@@ -381,7 +381,7 @@ class App(object):
         """
         return self._canstack.getVersion()
 
-    def setCanConfig(self, req: CanConfig):
+    def setCanConfig(self, req: CanConfig) -> Result:
         """
 
         :param req:
@@ -393,7 +393,7 @@ class App(object):
         ret = self._canstack.setConfigs(req)
         return ret
 
-    def sendCanPdu(self, req: CanPdu):
+    def sendCanPdu(self, req: CanPdu) -> Result:
         """
 
         :param req:
@@ -404,7 +404,7 @@ class App(object):
         self._canparser.updateCanPdu(req)
         self._canparser.sendCanPduCyc(req)
 
-    def stopCanPdu(self, req: CanPdu):
+    def stopCanPdu(self, req: CanPdu) -> Result:
         """
 
         :param req:
@@ -414,7 +414,7 @@ class App(object):
         """
         self._canparser.sendCanPduCyc(req)
 
-    def setConfigs(self, req: CanConfig):
+    def setConfigs(self, req: CanConfig) -> Result:
         """
 
         :param req: CanConfig
@@ -424,7 +424,7 @@ class App(object):
         """
         return self._canstack.setConfigs(req)
 
-    def startCanStack(self):
+    def startCanStack(self) -> Result:
         """
 
         :return: ZoneResult
@@ -432,7 +432,7 @@ class App(object):
         """
         return self._canstack.startCanStack()
 
-    def stopCanStack(self):
+    def stopCanStack(self) -> Result:
         """
 
         :return: ZoneResult
@@ -440,7 +440,7 @@ class App(object):
         """
         return self._canstack.stopCanStack()
 
-    def clearCanSend(self):
+    def clearCanSend(self) -> Result:
         """
 
         :return: ZoneResult
@@ -448,31 +448,7 @@ class App(object):
         """
         return self._canstack.clearCanSend()
 
-    def setCrcRcConfig(self, req: CrcRcConfig):
-        """
-
-        :param req:
-
-        :return: ZoneResult
-
-        """
-        ret = self._canparser.setCanParserCrcRcConfig(req)
-        ret = self._canstack.setCrcRcConfig(req)
-        return ret
-
-    def clearCrcRcConfig(self, req: CrcRcConfig):
-        """
-
-        :param req:
-
-        :return: ZoneResult
-
-        """
-        ret = self._canstack.clearCrcRcConfig(req)
-        ret = self._canparser.clearCrcRcConfig(req)
-        return ret
-
-    def clearCanAllCrcRcConfig(self):
+    def clearCanAllCrcRcConfig(self) -> Result:
         """
 
         :return: ZoneResult
@@ -480,7 +456,7 @@ class App(object):
         """
         return self._canstack.clearAllCrcRcConfig()
 
-    def sendCanMessageCyc(self, req):
+    def sendCanMessageCyc(self, req) -> Result:
         """
 
         :param req:
@@ -490,7 +466,7 @@ class App(object):
         """
         return self._canstack.sendCanMessageCyc(req)
 
-    def sendCanMessage(self, req):
+    def sendCanMessage(self, req) -> Result:
         """
 
         :param req:
@@ -500,18 +476,18 @@ class App(object):
         """
         return self._canstack.sendCanMessage(req)
 
-    def sendCanMessages(self, req, stmin):
+    def sendCanMessages(self, req, stmin) -> Result:
         """
 
         :param req:
-            stmin:
+        :param stmin:
 
         :return: ZoneResult
 
         """
         return self._canstack.sendCanMessages(req, stmin)
 
-    def getStackStatus(self):
+    def getStackStatus(self) -> Result:
         """
 
         :return: ZoneResult
@@ -519,7 +495,7 @@ class App(object):
         """
         return self._canstack.getStatus()
 
-    def stopChannelSendCyc(self, req):
+    def stopChannelSendCyc(self, req) -> Result:
         """
 
         :param req:
@@ -529,7 +505,7 @@ class App(object):
         """
         return self._canstack.stopChannelSendCyc(req)
 
-    def sendCan(self, req):
+    def sendCan(self, req) -> Result:
         """
 
         :param req:
@@ -539,7 +515,7 @@ class App(object):
         """
         return self._canstack.sendCan(req)
 
-    def getChannelBusloadCurrent(self, req):
+    def getChannelBusloadCurrent(self, req) -> Result:
         """
 
         :param req:
@@ -549,7 +525,7 @@ class App(object):
         """
         return self._canstack.getChannelBusloadCurrent(req)
 
-    def getChannelBusloadMax(self, req):
+    def getChannelBusloadMax(self, req) -> Result:
         """
 
         :param req:
@@ -559,7 +535,7 @@ class App(object):
         """
         return self._canstack.getChannelBusloadMax(req)
 
-    def getChannelBusloadAvg(self, req):
+    def getChannelBusloadAvg(self, req) -> Result:
         """
 
         :param req:
@@ -569,7 +545,7 @@ class App(object):
         """
         return self._canstack.getChannelBusloadAvg(req)
 
-    def getChannelErrorFrameTotal(self, req):
+    def getChannelErrorFrameTotal(self, req) -> Result:
         """
 
         :param req:
@@ -581,7 +557,7 @@ class App(object):
 
     # # can parser
 
-    def setCanParserCrcRcConfig(self, req):
+    def setCanParserCrcRcConfig(self, req) -> Result:
         """
 
         :param req:
@@ -591,7 +567,7 @@ class App(object):
         """
         return self._canparser.setCanParserCrcRcConfig(req)
 
-    def clearAllCanParserCrcRcConfig(self):
+    def clearAllCanParserCrcRcConfig(self) -> Result:
         """
 
         :return: ZoneResult
@@ -599,7 +575,7 @@ class App(object):
         """
         return self._canparser.clearAllCanParserCrcRcConfig()
 
-    def clearCanParserCrcRcConfig(self, req):
+    def clearCanParserCrcRcConfig(self, req) -> Result:
         """
 
         :param req:
@@ -609,7 +585,7 @@ class App(object):
         """
         return self._canparser.clearCanParserCrcRcConfig(req)
 
-    def sendCanFrameCyc(self, req):
+    def sendCanFrameCyc(self, req) -> Result:
         """
 
         :param req:
@@ -619,7 +595,7 @@ class App(object):
         """
         return self._canparser.sendCanFrameCyc(req)
 
-    def sendCanPduCyc(self, req):
+    def sendCanPduCyc(self, req) -> Result:
         """
 
         :param req:
@@ -629,7 +605,7 @@ class App(object):
         """
         return self._canparser.sendCanPduCyc(req)
 
-    def sendCanPduCycList(self, req):
+    def sendCanPduCycList(self, req) -> Result:
         """
 
         :param req:
@@ -639,17 +615,7 @@ class App(object):
         """
         return self._canparser.sendCanPduCycList(req)
 
-    def sendCanPdu(self, req):
-        """
-
-        :param req:
-
-        :return: ZoneResult
-
-        """
-        return self._canparser.sendCanPdu(req)
-
-    def addDbFile(self, req):
+    def addDbFile(self, req) -> Result:
         """
 
         :param req:
@@ -659,7 +625,7 @@ class App(object):
         """
         return self._canparser.addDbFile(req)
 
-    def getCanDbConfigs(self):
+    def getCanDbConfigs(self) -> Result:
         """
 
         :return: ZoneResult
@@ -667,7 +633,7 @@ class App(object):
         """
         return self._canparser.getCanDbConfigs()
 
-    def getCanDbPath(self):
+    def getCanDbPath(self) -> Result:
         """
 
         :return: ZoneResult
@@ -675,7 +641,7 @@ class App(object):
         """
         return self._canparser.getCanDbPath()
 
-    def subscribeMsg(self, req):
+    def subscribeMsg(self, req) -> Result:
         """
 
         :param req:
@@ -685,7 +651,7 @@ class App(object):
         """
         return self._canparser.subscribeMsg(req)
 
-    def unSubscribeMsg(self, req):
+    def unSubscribeMsg(self, req) -> Result:
         """
 
         :param req:
@@ -695,7 +661,7 @@ class App(object):
         """
         return self._canparser.unSubscribeMsg(req)
 
-    def getCanDbInfo(self):
+    def getCanDbInfo(self) -> Result:
         """
 
         :return: ZoneResult
@@ -703,7 +669,7 @@ class App(object):
         """
         return self._canparser.getCanDbInfo()
 
-    def clear(self):
+    def clear(self) -> Result:
         """
 
         :return: ZoneResult
@@ -711,7 +677,7 @@ class App(object):
         """
         return self._canparser.clear()
 
-    def clearCanStackSubscribe(self):
+    def clearCanStackSubscribe(self) -> Result:
         """
 
         :return: ZoneResult
@@ -719,7 +685,7 @@ class App(object):
         """
         return self._canparser.clearCanStackSubscribe()
 
-    def encodePdu(self, req):
+    def encodePdu(self, req) -> Result:
         """
 
         :param req:
@@ -729,7 +695,7 @@ class App(object):
         """
         return self._canparser.encodePdu(req)
 
-    def convertCanDbToPy(self, req):
+    def convertCanDbToPy(self, req) -> Result:
         """
 
         :param req:
@@ -739,7 +705,7 @@ class App(object):
         """
         return self._canparser.convertCanDbToPy(req)
 
-    def convertCanDbToJson(self, req):
+    def convertCanDbToJson(self, req) -> Result:
         """
 
         :param req:
@@ -749,7 +715,7 @@ class App(object):
         """
         return self._canparser.convertCanDbToJson(req)
 
-    def updateCanPdu(self, req):
+    def updateCanPdu(self, req) -> Result:
         """
 
         :param req:
@@ -759,94 +725,94 @@ class App(object):
         """
         return self._canparser.updateCanPdu(req)
 
-    # todo in week
+    # todo, the following are to be implemented...
     # # lin stack
-
-    def reset(self):
-        return self._linstack.reset()
-
-    def setLinConfig(self, req):
-        return self._linstack.setLinConfig(req)
-
-    def setChannelConig(self, req):
-        return self._linstack.setChannelConig(req)
-
-    def startLinStack(self):
-        return self._linstack.startLinStack()
-
-    def stopLinStack(self):
-        return self._linstack.stopLinStack()
-
-    def setMessageSimulation(self, req):
-        return self._linstack.setMessageSimulation(req)
-
-    def setHeaderSimulation(self, req):
-        return self._linstack.setHeaderSimulation(req)
-
-    def setMessageData(self, req):
-        return self._linstack.setMessageData(req)
-
-    def getLinStatus(self):
-        return self._linstack.getLinStatus()
-
-    def clearLinSubscribe(self):
-        return self._linstack.clearLinSubscribe()
-
-    def clearLinSend(self, req):
-        return self._linstack.clearLinSend()
-
-    def setLinCrcConfig(self, req):
-        return self._linstack.clearLinSend(req)
-
-    def clearLinCrcConfig(self, req):
-        return self._linstack.clearLinCrcConfig(req)
-
-    def getDeltaTime(self):
-        return self._linstack.getDeltaTime()
-
-    # # lin parser
-
-    def addDbfile(self, req):
-        return self._linparser.addDbfile(req)
-
-    def setChannelConfig(self, req):
-        return self._linparser.setChannelConfig(req)
-
-    def setNodeSimulation(self, req):
-        return self._linparser.setNodeSimulation(req)
-
-    def setFrameSimulation(self, req):
-        return self._linparser.setFrameSimulation(req)
-
-    def setFrameData(self, req):
-        return self._linparser.setFrameData(req)
-
-    def SetSignalData(self, req):
-        return self._linparser.SetSignalData(req)
-
-    def clearCanParserSubscribe(self):
-        return self._linparser.clearCanParserSubscribe()
-
-    def clearDbfile(self):
-        return self._linparser.clearDbfile()
-
-    def getLinParserStatus(self):
-        return self._linparser.getLinParserStatus()
-
-    def getLdfJsonTree(self):
-        return self._linparser.getLdfJsonTree()
-
-    def convertLinDbToPy(self, req):
-        return self._linparser.convertLinDbToPy(req)
-
-    def convertLinDbToJson(self, req):
-        return self._linparser.convertLinDbToJson(req)
-
-    def setCrcConfig(self, req):
-        return self._linparser.setCrcConfig(req)
-
-    def clearCrcConfig(self, req):
-        return self._linparser.clearCrcConfig(req)
+    #
+    # def reset(self):
+    #     return self._linstack.reset()
+    #
+    # def setLinConfig(self, req):
+    #     return self._linstack.setLinConfig(req)
+    #
+    # def setChannelConig(self, req):
+    #     return self._linstack.setChannelConig(req)
+    #
+    # def startLinStack(self):
+    #     return self._linstack.startLinStack()
+    #
+    # def stopLinStack(self):
+    #     return self._linstack.stopLinStack()
+    #
+    # def setMessageSimulation(self, req):
+    #     return self._linstack.setMessageSimulation(req)
+    #
+    # def setHeaderSimulation(self, req):
+    #     return self._linstack.setHeaderSimulation(req)
+    #
+    # def setMessageData(self, req):
+    #     return self._linstack.setMessageData(req)
+    #
+    # def getLinStatus(self):
+    #     return self._linstack.getLinStatus()
+    #
+    # def clearLinSubscribe(self):
+    #     return self._linstack.clearLinSubscribe()
+    #
+    # def clearLinSend(self, req):
+    #     return self._linstack.clearLinSend()
+    #
+    # def setLinCrcConfig(self, req):
+    #     return self._linstack.clearLinSend(req)
+    #
+    # def clearLinCrcConfig(self, req):
+    #     return self._linstack.clearLinCrcConfig(req)
+    #
+    # def getDeltaTime(self):
+    #     return self._linstack.getDeltaTime()
+    #
+    # # # lin parser
+    #
+    # def addDbfile(self, req):
+    #     return self._linparser.addDbfile(req)
+    #
+    # def setChannelConfig(self, req):
+    #     return self._linparser.setChannelConfig(req)
+    #
+    # def setNodeSimulation(self, req):
+    #     return self._linparser.setNodeSimulation(req)
+    #
+    # def setFrameSimulation(self, req):
+    #     return self._linparser.setFrameSimulation(req)
+    #
+    # def setFrameData(self, req):
+    #     return self._linparser.setFrameData(req)
+    #
+    # def SetSignalData(self, req):
+    #     return self._linparser.SetSignalData(req)
+    #
+    # def clearCanParserSubscribe(self):
+    #     return self._linparser.clearCanParserSubscribe()
+    #
+    # def clearDbfile(self):
+    #     return self._linparser.clearDbfile()
+    #
+    # def getLinParserStatus(self):
+    #     return self._linparser.getLinParserStatus()
+    #
+    # def getLdfJsonTree(self):
+    #     return self._linparser.getLdfJsonTree()
+    #
+    # def convertLinDbToPy(self, req):
+    #     return self._linparser.convertLinDbToPy(req)
+    #
+    # def convertLinDbToJson(self, req):
+    #     return self._linparser.convertLinDbToJson(req)
+    #
+    # def setCrcConfig(self, req):
+    #     return self._linparser.setCrcConfig(req)
+    #
+    # def clearCrcConfig(self, req):
+    #     return self._linparser.clearCrcConfig(req)
 
 
 if __name__ == "__main__":
