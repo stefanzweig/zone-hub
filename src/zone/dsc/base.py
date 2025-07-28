@@ -137,13 +137,15 @@ class CanPdu(pduMessage, pduUpdate):
 
 
 class CanConfig(dbConfigs, canChannelConfigs):
+    """ """
+
     def __init__(self):
-        super(CanConfig, self).__init__()
+        super().__init__()
 
 
 class CrcRcConfig(pduCrcRcConfig, frameCrcRcConfig):
     def __init__(self):
-        super(CrcRcConfig, self).__init__()
+        super().__init__()
 
 
 req = CanPdu()
