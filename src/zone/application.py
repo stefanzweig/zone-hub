@@ -133,6 +133,7 @@ class App(object):
         例如["canstack", "canparser"]。 当只有一个元素时候可以单纯写字符串，例如"canstack"。
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
 
         例如：
 
@@ -158,6 +159,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self.connect()
@@ -168,6 +171,8 @@ class App(object):
         :param components:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         if components is None:
@@ -187,6 +192,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self.disconnect()
@@ -197,6 +204,8 @@ class App(object):
         :param components:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         if components is None:
@@ -219,6 +228,8 @@ class App(object):
         :param req: CrcRcConfig实例
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         ret = self._canstack.setCrcRcConfig(req)
@@ -232,6 +243,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         ret = self._canstack.clearCrcRcConfig(req)
@@ -244,6 +257,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         ret = self._canstack.clearAllCrcRcConfig()
@@ -256,6 +271,8 @@ class App(object):
         :param components:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         if components is None:
@@ -277,6 +294,8 @@ class App(object):
         :param components:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         if components is None:
@@ -299,6 +318,8 @@ class App(object):
         :param components:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         if components is None:
@@ -321,6 +342,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.getVersion()
@@ -331,6 +354,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         ret = self._canparser.setCanConfig(req)
@@ -343,6 +368,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         self._canparser.updateCanPdu(req)
@@ -354,6 +381,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         self._canparser.sendCanPduCyc(req)
@@ -364,6 +393,8 @@ class App(object):
         :param req: CanConfig
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.setConfigs(req)
@@ -372,6 +403,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.startCanStack()
@@ -380,6 +413,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.stopCanStack()
@@ -388,6 +423,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.clearCanSend()
@@ -396,6 +433,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.clearAllCrcRcConfig()
@@ -406,6 +445,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.sendCanMessageCyc(req)
@@ -416,6 +457,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.sendCanMessage(req)
@@ -427,6 +470,8 @@ class App(object):
         :param stmin:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.sendCanMessages(req, stmin)
@@ -435,6 +480,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.getStatus()
@@ -445,6 +492,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.stopChannelSendCyc(req)
@@ -455,6 +504,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.sendCan(req)
@@ -465,6 +516,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.getChannelBusloadCurrent(req)
@@ -475,6 +528,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.getChannelBusloadMax(req)
@@ -485,6 +540,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.getChannelBusloadAvg(req)
@@ -495,6 +552,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canstack.getChannelErrorFrameTotal(req)
@@ -505,6 +564,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.clearAllCanParserCrcRcConfig()
@@ -515,6 +576,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.clearCanParserCrcRcConfig(req)
@@ -525,6 +588,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.sendCanFrameCyc(req)
@@ -535,6 +600,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.sendCanPduCyc(req)
@@ -545,6 +612,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.sendCanPduCycList(req)
@@ -555,6 +624,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.addDbFile(req)
@@ -563,6 +634,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.getCanDbConfigs()
@@ -571,6 +644,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.getCanDbPath()
@@ -581,6 +656,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.subscribeMsg(req)
@@ -591,6 +668,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.unSubscribeMsg(req)
@@ -599,6 +678,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.getCanDbInfo()
@@ -607,6 +688,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.clear()
@@ -615,6 +698,8 @@ class App(object):
         """
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.clearCanStackSubscribe()
@@ -625,6 +710,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.encodePdu(req)
@@ -635,6 +722,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.convertCanDbToPy(req)
@@ -645,6 +734,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.convertCanDbToJson(req)
@@ -655,6 +746,8 @@ class App(object):
         :param req:
 
         :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
 
         """
         return self._canparser.updateCanPdu(req)

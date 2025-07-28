@@ -7,23 +7,23 @@
 .. contents:: :local:
    :class: this-will-duplicate-information-and-it-is-still-useful-here
 
-App(Application)
-================
+zone.App
+==========
 
 .. autoclass:: zone.App
    :members:
    :undoc-members:
 
 
-CommonNode
-===========
+zone.IDL.thrift.CommonNode
+===========================
 
 .. autoclass:: zone.IDL.thrift.CommonNode.Result
    :members:
 
 
-DSC(Data Structure Collections)
-================================
+zone.dsc(Data Structure Collections)
+=====================================
 
 .. automodule:: zone.dsc
    :members:
