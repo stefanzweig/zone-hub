@@ -17,6 +17,7 @@ class App(object):
     """
     App docstring.
     """
+
     def __init__(
         self,
         *,
@@ -115,7 +116,7 @@ class App(object):
 
         :param components:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         if components is None:
@@ -134,7 +135,7 @@ class App(object):
     def connect_all(self) -> dict:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self.connect()
@@ -144,7 +145,7 @@ class App(object):
 
         :param components:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         if components is None:
@@ -163,7 +164,7 @@ class App(object):
     def disconnect_all(self) -> dict:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self.disconnect()
@@ -173,7 +174,7 @@ class App(object):
 
         :param components:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         if components is None:
@@ -195,7 +196,7 @@ class App(object):
 
         :param req: CrcRcConfig实例
 
-        :return: ZoneResult
+        :return: Result
 
         """
         ret = self._canstack.setCrcRcConfig(req)
@@ -220,7 +221,7 @@ class App(object):
         # todo
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         ret = self._canstack.clearAllCrcRcConfig()
@@ -232,7 +233,7 @@ class App(object):
 
         :param components:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         if components is None:
@@ -253,7 +254,7 @@ class App(object):
 
         :param components:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         if components is None:
@@ -275,7 +276,7 @@ class App(object):
 
         :param components:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         if components is None:
@@ -294,10 +295,10 @@ class App(object):
 
     # # can stack
 
-    def getVersion(self):
+    def getVersion(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.getVersion()
@@ -307,7 +308,7 @@ class App(object):
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         ret = self._canparser.setCanConfig(req)
@@ -319,7 +320,7 @@ class App(object):
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         self._canparser.updateCanPdu(req)
@@ -330,7 +331,7 @@ class App(object):
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         self._canparser.sendCanPduCyc(req)
@@ -340,7 +341,7 @@ class App(object):
 
         :param req: CanConfig
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.setConfigs(req)
@@ -348,7 +349,7 @@ class App(object):
     def startCanStack(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.startCanStack()
@@ -356,7 +357,7 @@ class App(object):
     def stopCanStack(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.stopCanStack()
@@ -364,7 +365,7 @@ class App(object):
     def clearCanSend(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.clearCanSend()
@@ -372,38 +373,38 @@ class App(object):
     def clearCanAllCrcRcConfig(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.clearAllCrcRcConfig()
 
-    def sendCanMessageCyc(self, req) -> Result:
+    def sendCanMessageCyc(self, req: canMessage) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.sendCanMessageCyc(req)
 
-    def sendCanMessage(self, req) -> Result:
+    def sendCanMessage(self, req: canMessage) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.sendCanMessage(req)
 
-    def sendCanMessages(self, req, stmin) -> Result:
+    def sendCanMessages(self, req: canMessages, stmin: int) -> Result:
         """
 
         :param req:
         :param stmin:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.sendCanMessages(req, stmin)
@@ -411,137 +412,127 @@ class App(object):
     def getStackStatus(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.getStatus()
 
-    def stopChannelSendCyc(self, req) -> Result:
+    def stopChannelSendCyc(self, req: channel) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.stopChannelSendCyc(req)
 
-    def sendCan(self, req) -> Result:
+    def sendCan(self, req: canMessage) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.sendCan(req)
 
-    def getChannelBusloadCurrent(self, req) -> Result:
+    def getChannelBusloadCurrent(self, req: channel) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.getChannelBusloadCurrent(req)
 
-    def getChannelBusloadMax(self, req) -> Result:
+    def getChannelBusloadMax(self, req: channel) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.getChannelBusloadMax(req)
 
-    def getChannelBusloadAvg(self, req) -> Result:
+    def getChannelBusloadAvg(self, req: channel) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.getChannelBusloadAvg(req)
 
-    def getChannelErrorFrameTotal(self, req) -> Result:
+    def getChannelErrorFrameTotal(self, req: channel) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canstack.getChannelErrorFrameTotal(req)
 
     # # can parser
 
-    def setCanParserCrcRcConfig(self, req) -> Result:
-        """
-
-        :param req:
-
-        :return: ZoneResult
-
-        """
-        return self._canparser.setCanParserCrcRcConfig(req)
-
     def clearAllCanParserCrcRcConfig(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.clearAllCanParserCrcRcConfig()
 
-    def clearCanParserCrcRcConfig(self, req) -> Result:
+    def clearCanParserCrcRcConfig(self, req: pduCrcRcConfig) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.clearCanParserCrcRcConfig(req)
 
-    def sendCanFrameCyc(self, req) -> Result:
+    def sendCanFrameCyc(self, req: canMessage) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.sendCanFrameCyc(req)
 
-    def sendCanPduCyc(self, req) -> Result:
+    def sendCanPduCyc(self, req: pduMessage) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.sendCanPduCyc(req)
 
-    def sendCanPduCycList(self, req) -> Result:
+    def sendCanPduCycList(self, req: pduMessages) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.sendCanPduCycList(req)
 
-    def addDbFile(self, req) -> Result:
+    def addDbFile(self, req: dbPath) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.addDbFile(req)
@@ -549,7 +540,7 @@ class App(object):
     def getCanDbConfigs(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.getCanDbConfigs()
@@ -557,27 +548,27 @@ class App(object):
     def getCanDbPath(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.getCanDbPath()
 
-    def subscribeMsg(self, req) -> Result:
+    def subscribeMsg(self, req: subscribeInfo) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.subscribeMsg(req)
 
-    def unSubscribeMsg(self, req) -> Result:
+    def unSubscribeMsg(self, req: subscribeInfo) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.unSubscribeMsg(req)
@@ -585,7 +576,7 @@ class App(object):
     def getCanDbInfo(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.getCanDbInfo()
@@ -593,7 +584,7 @@ class App(object):
     def clear(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.clear()
@@ -601,7 +592,7 @@ class App(object):
     def clearCanStackSubscribe(self) -> Result:
         """
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.clearCanStackSubscribe()
@@ -611,37 +602,37 @@ class App(object):
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.encodePdu(req)
 
-    def convertCanDbToPy(self, req) -> Result:
+    def convertCanDbToPy(self, req: convertInput) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.convertCanDbToPy(req)
 
-    def convertCanDbToJson(self, req) -> Result:
+    def convertCanDbToJson(self, req: convertInput) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.convertCanDbToJson(req)
 
-    def updateCanPdu(self, req) -> Result:
+    def updateCanPdu(self, req: pduUpdate) -> Result:
         """
 
         :param req:
 
-        :return: ZoneResult
+        :return: Result
 
         """
         return self._canparser.updateCanPdu(req)
