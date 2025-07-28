@@ -1,7 +1,21 @@
 from zone.IDL.thrift.CanParserNode.ttypes import *
 from zone.IDL.thrift.CanStackNode.ttypes import *
 from zone.IDL.thrift.CommonNode.ttypes import result as Result
-from zone.dsc import CanPdu, CanConfig, CrcRcConfig
+from zone.dsc import (
+    CanPdu,
+    CanConfig,
+    CrcRcConfig,
+    ConvertInput,
+    PduCrcRcConfig,
+    CanMessage,
+    PduMessage,
+    PduMessages,
+    DbPath,
+    PduUpdate,
+    CanMessages,
+    Channel,
+    SubscribeInfo,
+)
 from .utils.dsx import as_list
 from .utils.snippets import normalize_components
 
@@ -378,7 +392,7 @@ class App(object):
         """
         return self._canstack.clearAllCrcRcConfig()
 
-    def sendCanMessageCyc(self, req: canMessage) -> Result:
+    def sendCanMessageCyc(self, req: CanMessage) -> Result:
         """
 
         :param req:
@@ -388,7 +402,7 @@ class App(object):
         """
         return self._canstack.sendCanMessageCyc(req)
 
-    def sendCanMessage(self, req: canMessage) -> Result:
+    def sendCanMessage(self, req: CanMessage) -> Result:
         """
 
         :param req:
@@ -398,7 +412,7 @@ class App(object):
         """
         return self._canstack.sendCanMessage(req)
 
-    def sendCanMessages(self, req: canMessages, stmin: int) -> Result:
+    def sendCanMessages(self, req: CanMessages, stmin: int) -> Result:
         """
 
         :param req:
@@ -417,7 +431,7 @@ class App(object):
         """
         return self._canstack.getStatus()
 
-    def stopChannelSendCyc(self, req: channel) -> Result:
+    def stopChannelSendCyc(self, req: Channel) -> Result:
         """
 
         :param req:
@@ -427,7 +441,7 @@ class App(object):
         """
         return self._canstack.stopChannelSendCyc(req)
 
-    def sendCan(self, req: canMessage) -> Result:
+    def sendCan(self, req: CanMessage) -> Result:
         """
 
         :param req:
@@ -437,7 +451,7 @@ class App(object):
         """
         return self._canstack.sendCan(req)
 
-    def getChannelBusloadCurrent(self, req: channel) -> Result:
+    def getChannelBusloadCurrent(self, req: Channel) -> Result:
         """
 
         :param req:
@@ -447,7 +461,7 @@ class App(object):
         """
         return self._canstack.getChannelBusloadCurrent(req)
 
-    def getChannelBusloadMax(self, req: channel) -> Result:
+    def getChannelBusloadMax(self, req: Channel) -> Result:
         """
 
         :param req:
@@ -457,7 +471,7 @@ class App(object):
         """
         return self._canstack.getChannelBusloadMax(req)
 
-    def getChannelBusloadAvg(self, req: channel) -> Result:
+    def getChannelBusloadAvg(self, req: Channel) -> Result:
         """
 
         :param req:
@@ -467,7 +481,7 @@ class App(object):
         """
         return self._canstack.getChannelBusloadAvg(req)
 
-    def getChannelErrorFrameTotal(self, req: channel) -> Result:
+    def getChannelErrorFrameTotal(self, req: Channel) -> Result:
         """
 
         :param req:
@@ -487,7 +501,7 @@ class App(object):
         """
         return self._canparser.clearAllCanParserCrcRcConfig()
 
-    def clearCanParserCrcRcConfig(self, req: pduCrcRcConfig) -> Result:
+    def clearCanParserCrcRcConfig(self, req: PduCrcRcConfig) -> Result:
         """
 
         :param req:
@@ -497,7 +511,7 @@ class App(object):
         """
         return self._canparser.clearCanParserCrcRcConfig(req)
 
-    def sendCanFrameCyc(self, req: canMessage) -> Result:
+    def sendCanFrameCyc(self, req: CanMessage) -> Result:
         """
 
         :param req:
@@ -507,7 +521,7 @@ class App(object):
         """
         return self._canparser.sendCanFrameCyc(req)
 
-    def sendCanPduCyc(self, req: pduMessage) -> Result:
+    def sendCanPduCyc(self, req: PduMessage) -> Result:
         """
 
         :param req:
@@ -517,7 +531,7 @@ class App(object):
         """
         return self._canparser.sendCanPduCyc(req)
 
-    def sendCanPduCycList(self, req: pduMessages) -> Result:
+    def sendCanPduCycList(self, req: PduMessages) -> Result:
         """
 
         :param req:
@@ -527,7 +541,7 @@ class App(object):
         """
         return self._canparser.sendCanPduCycList(req)
 
-    def addDbFile(self, req: dbPath) -> Result:
+    def addDbFile(self, req: DbPath) -> Result:
         """
 
         :param req:
@@ -553,7 +567,7 @@ class App(object):
         """
         return self._canparser.getCanDbPath()
 
-    def subscribeMsg(self, req: subscribeInfo) -> Result:
+    def subscribeMsg(self, req: SubscribeInfo) -> Result:
         """
 
         :param req:
@@ -563,7 +577,7 @@ class App(object):
         """
         return self._canparser.subscribeMsg(req)
 
-    def unSubscribeMsg(self, req: subscribeInfo) -> Result:
+    def unSubscribeMsg(self, req: SubscribeInfo) -> Result:
         """
 
         :param req:
@@ -607,7 +621,7 @@ class App(object):
         """
         return self._canparser.encodePdu(req)
 
-    def convertCanDbToPy(self, req: convertInput) -> Result:
+    def convertCanDbToPy(self, req: ConvertInput) -> Result:
         """
 
         :param req:
@@ -617,7 +631,7 @@ class App(object):
         """
         return self._canparser.convertCanDbToPy(req)
 
-    def convertCanDbToJson(self, req: convertInput) -> Result:
+    def convertCanDbToJson(self, req: ConvertInput) -> Result:
         """
 
         :param req:
@@ -627,7 +641,7 @@ class App(object):
         """
         return self._canparser.convertCanDbToJson(req)
 
-    def updateCanPdu(self, req: pduUpdate) -> Result:
+    def updateCanPdu(self, req: PduUpdate) -> Result:
         """
 
         :param req:

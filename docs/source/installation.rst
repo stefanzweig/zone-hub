@@ -14,3 +14,4 @@
 `Zone-Hub <https://pypi.org/project/zone-hub/>`__ 包放在PyPI上. 我们可以用过 ``pip`` 进行安装::
 
     pip install zone-hub
+

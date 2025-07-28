@@ -7,8 +7,8 @@
 .. contents:: :local:
    :class: this-will-duplicate-information-and-it-is-still-useful-here
 
-App
-====
+App(Application)
+================
 
 .. autoclass:: zone.App
    :members:
