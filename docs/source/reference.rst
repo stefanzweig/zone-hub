@@ -15,11 +15,16 @@ App(Application)
    :undoc-members:
 
 
+CommonNode
+===========
+
+.. autoclass:: zone.IDL.thrift.CommonNode.Result
+   :members:
+
+
 DSC(Data Structure Collections)
 ================================
 
 .. automodule:: zone.dsc
    :members:
    :undoc-members:
-
-

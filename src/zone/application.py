@@ -1,6 +1,6 @@
 from zone.IDL.thrift.CanParserNode.ttypes import *
 from zone.IDL.thrift.CanStackNode.ttypes import *
-from zone.IDL.thrift.CommonNode.ttypes import result as Result
+from zone.IDL.thrift.CommonNode import Result
 from zone.dsc import (
     CanPdu,
     CanConfig,
@@ -128,9 +128,17 @@ class App(object):
     def connect(self, components: list = None) -> dict:
         """
 
-        :param components:
+        :param components: 列表。可以的值是"canstack", "canparser", "linstack", "linparser"。
+
+        例如["canstack", "canparser"]。 当只有一个元素时候可以单纯写字符串，例如"canstack"。
 
         :return: Result
+
+        例如：
+
+            connect("canstack") or
+
+            connect(["canstack", "canparser"])
 
         """
         if components is None:
