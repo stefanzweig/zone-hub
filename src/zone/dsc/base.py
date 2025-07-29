@@ -3,7 +3,8 @@ from zone.IDL.thrift.CanStackNode.ttypes import (
     canMessages,
     canChannelConfigs,
     canChannelConfig,
-    frameCrcRcConfig, channel,
+    frameCrcRcConfig,
+    channel,
 )
 from zone.IDL.thrift.CanParserNode.ttypes import (
     canDbInfo,
@@ -14,7 +15,9 @@ from zone.IDL.thrift.CanParserNode.ttypes import (
     iSignalIPduEncode,
     iSignalIPduObj,
     dbConfigs,
-    convertInput, subscribeInfo,
+    convertInput,
+    subscribeInfo,
+    dbConfigPair,
 )
 from zone.IDL.thrift.ConfigNode.ttypes import dbPath, canConfigInfo
 from zone.IDL.thrift.SomeIpNode.ttypes import (
@@ -133,8 +136,10 @@ class LinMessageDataT(linMessageDataT):
 class ConvertInput(convertInput):
     pass
 
+
 class Channel(channel):
     pass
+
 
 class SubscribeInfo(subscribeInfo):
     pass
@@ -155,6 +160,11 @@ class CanConfig(dbConfigs, canChannelConfigs):
 
 
 class CrcRcConfig(pduCrcRcConfig, frameCrcRcConfig):
+    def __init__(self):
+        super().__init__()
+
+
+class MyCanChannelConfig(canChannelConfig, dbConfigPair):
     def __init__(self):
         super().__init__()
 

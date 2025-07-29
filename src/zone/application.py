@@ -15,7 +15,9 @@ from zone.dsc import (
     CanMessages,
     Channel,
     SubscribeInfo,
+    CanChannelConfig,
 )
+from zone.dsc.base import MyCanChannelConfig
 from .utils.dsx import as_list
 from .utils.snippets import normalize_components
 
@@ -43,8 +45,7 @@ class App(object):
         linparser=None,
         data=None
     ) -> None:
-        """
-        """
+        """ """
         self._configs = as_list(configs)
         self._connections = as_list(connections)
         self._clients = []
@@ -164,6 +165,10 @@ class App(object):
 
         :return: 连接结果的字典
         :rtype: dict of :class:`~zone.IDL.thrift.CommonNode.Result`
+
+        .. note::
+
+            例如 dict("canstack": result(result=0, reason="connected"))
         """
         return self.connect()
 
@@ -172,9 +177,24 @@ class App(object):
         断开组件。
 
         :param components: 断开连接的组件。
+        :type components: 列表，list
 
-        :return: Result
+        .. note::
+
+            列表中可能的值是"canstack", "canparser", "linstack", "linparser"。
+
+            例如 app.disconnect(["canstack", "canparser"])。
+
+            当只有一个元素时候可以单纯写字符串，例如 app.disconnect("canstack")。
+
+            如果要断开所有的四个组件，canstack、canparser、linstack、linparser，可以用 app.disconnect(["all"]) 表示。
+
+        :return: 断开操作结果的字典
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
+        .. note::
+
+            例如 dict("canstack": result(result=0, reason="disconnected"))
         """
         if components is None:
             components = ["all"]
@@ -191,9 +211,13 @@ class App(object):
 
     def disconnect_all(self) -> dict:
         """
-        断开所有组件。
+        断开所有组件。即
 
-        :return: Result
+        .. note::
+
+            app.connect()
+
+        :return: 断开操作结果的字典
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
         """
         return self.disconnect()
@@ -203,9 +227,24 @@ class App(object):
         获得组件状态。
 
         :param components: 获取状态的组件。
+        :type components: 列表，list
+
+        .. note::
+
+            列表中可能的值是"canstack", "canparser", "linstack", "linparser"。
+
+            例如 app.getStatus(["canstack", "canparser"])。
+
+            当只有一个元素时候可以单纯写字符串，例如 app.getStatus("canstack")。
+
+            如果要断开所有的四个组件，canstack、canparser、linstack、linparser，可以用 app.getStatus(["all"]) 表示。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+
+        .. note::
+
+            例如 dict("canstack": result(result=0, reason="connected"))
         """
         if components is None:
             components = ["all"]
@@ -226,6 +265,21 @@ class App(object):
         设置CRC RC配置。
 
         :param req: CrcRc配置的实例。
+        :type req: CrcRcConfig
+
+        .. code:: python
+
+            from zone.dsc import CrcRcConfig
+            config = CrcRcConfig()
+            config.channel = xxx
+            config.crcBitStarts = xxx
+            config.crcName = xxx
+            config.crcTable = xxx
+            config.pduName = xxx
+            config.rcBitStarts = xxx
+            config.rcConfig = xxx
+            config.rcName = xxx
+            ret = app.setCrcRcConfig(config)
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
@@ -532,6 +586,42 @@ class App(object):
         """
         return self._canstack.getChannelErrorFrameTotal(req)
 
+    def setCanChannelConfig(self, canconfigs: list[MyCanChannelConfig]):
+        # todo: stack configs
+        # todo: parser configs
+        canchannel_configs = canChannelConfigs()
+        dbconfigs = dbConfigs()
+        # for item in canconfigs:
+        #     pass
+
+            # item.channel
+            # item.bitrate
+            # item.isFd
+            # item.fdBitrate
+            # item.busType:
+            # item.appName:
+            # item.sjwAbr
+            # item.sjwDbr
+            # item.tseg1Abr
+            # item.tseg1Dbr
+            # item.tseg2Abr
+            # item.tseg2Dbr
+            # item.txreceipts
+            # item.nsamplepos
+            # item.dsamplepos
+            # item.clockfreq
+            # item.dprescaler
+            # item.nprescaler
+            # item.hardwareChannel
+            # item.channel
+            # item.dbName
+
+        # canchannel_configs.configs.append(item)
+        # dbconfigs.configs.append(item)
+
+        self._canstack.setConfigs(canchannel_configs)
+        self._canparser.setConfigs(dbconfigs)
+
     # # can parser
 
     def clearAllCanParserCrcRcConfig(self) -> Result:
@@ -587,7 +677,7 @@ class App(object):
         """
         return self._canparser.sendCanPduCycList(req)
 
-    def addDbFile(self, req: DbPath) -> Result:
+    def addCANDbFile(self, req: DbPath) -> Result:
         """
         添加数据库文件。
 
@@ -722,7 +812,7 @@ class App(object):
     #     return self._linstack.setChannelConig(req)
     #
     # def startLinStack(self):
-    #     return self._linstack.startLinStack()
+    #     return self._linstack.LinStack()
     #
     # def stopLinStack(self):
     #     return self._linstack.stopLinStack()
