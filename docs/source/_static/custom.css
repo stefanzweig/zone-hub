@@ -1,0 +1,12 @@
+/* 隐藏 note 标题 */
+div.admonition.note .admonition-title {
+    display: none;
+}
+
+/* 自定义 note 内容样式 */
+div.admonition.note {
+    background-color: #f8f9fa;
+    border-left: 3px solid #6c757d;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+}

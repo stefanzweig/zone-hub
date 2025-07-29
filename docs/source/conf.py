@@ -45,7 +45,9 @@ autodoc_default_options = {
     "property-no-value": True,
     "hide-property-decorators": True,
 }
-
+html_css_files = [
+    'custom.css',
+]
 pipe = Popen("git describe --tags --always", stdout=PIPE, shell=True)
 git_version = pipe.stdout.read().decode("utf8")
 

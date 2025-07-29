@@ -128,18 +128,23 @@ class App(object):
     def connect(self, components: list = None) -> dict:
         """
 
-        :param components: 列表。可以的值是"canstack", "canparser", "linstack", "linparser"。
+        :param components: 需要连接的组件。
+        :type components: 列表，list
 
-        例如["canstack", "canparser"]。 当只有一个元素时候可以单纯写字符串，例如"canstack"。
+        .. note::
 
-        :return: Result
-        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+            可能的值是"canstack", "canparser", "linstack", "linparser"。
 
-        例如：
+            例如 ["canstack", "canparser"]。
 
-            connect("canstack") or
+            当只有一个元素时候可以单纯写字符串，例如 "canstack"。
 
-            connect(["canstack", "canparser"])
+        :return: 连接结果的字典
+        :rtype: dict of :class:`~zone.IDL.thrift.CommonNode.Result`
+
+        .. note::
+
+            例如 dict("canstack": result(result=0, reason="connected"))
 
         """
         if components is None:
