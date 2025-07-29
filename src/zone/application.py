@@ -29,7 +29,7 @@ from zone.clients import (
 
 class App(object):
     """
-    App docstring.
+    Application的入口。
     """
 
     def __init__(
@@ -44,14 +44,6 @@ class App(object):
         data=None
     ) -> None:
         """
-
-        :param configs:
-        :param connections:
-        :param canstack:
-        :param canparser:
-        :param linstack:
-        :param linparser:
-        :param data:
         """
         self._configs = as_list(configs)
         self._connections = as_list(connections)
@@ -127,17 +119,20 @@ class App(object):
     # api
     def connect(self, components: list = None) -> dict:
         """
+        连接部件。
 
         :param components: 需要连接的组件。
         :type components: 列表，list
 
         .. note::
 
-            可能的值是"canstack", "canparser", "linstack", "linparser"。
+            列表中可能的值是"canstack", "canparser", "linstack", "linparser"。
 
-            例如 ["canstack", "canparser"]。
+            例如 app.connect(["canstack", "canparser"])。
 
-            当只有一个元素时候可以单纯写字符串，例如 "canstack"。
+            当只有一个元素时候可以单纯写字符串，例如 app.connect("canstack")。
+
+            如果要连接所有的四个组件，canstack、canparser、linstack、linparser，可以用 app.connect(["all"]) 表示。
 
         :return: 连接结果的字典
         :rtype: dict of :class:`~zone.IDL.thrift.CommonNode.Result`
@@ -145,7 +140,6 @@ class App(object):
         .. note::
 
             例如 dict("canstack": result(result=0, reason="connected"))
-
         """
         if components is None:
             components = ["all"]
@@ -162,23 +156,25 @@ class App(object):
 
     def connect_all(self) -> dict:
         """
+        连接所有部件。即
 
-        :return: Result
-        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+        .. note::
 
+            app.connect()
 
+        :return: 连接结果的字典
+        :rtype: dict of :class:`~zone.IDL.thrift.CommonNode.Result`
         """
         return self.connect()
 
     def disconnect(self, components: list = None) -> dict:
         """
+        断开组件。
 
-        :param components:
+        :param components: 断开连接的组件。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         if components is None:
             components = ["all"]
@@ -195,23 +191,21 @@ class App(object):
 
     def disconnect_all(self) -> dict:
         """
+        断开所有组件。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self.disconnect()
 
     def getStatus(self, components: list = None) -> dict:
         """
+        获得组件状态。
 
-        :param components:
+        :param components: 获取状态的组件。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         if components is None:
             components = ["all"]
@@ -229,13 +223,12 @@ class App(object):
     def setCrcRcConfig(self, req: CrcRcConfig) -> Result:
         # canstack and canparser
         """
+        设置CRC RC配置。
 
-        :param req: CrcRcConfig实例
+        :param req: CrcRc配置的实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         ret = self._canstack.setCrcRcConfig(req)
         ret = self._canparser.setCanParserCrcRcConfig(req)
@@ -244,13 +237,12 @@ class App(object):
     def clearCrcRcConfig(self, req: CrcRcConfig) -> Result:
         # canstack and canparser
         """
+        清除CRC RC配置。
 
-        :param req:
+        :param req: CrcRc配置的实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         ret = self._canstack.clearCrcRcConfig(req)
         ret = self._canparser.clearCrcRcConfig(req)
@@ -260,11 +252,10 @@ class App(object):
         # canstack and canparser
         # todo
         """
+        清除所有的CRC RC配置。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         ret = self._canstack.clearAllCrcRcConfig()
         ret = self._canparser.clearAllCrcRcConfig()
@@ -272,13 +263,12 @@ class App(object):
 
     def checkAlive(self, components: list = None) -> dict:
         """
+        检查组件的活跃度。
 
-        :param components:
+        :param components: 检查活跃度的组件。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         if components is None:
             components = ["all"]
@@ -295,13 +285,12 @@ class App(object):
 
     def start(self, components: list = None) -> Result:
         """
+        启动组件。
 
-        :param components:
+        :param components: 需要启动的组件。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         if components is None:
             components = ["all"]
@@ -319,13 +308,12 @@ class App(object):
 
     def stop(self, components: list = None) -> Result:
         """
+        停止组件。
 
-        :param components:
+        :param components: 需要停止的组件。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         if components is None:
             components = ["all"]
@@ -345,23 +333,21 @@ class App(object):
 
     def getVersion(self) -> Result:
         """
+        获取版本。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.getVersion()
 
     def setCanConfig(self, req: CanConfig) -> Result:
         """
+        设置CAN配置。
 
-        :param req:
+        :param req: 设置CAN的配置实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         ret = self._canparser.setCanConfig(req)
         ret = self._canstack.setConfigs(req)
@@ -369,197 +355,180 @@ class App(object):
 
     def sendCanPdu(self, req: CanPdu) -> Result:
         """
+        发送CANPDU。
 
-        :param req:
+        :param req: 发送CANPDU的实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         self._canparser.updateCanPdu(req)
         self._canparser.sendCanPduCyc(req)
 
     def stopCanPdu(self, req: CanPdu) -> Result:
         """
+        停止发送CANPDU。
 
-        :param req:
+        :param req: 停止的CANPDU实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         self._canparser.sendCanPduCyc(req)
 
     def setConfigs(self, req: CanConfig) -> Result:
         """
+        设置配置。
 
-        :param req: CanConfig
+        :param req: 需要设置的Can配置实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.setConfigs(req)
 
     def startCanStack(self) -> Result:
         """
+        启动CAN。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.startCanStack()
 
     def stopCanStack(self) -> Result:
         """
+        停止CAN。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.stopCanStack()
 
     def clearCanSend(self) -> Result:
         """
+        清除CAN。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.clearCanSend()
 
     def clearCanAllCrcRcConfig(self) -> Result:
         """
+        清除所有CAN CRC Rc 配置。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.clearAllCrcRcConfig()
 
     def sendCanMessageCyc(self, req: CanMessage) -> Result:
         """
+        循环发送CAN消息。
 
-        :param req:
+        :param req: 循环发送的CAN消息实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.sendCanMessageCyc(req)
 
     def sendCanMessage(self, req: CanMessage) -> Result:
         """
+        发送CAN消息。
 
-        :param req:
+        :param req: 发送的CAN消息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.sendCanMessage(req)
 
     def sendCanMessages(self, req: CanMessages, stmin: int) -> Result:
         """
+        发送CAN消息列表。
 
-        :param req:
-        :param stmin:
+        :param req: CAN消息。
+        :param stmin: 每条报文的间隔时间。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.sendCanMessages(req, stmin)
 
     def getStackStatus(self) -> Result:
         """
+        获取状态。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.getStatus()
 
     def stopChannelSendCyc(self, req: Channel) -> Result:
         """
+        循环停止信道发送。
 
-        :param req:
+        :param req: 信道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.stopChannelSendCyc(req)
 
     def sendCan(self, req: CanMessage) -> Result:
         """
+        发送CAN消息。
 
-        :param req:
+        :param req: CAN消息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.sendCan(req)
 
     def getChannelBusloadCurrent(self, req: Channel) -> Result:
         """
+        获取信道当前总线负载率。
 
-        :param req:
+        :param req: 信道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.getChannelBusloadCurrent(req)
 
     def getChannelBusloadMax(self, req: Channel) -> Result:
         """
+        获取信道最大总线负载率。
 
-        :param req:
+        :param req: 信道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.getChannelBusloadMax(req)
 
     def getChannelBusloadAvg(self, req: Channel) -> Result:
         """
+        获取信道平均总线负载率。
 
-        :param req:
+        :param req: 信道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.getChannelBusloadAvg(req)
 
     def getChannelErrorFrameTotal(self, req: Channel) -> Result:
         """
+        获取信道错误帧总数。
 
-        :param req:
+        :param req: 信道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canstack.getChannelErrorFrameTotal(req)
 
@@ -567,193 +536,176 @@ class App(object):
 
     def clearAllCanParserCrcRcConfig(self) -> Result:
         """
+        清除所有CANParser的CRC RC配置。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.clearAllCanParserCrcRcConfig()
 
     def clearCanParserCrcRcConfig(self, req: PduCrcRcConfig) -> Result:
         """
+        清除CANParser的CRC RC配置。
 
-        :param req:
+        :param req: 需要操作的PduCrcRc配置实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.clearCanParserCrcRcConfig(req)
 
     def sendCanFrameCyc(self, req: CanMessage) -> Result:
         """
+        循环发送CAN帧。
 
-        :param req:
+        :param req: 发送到的CAN消息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.sendCanFrameCyc(req)
 
     def sendCanPduCyc(self, req: PduMessage) -> Result:
         """
+        循环发送CANPDU。
 
-        :param req:
+        :param req: 发送的PDU消息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.sendCanPduCyc(req)
 
     def sendCanPduCycList(self, req: PduMessages) -> Result:
         """
+        发送CANPDU循环列表。
 
-        :param req:
+        :param req: 循环发送的PDU消息列表。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.sendCanPduCycList(req)
 
     def addDbFile(self, req: DbPath) -> Result:
         """
+        添加数据库文件。
 
-        :param req:
+        :param req: 添加的数据库路径。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.addDbFile(req)
 
     def getCanDbConfigs(self) -> Result:
         """
+        获取CAN数据库配置。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.getCanDbConfigs()
 
     def getCanDbPath(self) -> Result:
         """
+        获取CAN数据库路径。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.getCanDbPath()
 
     def subscribeMsg(self, req: SubscribeInfo) -> Result:
         """
+        订阅消息。
 
-        :param req:
+        :param req: 订阅信息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.subscribeMsg(req)
 
     def unSubscribeMsg(self, req: SubscribeInfo) -> Result:
         """
+        退订消息。
 
-        :param req:
+        :param req: 退订的订阅消息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.unSubscribeMsg(req)
 
     def getCanDbInfo(self) -> Result:
         """
+        获取CAN数据库信息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.getCanDbInfo()
 
     def clear(self) -> Result:
         """
+        清理。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.clear()
 
     def clearCanStackSubscribe(self) -> Result:
         """
+        清除CAN订阅。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.clearCanStackSubscribe()
 
-    def encodePdu(self, req) -> Result:
+    def encodePdu(self, req: iSignalIPduObj) -> Result:
         """
+        编码PDU。
 
-        :param req:
+        :param req: 编码的PDU信号。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.encodePdu(req)
 
     def convertCanDbToPy(self, req: ConvertInput) -> Result:
         """
+        把CAN数据库转换成Python文件。
 
-        :param req:
+        :param req: 转换输入。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.convertCanDbToPy(req)
 
     def convertCanDbToJson(self, req: ConvertInput) -> Result:
         """
+        把CAN数据库转换成JSON文件。
 
-        :param req:
+        :param req: 转换输入。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.convertCanDbToJson(req)
 
     def updateCanPdu(self, req: PduUpdate) -> Result:
         """
+        更新CANPDU。
 
-        :param req:
+        :param req: 需要更新的PDU更新信息。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
-
-
         """
         return self._canparser.updateCanPdu(req)
 

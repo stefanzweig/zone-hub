@@ -7,16 +7,17 @@
 .. contents:: :local:
    :class: this-will-duplicate-information-and-it-is-still-useful-here
 
-zone.App
-==========
+App
+=====
 
 .. autoclass:: zone.App
    :members:
    :undoc-members:
+   :member-order: bysource
 
 
-zone.IDL.thrift.CommonNode
-===========================
+Result
+======
 
 .. autoclass:: zone.IDL.thrift.CommonNode.Result
    :members:
