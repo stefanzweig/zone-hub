@@ -6,3 +6,11 @@ beanbag-docutils>=2.0
 PyYAML==6.0.2
 thrift
 zone-hub
+pygments-csv-lexer
+sphinx-basic-ng
+sphinxcontrib-applehelp
+sphinxcontrib-devhelp
+sphinxcontrib-htmlhelp
+sphinxcontrib-jsmath
+sphinxcontrib-qthelp
+sphinxcontrib-serializinghtml
