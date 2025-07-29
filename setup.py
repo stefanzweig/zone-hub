@@ -2,16 +2,11 @@
 from os.path import abspath, dirname, join
 from setuptools import find_packages, setup
 
-VERSION = "0.1.0.dev1"
-with open(join(dirname(abspath(__file__)), "README.md"), encoding="utf-8") as f:
+VERSION = "0.1.0.dev2"
+with open(
+    join(dirname(abspath(__file__)), "README.rst"), encoding="utf-8"
+) as f:
     LONG_DESCRIPTION = f.read()
-    base_url = "http://10.133.122.70/liuhaijiang/zmclient/-/blob/main/"
-    for text in ("INSTALL", "CONTRIBUTING"):
-        search = f"`<{text}.rst>`__"
-        replace = f"`{text}.rst <{base_url}/{text}.rst>`__"
-        if search not in LONG_DESCRIPTION:
-            raise RuntimeError(f"{search} not found from README.md")
-        LONG_DESCRIPTION = LONG_DESCRIPTION.replace(search, replace)
 
 CLASSIFIERS = """
 Development Status :: 5 - Production/Stable
@@ -22,9 +17,6 @@ Programming Language :: Python :: 3 :: Only
 Programming Language :: Python :: 3.8
 Programming Language :: Python :: 3.9
 Programming Language :: Python :: 3.10
-Programming Language :: Python :: 3.11
-Programming Language :: Python :: 3.12
-Framework :: Zone Hub
 """.strip().splitlines()
 DESCRIPTION = "Zone framework for acceptance testing "
 KEYWORDS = "framework automation-test automation-testing atdd bdd"
@@ -33,13 +25,13 @@ KEYWORDS = "framework automation-test automation-testing atdd bdd"
 setup(
     name="zone-hub",
     version=VERSION,
-    author="Liu Haijiang",
-    author_email="liuhaijiang@saicmotor.com",
+    author="Stefan Zweig",
+    author_email="stefan.zweig@gmail.com",
     url="http://10.133.122.70/liuhaijiang/zmclient",
     project_urls={
         "Source": "http://10.133.122.70/liuhaijiang/zmclient",
     },
-    download_url="https://pypi.org/project/zoneclient",
+    download_url="https://pypi.org/project/zone-hub",
     license="Apache License 2.0",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
