@@ -22,6 +22,8 @@
 
     # set channel config
     config = CanChannelConfig()
+    # set the parameters of the config
+    # ...
     app.setCanChannelConfig([config])
 
     # start stack
