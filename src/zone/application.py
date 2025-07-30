@@ -658,16 +658,16 @@ class App(object):
         """
         return self._canparser.sendCanPduCycList(req)
 
-    def addCANDbFile(self, req: DbPath) -> Result:
+    def addCanDbFile(self, db_path: str) -> Result:
         """
         添加数据库文件。
 
-        :param req: 添加的数据库路径。
+        :param db_path: 添加的数据库路径。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
         """
-        return self._canparser.addDbFile(req)
+        return self._canparser.addDbFile(dbPath(dbPath=db_path))
 
     def getCanDbConfigs(self) -> Result:
         """

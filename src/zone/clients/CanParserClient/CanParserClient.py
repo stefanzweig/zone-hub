@@ -59,7 +59,6 @@ class CanParserClient(canParserNode.Iface):
         """
         return result(result=0, reason="canparser status unknown.")
 
-
     def setCrcRcConfig(self, config: pduCrcRcConfig) -> result:
         """
         设置CRC配置
@@ -149,7 +148,6 @@ class CanParserClient(canParserNode.Iface):
         :param dbpath: 数据库路径
 
         :return: 执行结果
-
         :rtype: result
         """
         return self.client.addDbFile(dbpath)
@@ -287,6 +285,13 @@ class CanParserClient(canParserNode.Iface):
         :rtype: result
         """
         return self.client.updateCanPdu(info)
+
+    def AddCanDbFile(self, db_path: "str") -> "int":
+        return self.client.addDbFile(
+            dbPath(
+                dbPath=db_path,
+            )
+        )
 
 
 canparserclient = singleton(CanParserClient)()

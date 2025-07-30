@@ -8,8 +8,8 @@
 .. code:: python
 
     # import the library
-    import zone
-    from zone.dsc import DbPath, CanMessage
+    from zone import App
+    from zone.dsc import DbPath, CanMessage, CanChannelConfig
 
     # define the app
     app = zone.App()
@@ -18,26 +18,26 @@
     result = app.connect(["canstack", "canparser"])
 
     # add db file
-    app.addCANDbFile(r'E:\Shared\WORKS\codebase\xxx.arxml')
+    app.addCanDbFile(r'E:\Shared\WORKS\codebase\xxx.arxml')
 
     # set channel config
-    # # construct configs
-    app.setCanChannelConfig(configs)
+    config = CanChannelConfig()
+    app.setCanChannelConfig([config])
 
     # start stack
     app.start(["canstakck", "canparser"])
 
     # send can message
-    can_msg = CanMessage(channel=channel,
-                         isFd=is_fd,
-                         id=arbitration_id,
-                         dlc=dlc,
-                         isExtended=is_extended_id,
-                         isRemote=is_remote_frame,
-                         data=data,
-                         period=period_ms,
-                         frameName=name,
-                         times=times)
+    can_msg = CanMessage(channel=0,
+                         isFd=False,
+                         id=1,
+                         dlc=8,
+                         isExtended=True,
+                         isRemote=False,
+                         data=[1, 2, 3, 4, 5],
+                         period=100,
+                         frameName="frame",
+                         times=10)
     app.sendCanMessage(can_msg)
 
     # disconnect the can-related components
