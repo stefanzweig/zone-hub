@@ -1,16 +1,15 @@
-====
-教程
-====
+============
+简易教程
+============
 
-例子
-====
+例子一
+============
 
 .. code:: python
 
     # import the library
     import zone
-    from zone.dsc import DbPath
-    from zone.dsc import CanMessage
+    from zone.dsc import DbPath, CanMessage
 
     # define the app
     app = zone.App()
@@ -29,8 +28,16 @@
     app.start(["canstakck", "canparser"])
 
     # send can message
-    can_msg = CanMessage(hannel=obj.channel, isFd=obj.is_fd, id=obj.arbitration_id, dlc=obj.dlc, isExtended=obj.is_extended_id,
-	     isRemote=obj.is_remote_frame, data=obj.data, period=period_ms, frameName=obj.name, times=times)
+    can_msg = CanMessage(channel=channel,
+                         isFd=is_fd,
+                         id=arbitration_id,
+                         dlc=dlc,
+                         isExtended=is_extended_id,
+                         isRemote=is_remote_frame,
+                         data=data,
+                         period=period_ms,
+                         frameName=name,
+                         times=times)
     app.sendCanMessage(can_msg)
 
     # disconnect the can-related components
