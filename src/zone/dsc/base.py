@@ -49,10 +49,6 @@ class CanChannelConfigs(canChannelConfigs):
     pass
 
 
-class CanChannelConfig(canChannelConfig):
-    pass
-
-
 class CanDbinfo(canDbInfo):
     pass
 
@@ -164,9 +160,12 @@ class CrcRcConfig(pduCrcRcConfig, frameCrcRcConfig):
         super().__init__()
 
 
-class MyCanChannelConfig(canChannelConfig, dbConfigPair):
+class CanChannelConfig(canChannelConfig, dbConfigPair):
     def __init__(self):
-        super().__init__()
+        canChannelConfig.__init__(self)
+        self.channel_can = self.channel
+        dbConfigPair.__init__(self)
+        self.channel_db = self.channel
 
 
 req = CanPdu()

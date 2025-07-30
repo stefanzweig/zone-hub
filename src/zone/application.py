@@ -17,7 +17,6 @@ from zone.dsc import (
     SubscribeInfo,
     CanChannelConfig,
 )
-from zone.dsc.base import MyCanChannelConfig
 from .utils.dsx import as_list
 from .utils.snippets import normalize_components
 
@@ -337,14 +336,14 @@ class App(object):
                 results[i] = result
         return results
 
-    def start(self, components: list = None) -> Result:
+    def start(self, components: list = None) -> dict:
         """
         启动组件。
 
         :param components: 需要启动的组件。
 
-        :return: Result
-        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+        :return: 启动组件状态的字典
+        :rtype: dict of :class:`~zone.IDL.thrift.CommonNode.Result`
         """
         if components is None:
             components = ["all"]
@@ -360,7 +359,7 @@ class App(object):
                     results[i] = result
         return results
 
-    def stop(self, components: list = None) -> Result:
+    def stop(self, components: list = None) -> dict:
         """
         停止组件。
 
@@ -416,8 +415,9 @@ class App(object):
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
         """
-        self._canparser.updateCanPdu(req)
-        self._canparser.sendCanPduCyc(req)
+        ret = self._canparser.updateCanPdu(req)
+        ret = self._canparser.sendCanPduCyc(req)
+        return ret
 
     def stopCanPdu(self, req: CanPdu) -> Result:
         """
@@ -428,7 +428,7 @@ class App(object):
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
         """
-        self._canparser.sendCanPduCyc(req)
+        return self._canparser.sendCanPduCyc(req)
 
     def setConfigs(self, req: CanConfig) -> Result:
         """
@@ -522,9 +522,9 @@ class App(object):
 
     def stopChannelSendCyc(self, req: Channel) -> Result:
         """
-        循环停止信道发送。
+        循环停止通道发送。
 
-        :param req: 信道实例。
+        :param req: 通道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
@@ -544,9 +544,9 @@ class App(object):
 
     def getChannelBusloadCurrent(self, req: Channel) -> Result:
         """
-        获取信道当前总线负载率。
+        获取通道当前总线负载率。
 
-        :param req: 信道实例。
+        :param req: 通道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
@@ -555,9 +555,9 @@ class App(object):
 
     def getChannelBusloadMax(self, req: Channel) -> Result:
         """
-        获取信道最大总线负载率。
+        获取通道最大总线负载率。
 
-        :param req: 信道实例。
+        :param req: 通道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
@@ -566,9 +566,9 @@ class App(object):
 
     def getChannelBusloadAvg(self, req: Channel) -> Result:
         """
-        获取信道平均总线负载率。
+        获取通道平均总线负载率。
 
-        :param req: 信道实例。
+        :param req: 通道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
@@ -577,52 +577,33 @@ class App(object):
 
     def getChannelErrorFrameTotal(self, req: Channel) -> Result:
         """
-        获取信道错误帧总数。
+        获取通道错误帧总数。
 
-        :param req: 信道实例。
+        :param req: 通道实例。
 
         :return: Result
         :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
         """
         return self._canstack.getChannelErrorFrameTotal(req)
 
-    def setCanChannelConfig(self, canconfigs: list[MyCanChannelConfig]):
-        # todo: stack configs
-        # todo: parser configs
+    def setCanChannelConfig(self, req: list[CanChannelConfig]):
+        """
+        设置CAN通道的配置
+
+        :param req: CAN通道配置的列表
+
+        :return: Result
+        :rtype: :class:`~zone.IDL.thrift.CommonNode.Result`
+        """
         canchannel_configs = canChannelConfigs()
         dbconfigs = dbConfigs()
-        # for item in canconfigs:
-        #     pass
-
-            # item.channel
-            # item.bitrate
-            # item.isFd
-            # item.fdBitrate
-            # item.busType:
-            # item.appName:
-            # item.sjwAbr
-            # item.sjwDbr
-            # item.tseg1Abr
-            # item.tseg1Dbr
-            # item.tseg2Abr
-            # item.tseg2Dbr
-            # item.txreceipts
-            # item.nsamplepos
-            # item.dsamplepos
-            # item.clockfreq
-            # item.dprescaler
-            # item.nprescaler
-            # item.hardwareChannel
-            # item.channel
-            # item.dbName
-
-        # canchannel_configs.configs.append(item)
-        # dbconfigs.configs.append(item)
-
+        canchannel_configs.configs = []
+        dbconfigs.configs = []
+        for item in req:
+            canchannel_configs.configs.append(item)
+            dbconfigs.configs.append(item)
         self._canstack.setConfigs(canchannel_configs)
-        self._canparser.setConfigs(dbconfigs)
-
-    # # can parser
+        self._canparser.setConfig(dbconfigs)
 
     def clearAllCanParserCrcRcConfig(self) -> Result:
         """
