@@ -1,7 +1,7 @@
 import re
 import sys
 
-VERSION = "0.1.0.dev2"
+VERSION = "0.1.0.dev3"
 
 
 def get_version(naked=False):

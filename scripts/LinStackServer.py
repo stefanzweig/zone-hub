@@ -66,5 +66,5 @@ if __name__ == "__main__":
     pfactory = TBinaryProtocol.TBinaryProtocolFactory()
 
     server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)
-    print("Starting the LinStackNode server...")
+    print("Starting the Lin Stack server...")
     server.serve()

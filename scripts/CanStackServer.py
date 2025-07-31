@@ -83,5 +83,5 @@ if __name__ == "__main__":
     pfactory = TBinaryProtocol.TBinaryProtocolFactory()
 
     server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)
-    print("Starting the CanStackNode server...")
+    print("Starting the CAN Stack server...")
     server.serve()

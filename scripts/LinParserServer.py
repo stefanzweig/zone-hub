@@ -64,5 +64,5 @@ if __name__ == "__main__":
     pfactory = TBinaryProtocol.TBinaryProtocolFactory()
 
     server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)
-    print("Starting the LinParserNode server...")
+    print("Starting the Lin Parser server...")
     server.serve()
