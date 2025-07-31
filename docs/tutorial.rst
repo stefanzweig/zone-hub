@@ -30,13 +30,11 @@
     app.start(["canstakck", "canparser"])
 
     # send can message
-    can_msg = CanMessage(channel=0,
+    can_msg = CanMessage(channel=1,
                          isFd=False,
                          id=1,
                          dlc=8,
-                         isExtended=True,
-                         isRemote=False,
-                         data=[1, 2, 3, 4, 5],
+                         data=[1, 2, 3, 4, 5, 6, 7, 8],
                          period=100,
                          frameName="frame",
                          times=10)
