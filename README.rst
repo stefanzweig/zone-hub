@@ -16,7 +16,7 @@ Zone-Hub
     from zone.dsc import DbPath, CanMessage, CanChannelConfig
 
     # define the app
-    app = zone.App()
+    app = App()
 
     result = app.connect(["canstack", "canparser"])
 
@@ -49,4 +49,4 @@ Zone-Hub
 参考文档
 --------------------
 
-参考文档可以在这里找到：`zone-hub.readthedocs.org <https://zone-hub.readthedocs.org/en/stable/>`__.
+参考文档可以在这里找到：`zone-hub.readthedocs.io <https://zone-hub.readthedocs.io/>`__.

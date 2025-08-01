@@ -4,7 +4,7 @@
  安装指南
 ==============
 
-``Zone Hub`` 在 Ubuntu 和 Windows上测试通过。
+``Zone-Hub`` 在Ubuntu和Windows上测试通过。
 
 .. _installation_pip:
 

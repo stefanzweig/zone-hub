@@ -12,7 +12,7 @@
     from zone.dsc import DbPath, CanMessage, CanChannelConfig
 
     # define the app
-    app = zone.App()
+    app = App()
 
     # connect the can-related components
     result = app.connect(["canstack", "canparser"])

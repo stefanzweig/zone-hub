@@ -15,6 +15,12 @@ App
    :undoc-members:
    :member-order: bysource
 
+Data Structure Collections(dsc)
+=====================================
+
+.. automodule:: zone.dsc
+   :members:
+   :undoc-members:
 
 Result
 ======
@@ -23,9 +29,3 @@ Result
    :members:
 
 
-zone.dsc(Data Structure Collections)
-=====================================
-
-.. automodule:: zone.dsc
-   :members:
-   :undoc-members:
