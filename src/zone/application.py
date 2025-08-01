@@ -27,6 +27,8 @@ from zone.clients import (
     linparserclient,
 )
 
+from typing import List
+
 
 class App(object):
     """
@@ -586,7 +588,7 @@ class App(object):
         """
         return self._canstack.getChannelErrorFrameTotal(req)
 
-    def setCanChannelConfig(self, req: list[CanChannelConfig]):
+    def setCanChannelConfig(self, req: List[CanChannelConfig]):
         """
         设置CAN通道的配置
 
